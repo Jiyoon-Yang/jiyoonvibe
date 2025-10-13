@@ -1,0 +1,594 @@
+/* =================================================================== */
+/* Selectbox Component Styles */
+/* =================================================================== */
+
+/* Wrapper */
+.selectbox__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.selectbox__wrapper--fullWidth {
+  width: 100%;
+}
+
+/* Label */
+.selectbox__label {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #1c1c1c;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.selectbox__required {
+  color: #f03851;
+}
+
+/* Main Selectbox */
+.selectbox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #c7c7c7;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.selectbox:hover {
+  border-color: #ababab;
+}
+
+.selectbox:focus {
+  border-color: #6da5fa;
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.1);
+}
+
+/* Container */
+.selectbox__container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  padding: 0 12px;
+  flex: 1;
+}
+
+/* Value Display */
+.selectbox__value {
+  flex: 1;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 500;
+  color: #1c1c1c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+}
+
+/* Placeholder styling is handled in the component logic */
+
+/* Search Input */
+.selectbox__searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 500;
+  color: #1c1c1c;
+}
+
+.selectbox__searchInput::placeholder {
+  color: #ababab;
+}
+
+/* Icons */
+.selectbox__iconLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777777;
+}
+
+.selectbox__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #777777;
+  transition: transform 0.2s ease-in-out;
+}
+
+.selectbox--open .selectbox__arrow {
+  transform: rotate(180deg);
+}
+
+/* Dropdown */
+.selectbox__dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-top: 4px;
+  max-height: 200px;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease-in-out;
+}
+
+.selectbox__dropdown--open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Option List */
+.selectbox__optionList {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+  max-height: 192px;
+  overflow-y: auto;
+}
+
+/* Option Item */
+.selectbox__option {
+  padding: 8px 12px;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-weight: 500;
+  color: #1c1c1c;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.selectbox__option:hover {
+  background-color: #f2f2f2;
+}
+
+.selectbox__option--selected {
+  background-color: #6da5fa;
+  color: #ffffff;
+}
+
+.selectbox__option--selected:hover {
+  background-color: #497cff;
+}
+
+.selectbox__option--disabled {
+  color: #ababab;
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+.selectbox__option--disabled:hover {
+  background-color: transparent;
+}
+
+/* No Options */
+.selectbox__noOptions {
+  padding: 12px;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 14px;
+  color: #ababab;
+  text-align: center;
+}
+
+/* Helper Text */
+.selectbox__helperText {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #777777;
+}
+
+/* Error Message */
+.selectbox__errorMessage {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: #f03851;
+}
+
+/* =================================================================== */
+/* Size Variants */
+/* =================================================================== */
+
+/* Small */
+.selectbox--small {
+  height: 32px;
+  min-width: 80px;
+}
+
+.selectbox--small .selectbox__container {
+  padding: 0 8px;
+  gap: 6px;
+}
+
+.selectbox--small .selectbox__value,
+.selectbox--small .selectbox__searchInput {
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.selectbox--small .selectbox__iconLeft,
+.selectbox--small .selectbox__arrow {
+  width: 16px;
+  height: 16px;
+}
+
+.selectbox__dropdown--small .selectbox__option {
+  padding: 6px 8px;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+/* Medium (Default) */
+.selectbox--medium {
+  height: 40px;
+  min-width: 100px;
+}
+
+.selectbox--medium .selectbox__value,
+.selectbox--medium .selectbox__searchInput {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.selectbox--medium .selectbox__iconLeft,
+.selectbox--medium .selectbox__arrow {
+  width: 20px;
+  height: 20px;
+}
+
+.selectbox__dropdown--medium .selectbox__option {
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* Large */
+.selectbox--large {
+  height: 48px;
+  min-width: 120px;
+}
+
+.selectbox--large .selectbox__container {
+  padding: 0 16px;
+  gap: 10px;
+}
+
+.selectbox--large .selectbox__value,
+.selectbox--large .selectbox__searchInput {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.selectbox--large .selectbox__iconLeft,
+.selectbox--large .selectbox__arrow {
+  width: 24px;
+  height: 24px;
+}
+
+.selectbox__dropdown--large .selectbox__option {
+  padding: 10px 16px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+/* =================================================================== */
+/* Variant Styles */
+/* =================================================================== */
+
+/* Primary */
+.selectbox--primary {
+  border-color: #c7c7c7;
+}
+
+.selectbox--primary:hover {
+  border-color: #ababab;
+}
+
+.selectbox--primary:focus {
+  border-color: #6da5fa;
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.1);
+}
+
+/* Secondary */
+.selectbox--secondary {
+  border-color: #e4e4e4;
+  background-color: #f2f2f2;
+}
+
+.selectbox--secondary:hover {
+  border-color: #d4d3d3;
+  background-color: #e4e4e4;
+}
+
+.selectbox--secondary:focus {
+  border-color: #6da5fa;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.1);
+}
+
+.selectbox--secondary.selectbox--dark {
+  border-color: #5f5f5f;
+  background-color: #333333;
+}
+
+.selectbox--secondary.selectbox--dark:hover {
+  border-color: #777777;
+  background-color: #5f5f5f;
+}
+
+.selectbox--secondary.selectbox--dark:focus {
+  border-color: #6da5fa;
+  background-color: #1c1c1c;
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.2);
+}
+
+/* Tertiary */
+.selectbox--tertiary {
+  border-color: transparent;
+  background-color: transparent;
+  border-bottom: 2px solid #e4e4e4;
+  border-radius: 0;
+}
+
+.selectbox--tertiary:hover {
+  border-bottom-color: #c7c7c7;
+}
+
+.selectbox--tertiary:focus {
+  border-bottom-color: #6da5fa;
+  box-shadow: none;
+}
+
+.selectbox--tertiary.selectbox--dark {
+  border-bottom-color: #5f5f5f;
+}
+
+.selectbox--tertiary.selectbox--dark:hover {
+  border-bottom-color: #777777;
+}
+
+.selectbox--tertiary.selectbox--dark:focus {
+  border-bottom-color: #6da5fa;
+}
+
+/* =================================================================== */
+/* Theme Variants */
+/* =================================================================== */
+
+/* Light Theme (Default) */
+.selectbox--light {
+  background-color: #ffffff;
+  color: #1c1c1c;
+}
+
+.selectbox--light .selectbox__value {
+  color: #1c1c1c;
+}
+
+.selectbox--light .selectbox__searchInput {
+  color: #1c1c1c;
+}
+
+.selectbox--light .selectbox__searchInput::placeholder {
+  color: #ababab;
+}
+
+.selectbox--light .selectbox__iconLeft,
+.selectbox--light .selectbox__arrow {
+  color: #777777;
+}
+
+.selectbox__dropdown--light {
+  background-color: #ffffff;
+  border-color: #e4e4e4;
+}
+
+.selectbox__dropdown--light .selectbox__option {
+  color: #1c1c1c;
+}
+
+.selectbox__dropdown--light .selectbox__option:hover {
+  background-color: #f2f2f2;
+}
+
+.selectbox__dropdown--light .selectbox__option--selected {
+  background-color: #6da5fa;
+  color: #ffffff;
+}
+
+/* Dark Theme */
+.selectbox--dark {
+  background-color: #1c1c1c;
+  border-color: #5f5f5f;
+  color: #ffffff;
+}
+
+.selectbox--dark:hover {
+  border-color: #777777;
+}
+
+.selectbox--dark:focus {
+  border-color: #6da5fa;
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.2);
+}
+
+.selectbox--dark .selectbox__value {
+  color: #ffffff;
+}
+
+.selectbox--dark .selectbox__searchInput {
+  color: #ffffff;
+}
+
+.selectbox--dark .selectbox__searchInput::placeholder {
+  color: #919191;
+}
+
+.selectbox--dark .selectbox__iconLeft,
+.selectbox--dark .selectbox__arrow {
+  color: #c7c7c7;
+}
+
+.selectbox__dropdown--dark {
+  background-color: #333333;
+  border-color: #5f5f5f;
+}
+
+.selectbox__dropdown--dark .selectbox__option {
+  color: #ffffff;
+}
+
+.selectbox__dropdown--dark .selectbox__option:hover {
+  background-color: #5f5f5f;
+}
+
+.selectbox__dropdown--dark .selectbox__option--selected {
+  background-color: #6da5fa;
+  color: #ffffff;
+}
+
+/* Dark theme wrapper */
+.selectbox__wrapper:has(.selectbox--dark) .selectbox__label {
+  color: #ffffff;
+}
+
+/* Fallback for browsers without :has() support */
+.selectbox--dark ~ .selectbox__label,
+.selectbox--dark + .selectbox__label {
+  color: #ffffff;
+}
+
+/* =================================================================== */
+/* State Variants */
+/* =================================================================== */
+
+/* Error State */
+.selectbox--error {
+  border-color: #f03851;
+}
+
+.selectbox--error:hover {
+  border-color: #e4112e;
+}
+
+.selectbox--error:focus {
+  border-color: #f03851;
+  box-shadow: 0 0 0 3px rgba(240, 56, 81, 0.1);
+}
+
+/* Disabled State */
+.selectbox--disabled {
+  background-color: #f2f2f2;
+  border-color: #e4e4e4;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.selectbox--disabled:hover {
+  border-color: #e4e4e4;
+}
+
+.selectbox--disabled .selectbox__value {
+  color: #ababab;
+}
+
+.selectbox--disabled .selectbox__searchInput {
+  color: #ababab;
+  cursor: not-allowed;
+}
+
+.selectbox--disabled .selectbox__iconLeft,
+.selectbox--disabled .selectbox__arrow {
+  color: #ababab;
+}
+
+/* Dark theme disabled state */
+.selectbox--disabled.selectbox--dark {
+  background-color: #333333;
+  border-color: #5f5f5f;
+}
+
+.selectbox--disabled.selectbox--dark .selectbox__value,
+.selectbox--disabled.selectbox--dark .selectbox__searchInput,
+.selectbox--disabled.selectbox--dark .selectbox__iconLeft,
+.selectbox--disabled.selectbox--dark .selectbox__arrow {
+  color: #777777;
+}
+
+/* =================================================================== */
+/* Responsive Design */
+/* =================================================================== */
+
+@media (max-width: 768px) {
+  .selectbox__dropdown {
+    max-height: 160px;
+  }
+
+  .selectbox__optionList {
+    max-height: 152px;
+  }
+}
+
+/* =================================================================== */
+/* Accessibility */
+/* =================================================================== */
+
+.selectbox:focus-visible {
+  outline: 2px solid #6da5fa;
+  outline-offset: 2px;
+}
+
+.selectbox__option:focus {
+  outline: none;
+  background-color: #f2f2f2;
+}
+
+.selectbox--dark .selectbox__option:focus {
+  background-color: #5f5f5f;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .selectbox {
+    border-width: 2px;
+  }
+
+  .selectbox:focus {
+    outline: 3px solid;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .selectbox,
+  .selectbox__dropdown,
+  .selectbox__arrow,
+  .selectbox__option {
+    transition: none;
+  }
+}
