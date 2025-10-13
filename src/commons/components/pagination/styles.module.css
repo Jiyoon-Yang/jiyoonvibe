@@ -1,0 +1,461 @@
+/* ============================================
+   Pagination Base Styles
+   ============================================ */
+
+.pagination {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  /* Interaction */
+  user-select: none;
+}
+
+/* ============================================
+   Pagination Pages Container
+   ============================================ */
+
+.pagination__pages {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ============================================
+   Pagination Page Button Base
+   ============================================ */
+
+.pagination__page {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Box Model */
+  border: none;
+  padding: 0;
+
+  /* Typography */
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+  text-align: center;
+
+  /* Interaction */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.pagination__page:focus-visible {
+  outline: 2px solid #6da5fa;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Pagination Arrow Button Base
+   ============================================ */
+
+.pagination__arrow {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Box Model */
+  border: none;
+  background: transparent;
+  padding: 0;
+
+  /* Interaction */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.pagination__arrow:focus-visible {
+  outline: 2px solid #6da5fa;
+  outline-offset: 2px;
+}
+
+.pagination__arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ============================================
+   Pagination Size Variants
+   ============================================ */
+
+/* Small */
+.pagination--small .pagination__page {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  letter-spacing: -0.12px;
+}
+
+.pagination--small .pagination__page--active {
+  font-weight: 500;
+}
+
+.pagination--small .pagination__arrow svg {
+  width: 20px;
+  height: 20px;
+}
+
+.pagination--small .pagination__pages {
+  gap: 12px;
+}
+
+/* Medium */
+.pagination--medium .pagination__page {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  letter-spacing: -0.16px;
+}
+
+.pagination--medium .pagination__page--active {
+  font-weight: 500;
+}
+
+.pagination--medium .pagination__arrow svg {
+  width: 24px;
+  height: 24px;
+}
+
+.pagination--medium .pagination__pages {
+  gap: 16px;
+}
+
+/* Large */
+.pagination--large .pagination__page {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+  letter-spacing: -0.18px;
+}
+
+.pagination--large .pagination__page--active {
+  font-weight: 500;
+}
+
+.pagination--large .pagination__arrow svg {
+  width: 28px;
+  height: 28px;
+}
+
+.pagination--large .pagination__pages {
+  gap: 20px;
+}
+
+/* ============================================
+   Pagination Variant Styles - Light Theme
+   ============================================ */
+
+/* Primary Light */
+.pagination--primary.pagination--light .pagination__page {
+  background-color: #ffffff;
+  color: #777777;
+}
+
+.pagination--primary.pagination--light
+  .pagination__page:hover:not(.pagination__page--active) {
+  background-color: #f2f2f2;
+}
+
+.pagination--primary.pagination--light
+  .pagination__page:active:not(.pagination__page--active) {
+  background-color: #e4e4e4;
+}
+
+.pagination--primary.pagination--light .pagination__page--active {
+  background-color: #f2f2f2;
+  color: #000000;
+}
+
+.pagination--primary.pagination--light .pagination__arrow {
+  color: #777777;
+}
+
+.pagination--primary.pagination--light
+  .pagination__arrow:hover:not(.pagination__arrow--disabled) {
+  color: #000000;
+}
+
+.pagination--primary.pagination--light
+  .pagination__arrow:active:not(.pagination__arrow--disabled) {
+  color: #333333;
+}
+
+.pagination--primary.pagination--light .pagination__arrow--disabled {
+  color: #d4d3d3;
+  cursor: not-allowed;
+}
+
+/* Secondary Light */
+.pagination--secondary.pagination--light .pagination__page {
+  background-color: #ffffff;
+  color: #777777;
+  border: 1px solid #e4e4e4;
+}
+
+.pagination--secondary.pagination--light
+  .pagination__page:hover:not(.pagination__page--active) {
+  background-color: #f2f2f2;
+  border-color: #d4d3d3;
+}
+
+.pagination--secondary.pagination--light
+  .pagination__page:active:not(.pagination__page--active) {
+  background-color: #e4e4e4;
+  border-color: #c7c7c7;
+}
+
+.pagination--secondary.pagination--light .pagination__page--active {
+  background-color: #6da5fa;
+  color: #ffffff;
+  border-color: #6da5fa;
+}
+
+.pagination--secondary.pagination--light .pagination__arrow {
+  color: #777777;
+}
+
+.pagination--secondary.pagination--light
+  .pagination__arrow:hover:not(.pagination__arrow--disabled) {
+  color: #000000;
+}
+
+.pagination--secondary.pagination--light
+  .pagination__arrow:active:not(.pagination__arrow--disabled) {
+  color: #333333;
+}
+
+.pagination--secondary.pagination--light .pagination__arrow--disabled {
+  color: #d4d3d3;
+  cursor: not-allowed;
+}
+
+/* Tertiary Light */
+.pagination--tertiary.pagination--light .pagination__page {
+  background-color: transparent;
+  color: #777777;
+}
+
+.pagination--tertiary.pagination--light
+  .pagination__page:hover:not(.pagination__page--active) {
+  background-color: #f2f2f2;
+}
+
+.pagination--tertiary.pagination--light
+  .pagination__page:active:not(.pagination__page--active) {
+  background-color: #e4e4e4;
+}
+
+.pagination--tertiary.pagination--light .pagination__page--active {
+  background-color: transparent;
+  color: #6da5fa;
+  font-weight: 700;
+}
+
+.pagination--tertiary.pagination--light .pagination__arrow {
+  color: #777777;
+}
+
+.pagination--tertiary.pagination--light
+  .pagination__arrow:hover:not(.pagination__arrow--disabled) {
+  color: #6da5fa;
+}
+
+.pagination--tertiary.pagination--light
+  .pagination__arrow:active:not(.pagination__arrow--disabled) {
+  color: #497cff;
+}
+
+.pagination--tertiary.pagination--light .pagination__arrow--disabled {
+  color: #d4d3d3;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   Pagination Variant Styles - Dark Theme
+   ============================================ */
+
+/* Primary Dark */
+.pagination--primary.pagination--dark .pagination__page {
+  background-color: #1c1c1c;
+  color: #c7c7c7;
+}
+
+.pagination--primary.pagination--dark
+  .pagination__page:hover:not(.pagination__page--active) {
+  background-color: #333333;
+}
+
+.pagination--primary.pagination--dark
+  .pagination__page:active:not(.pagination__page--active) {
+  background-color: #5f5f5f;
+}
+
+.pagination--primary.pagination--dark .pagination__page--active {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.pagination--primary.pagination--dark .pagination__arrow {
+  color: #c7c7c7;
+}
+
+.pagination--primary.pagination--dark
+  .pagination__arrow:hover:not(.pagination__arrow--disabled) {
+  color: #ffffff;
+}
+
+.pagination--primary.pagination--dark
+  .pagination__arrow:active:not(.pagination__arrow--disabled) {
+  color: #e4e4e4;
+}
+
+.pagination--primary.pagination--dark .pagination__arrow--disabled {
+  color: #5f5f5f;
+  cursor: not-allowed;
+}
+
+/* Secondary Dark */
+.pagination--secondary.pagination--dark .pagination__page {
+  background-color: #1c1c1c;
+  color: #c7c7c7;
+  border: 1px solid #333333;
+}
+
+.pagination--secondary.pagination--dark
+  .pagination__page:hover:not(.pagination__page--active) {
+  background-color: #333333;
+  border-color: #5f5f5f;
+}
+
+.pagination--secondary.pagination--dark
+  .pagination__page:active:not(.pagination__page--active) {
+  background-color: #5f5f5f;
+  border-color: #777777;
+}
+
+.pagination--secondary.pagination--dark .pagination__page--active {
+  background-color: #6da5fa;
+  color: #ffffff;
+  border-color: #6da5fa;
+}
+
+.pagination--secondary.pagination--dark .pagination__arrow {
+  color: #c7c7c7;
+}
+
+.pagination--secondary.pagination--dark
+  .pagination__arrow:hover:not(.pagination__arrow--disabled) {
+  color: #ffffff;
+}
+
+.pagination--secondary.pagination--dark
+  .pagination__arrow:active:not(.pagination__arrow--disabled) {
+  color: #e4e4e4;
+}
+
+.pagination--secondary.pagination--dark .pagination__arrow--disabled {
+  color: #5f5f5f;
+  cursor: not-allowed;
+}
+
+/* Tertiary Dark */
+.pagination--tertiary.pagination--dark .pagination__page {
+  background-color: transparent;
+  color: #c7c7c7;
+}
+
+.pagination--tertiary.pagination--dark
+  .pagination__page:hover:not(.pagination__page--active) {
+  background-color: #333333;
+}
+
+.pagination--tertiary.pagination--dark
+  .pagination__page:active:not(.pagination__page--active) {
+  background-color: #5f5f5f;
+}
+
+.pagination--tertiary.pagination--dark .pagination__page--active {
+  background-color: transparent;
+  color: #6da5fa;
+  font-weight: 700;
+}
+
+.pagination--tertiary.pagination--dark .pagination__arrow {
+  color: #c7c7c7;
+}
+
+.pagination--tertiary.pagination--dark
+  .pagination__arrow:hover:not(.pagination__arrow--disabled) {
+  color: #6da5fa;
+}
+
+.pagination--tertiary.pagination--dark
+  .pagination__arrow:active:not(.pagination__arrow--disabled) {
+  color: #497cff;
+}
+
+.pagination--tertiary.pagination--dark .pagination__arrow--disabled {
+  color: #5f5f5f;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   Pagination States
+   ============================================ */
+
+/* Disabled State */
+.pagination__page:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.pagination__arrow--disabled {
+  pointer-events: none;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+  .pagination {
+    gap: 4px;
+  }
+
+  .pagination__pages {
+    gap: 8px;
+  }
+
+  /* Mobile에서 Large 사이즈는 Medium으로 조정 */
+  .pagination--large .pagination__page {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .pagination--large .pagination__arrow svg {
+    width: 24px;
+    height: 24px;
+  }
+}
