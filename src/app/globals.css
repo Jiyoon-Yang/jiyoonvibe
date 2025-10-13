@@ -3,14 +3,145 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Blue */
+  --blue-5: #f0f7ff;
+  --blue-10: #dbeeff;
+  --blue-20: #bddbff;
+  --blue-30: #93beff;
+  --blue-40: #6da5fa;
+  --blue-50: #497cff;
+  --blue-60: #3a5cf3;
+  --blue-70: #274ae1;
+  --blue-80: #1530a6;
+  --blue-90: #0b2184;
+
+  /* Gray */
+  --gray-white: #ffffff;
+  --gray-5: #f2f2f2;
+  --gray-10: #e4e4e4;
+  --gray-20: #d4d3d3;
+  --gray-30: #c7c7c7;
+  --gray-40: #ababab;
+  --gray-50: #919191;
+  --gray-60: #777777;
+  --gray-70: #5f5f5f;
+  --gray-80: #333333;
+  --gray-90: #1c1c1c;
+  --gray-black: #000000;
+
+  /* Red */
+  --red-5: #fdd7dc;
+  --red-10: #f797a4;
+  --red-20: #f4677a;
+  --red-30: #f03851;
+  --red-40: #e4112e;
+  --red-50: #b40e24;
+  --red-60: #850a1b;
+
+  /* Green */
+  --green-5: #d3f3e0;
+  --green-10: #92e6b9;
+  --green-20: #15d66f;
+  --green-30: #12b75f;
+  --green-40: #109c51;
+  --green-50: #0e723c;
+  --green-60: #084424;
+
+  /* Yellow */
+  --yellow-5: #ffe499;
+  --yellow-10: #ffd666;
+  --yellow-20: #ffc933;
+  --yellow-30: #ffb300;
+  --yellow-40: #eba500;
+  --yellow-50: #d69600;
+  --yellow-60: #b27d00;
+
+  /* Cool Gray */
+  --cool-gray-1: #f8f8fa;
+  --cool-gray-5: #f6f6f9;
+  --cool-gray-10: #edeef2;
+  --cool-gray-20: #dddfe5;
+  --cool-gray-30: #d2d4dd;
+  --cool-gray-40: #c7c9d5;
+  --cool-gray-50: #bbbecd;
+  --cool-gray-60: #b0b3c4;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #6da5fa 0%, #92eaf5 100%);
+  --gradient-skeleton: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.6) 48.5%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  /* Semantic Colors */
+  --color-primary: #6da5fa;
+  --color-primary-dark: #3a5cf3;
+  --color-success: #12b75f;
+  --color-error: #f03851;
+  --color-warning: #ffb300;
+
+  /* Text Colors */
+  --text-primary: #000000;
+  --text-secondary: #777777;
+  --text-tertiary: #ababab;
+  --text-inverse: #ffffff;
+
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f2f2f2;
+  --bg-tertiary: #e4e4e4;
+
+  /* Border Colors */
+  --border: #e4e4e4;
+  --border-dark: #d4d3d3;
+
+  /* Legacy */
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Gray (반전) */
+    --gray-white: #000000;
+    --gray-5: #1c1c1c;
+    --gray-10: #333333;
+    --gray-20: #5f5f5f;
+    --gray-30: #777777;
+    --gray-40: #919191;
+    --gray-50: #ababab;
+    --gray-60: #c7c7c7;
+    --gray-70: #d4d3d3;
+    --gray-80: #e4e4e4;
+    --gray-90: #f2f2f2;
+    --gray-black: #ffffff;
+
+    /* Semantic Colors (다크모드) */
+    --text-primary: #ffffff;
+    --text-secondary: #c7c7c7;
+    --text-tertiary: #919191;
+    --text-inverse: #000000;
+
+    --bg-primary: #000000;
+    --bg-secondary: #1c1c1c;
+    --bg-tertiary: #333333;
+
+    --border: #333333;
+    --border-dark: #5f5f5f;
+
+    /* Gradient (다크모드) */
+    --gradient-skeleton: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.6) 48.5%,
+      rgba(0, 0, 0, 0) 100%
+    );
+
+    /* Legacy */
+    --background: var(--bg-primary);
+    --foreground: var(--text-primary);
   }
 }
 
