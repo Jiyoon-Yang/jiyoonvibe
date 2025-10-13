@@ -2,7 +2,9 @@
 .searchbar__wrapper {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 400px;
+  min-width: 200px;
+  max-width: 100%;
 }
 
 .searchbar__wrapper--fullWidth {
@@ -37,6 +39,7 @@
   background: transparent;
   width: 100%;
   flex: 1;
+  min-width: 0;
   color: inherit;
 }
 
