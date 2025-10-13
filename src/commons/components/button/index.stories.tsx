@@ -3,21 +3,53 @@ import { Button } from "./index";
 
 // 아이콘 컴포넌트 (예시용)
 const PlusIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M8 3V13M3 8H13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M8 3V13M3 8H13"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
 const SearchIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="7" cy="7" r="4" stroke="currentColor" strokeWidth="2"/>
-    <path d="m11 11 2 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <circle cx="7" cy="7" r="4" stroke="currentColor" strokeWidth="2" />
+    <path
+      d="m11 11 2 2"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+    />
   </svg>
 );
 
 const ArrowRightIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  <svg
+    width="16"
+    height="16"
+    viewBox="0 0 16 16"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M6 12L10 8L6 4"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
   </svg>
 );
 
@@ -28,7 +60,8 @@ const meta: Meta<typeof Button> = {
     layout: "centered",
     docs: {
       description: {
-        component: "재사용 가능한 Button 컴포넌트입니다. 다양한 variant, size, theme을 지원합니다.",
+        component:
+          "재사용 가능한 Button 컴포넌트입니다. 다양한 variant, size, theme을 지원합니다.",
       },
     },
   },
@@ -277,7 +310,13 @@ export const AllVariants: Story = {
 
 export const AllSizes: Story = {
   render: () => (
-    <div style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "16px",
+        alignItems: "center",
+        flexWrap: "wrap",
+      }}>
       <Button size="small">Small</Button>
       <Button size="medium">Medium</Button>
       <Button size="large">Large</Button>
@@ -312,20 +351,58 @@ export const AllStates: Story = {
 export const ThemeComparison: Story = {
   render: () => (
     <div style={{ display: "flex", gap: "32px", flexWrap: "wrap" }}>
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px", padding: "16px", backgroundColor: "#ffffff", borderRadius: "8px" }}>
-        <h3 style={{ margin: 0, fontSize: "14px", fontWeight: "600" }}>Light Theme</h3>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          padding: "16px",
+          backgroundColor: "#ffffff",
+          borderRadius: "8px",
+        }}>
+        <h3 style={{ margin: 0, fontSize: "14px", fontWeight: "600" }}>
+          Light Theme
+        </h3>
         <div style={{ display: "flex", gap: "8px" }}>
-          <Button theme="light" variant="primary">Primary</Button>
-          <Button theme="light" variant="secondary">Secondary</Button>
-          <Button theme="light" variant="tertiary">Tertiary</Button>
+          <Button theme="light" variant="primary">
+            Primary
+          </Button>
+          <Button theme="light" variant="secondary">
+            Secondary
+          </Button>
+          <Button theme="light" variant="tertiary">
+            Tertiary
+          </Button>
         </div>
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "16px", padding: "16px", backgroundColor: "#1a1a1a", borderRadius: "8px" }}>
-        <h3 style={{ margin: 0, fontSize: "14px", fontWeight: "600", color: "#ffffff" }}>Dark Theme</h3>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          padding: "16px",
+          backgroundColor: "#1a1a1a",
+          borderRadius: "8px",
+        }}>
+        <h3
+          style={{
+            margin: 0,
+            fontSize: "14px",
+            fontWeight: "600",
+            color: "#ffffff",
+          }}>
+          Dark Theme
+        </h3>
         <div style={{ display: "flex", gap: "8px" }}>
-          <Button theme="dark" variant="primary">Primary</Button>
-          <Button theme="dark" variant="secondary">Secondary</Button>
-          <Button theme="dark" variant="tertiary">Tertiary</Button>
+          <Button theme="dark" variant="primary">
+            Primary
+          </Button>
+          <Button theme="dark" variant="secondary">
+            Secondary
+          </Button>
+          <Button theme="dark" variant="tertiary">
+            Tertiary
+          </Button>
         </div>
       </div>
     </div>

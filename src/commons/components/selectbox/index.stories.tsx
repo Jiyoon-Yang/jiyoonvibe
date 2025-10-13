@@ -2,23 +2,6 @@ import type { Meta, StoryObj } from "@storybook/nextjs-vite";
 import { Selectbox } from "./index";
 
 // 아이콘 컴포넌트 (예시용)
-const SearchIcon = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg">
-    <circle cx="7" cy="7" r="4" stroke="currentColor" strokeWidth="2" />
-    <path
-      d="m11 11 2 2"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
-);
-
 const UserIcon = () => (
   <svg
     width="16"

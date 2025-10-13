@@ -1,0 +1,245 @@
+/**
+ * Toggle 컴포넌트 스타일
+ * Figma 디자인 기반으로 구현
+ */
+
+/* 기본 토글 스타일 */
+.toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.toggle:focus-visible {
+  outline: 2px solid #6da5fa;
+  outline-offset: 2px;
+}
+
+/* 토글 크기 변형 */
+.toggle--small {
+  width: 44px;
+  height: 24px;
+}
+
+.toggle--medium {
+  width: 58px;
+  height: 32px;
+}
+
+.toggle--large {
+  width: 72px;
+  height: 40px;
+}
+
+/* 토글 변형 - Primary */
+.toggle--primary.toggle--unchecked {
+  background-color: #e4e4e4; /* colors.gray[10] */
+}
+
+.toggle--primary.toggle--checked {
+  background-color: #3ad84a; /* Figma에서 가져온 초록색 */
+}
+
+/* 토글 변형 - Secondary */
+.toggle--secondary.toggle--unchecked {
+  background-color: #d4d3d3; /* colors.gray[20] */
+}
+
+.toggle--secondary.toggle--checked {
+  background-color: #6da5fa; /* colors.semantic.primary */
+}
+
+/* 토글 변형 - Tertiary */
+.toggle--tertiary.toggle--unchecked {
+  background-color: #c7c7c7; /* colors.gray[30] */
+}
+
+.toggle--tertiary.toggle--checked {
+  background-color: #12b75f; /* colors.semantic.success */
+}
+
+/* 다크 테마 */
+.toggle--dark.toggle--unchecked {
+  background-color: #333333; /* darkColors.gray[10] */
+}
+
+.toggle--dark.toggle--primary.toggle--checked {
+  background-color: #3ad84a;
+}
+
+.toggle--dark.toggle--secondary.toggle--checked {
+  background-color: #6da5fa;
+}
+
+.toggle--dark.toggle--tertiary.toggle--checked {
+  background-color: #12b75f;
+}
+
+/* 비활성화 상태 */
+.toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.toggle--disabled:hover {
+  transform: none;
+}
+
+/* 호버 효과 */
+.toggle:not(.toggle--disabled):hover {
+  transform: scale(1.02);
+}
+
+.toggle:not(.toggle--disabled):active {
+  transform: scale(0.98);
+}
+
+/* 썸 (토글 버튼) 스타일 */
+.thumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border-radius: 50%;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  margin: auto 0;
+}
+
+/* 썸 크기 변형 */
+.thumb--small {
+  width: 18px;
+  height: 18px;
+}
+
+.thumb--medium {
+  width: 24px;
+  height: 24px;
+}
+
+.thumb--large {
+  width: 30px;
+  height: 30px;
+}
+
+/* 썸 위치 - 체크되지 않은 상태 (flexbox 사용) */
+.toggle--unchecked {
+  justify-content: flex-start;
+  padding-left: 3px;
+}
+
+.toggle--small.toggle--unchecked {
+  padding-left: 3px;
+}
+
+.toggle--medium.toggle--unchecked {
+  padding-left: 4px;
+}
+
+.toggle--large.toggle--unchecked {
+  padding-left: 5px;
+}
+
+/* 썸 위치 - 체크된 상태 (flexbox 사용) */
+.toggle--checked {
+  justify-content: flex-end;
+  padding-right: 3px;
+}
+
+.toggle--small.toggle--checked {
+  padding-right: 3px;
+}
+
+.toggle--medium.toggle--checked {
+  padding-right: 4px;
+}
+
+.toggle--large.toggle--checked {
+  padding-right: 5px;
+}
+
+/* 다크 테마 썸 */
+.toggle--dark .thumb {
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1),
+    0 1px 2px rgba(255, 255, 255, 0.06);
+}
+
+/* 애니메이션 제거 (커서룰 준수) */
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+  .toggle {
+    border: 2px solid currentColor;
+  }
+
+  .thumb {
+    border: 1px solid currentColor;
+  }
+}
+
+/* 모션 감소 설정 지원 */
+@media (prefers-reduced-motion: reduce) {
+  .toggle,
+  .thumb {
+    transition: none;
+  }
+}
+
+/* 터치 디바이스 최적화 */
+@media (hover: none) and (pointer: coarse) {
+  .toggle {
+    min-height: 44px; /* 터치 타겟 최소 크기 */
+    min-width: 44px;
+  }
+
+  .toggle:hover {
+    transform: none;
+  }
+}
+
+/* RTL 지원 (flexbox 기반) */
+[dir="rtl"] .toggle--unchecked {
+  justify-content: flex-end;
+  padding-left: 0;
+  padding-right: 3px;
+}
+
+[dir="rtl"] .toggle--small.toggle--unchecked {
+  padding-right: 3px;
+}
+
+[dir="rtl"] .toggle--medium.toggle--unchecked {
+  padding-right: 4px;
+}
+
+[dir="rtl"] .toggle--large.toggle--unchecked {
+  padding-right: 5px;
+}
+
+[dir="rtl"] .toggle--checked {
+  justify-content: flex-start;
+  padding-right: 0;
+  padding-left: 3px;
+}
+
+[dir="rtl"] .toggle--small.toggle--checked {
+  padding-left: 3px;
+}
+
+[dir="rtl"] .toggle--medium.toggle--checked {
+  padding-left: 4px;
+}
+
+[dir="rtl"] .toggle--large.toggle--checked {
+  padding-left: 5px;
+}
