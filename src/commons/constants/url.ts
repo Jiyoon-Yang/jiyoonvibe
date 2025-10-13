@@ -4,7 +4,7 @@
  */
 
 // 접근 권한 타입
-export type AccessType = 'anyone' | 'memberOnly';
+export type AccessType = "anyone" | "memberOnly";
 
 // 페이지 레이아웃 노출 설정 타입
 export interface PageLayout {
@@ -29,18 +29,18 @@ export interface PageMetadata {
 export const URL_PATHS = {
   // 인증 관련
   AUTH: {
-    LOGIN: '/auth/login',
-    SIGNUP: '/auth/signup',
+    LOGIN: "/auth/login",
+    SIGNUP: "/auth/signup",
   },
   // 일기 관련
   DIARIES: {
-    LIST: '/diaries',
+    LIST: "/diaries",
     DETAIL: (id: string | number) => `/diaries/${id}`,
-    DETAIL_TEMPLATE: '/diaries/[id]', // 라우팅 템플릿
+    DETAIL_TEMPLATE: "/diaries/[id]", // 라우팅 템플릿
   },
   // 사진 관련
   PICTURES: {
-    LIST: '/pictures',
+    LIST: "/pictures",
   },
 } as const;
 
@@ -49,7 +49,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   // 로그인
   [URL_PATHS.AUTH.LOGIN]: {
     path: URL_PATHS.AUTH.LOGIN,
-    accessType: 'anyone',
+    accessType: "anyone",
     layout: {
       header: {
         visible: false,
@@ -64,7 +64,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   // 회원가입
   [URL_PATHS.AUTH.SIGNUP]: {
     path: URL_PATHS.AUTH.SIGNUP,
-    accessType: 'anyone',
+    accessType: "anyone",
     layout: {
       header: {
         visible: false,
@@ -79,7 +79,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   // 일기목록
   [URL_PATHS.DIARIES.LIST]: {
     path: URL_PATHS.DIARIES.LIST,
-    accessType: 'anyone',
+    accessType: "anyone",
     layout: {
       header: {
         visible: true,
@@ -94,7 +94,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   // 일기상세
   [URL_PATHS.DIARIES.DETAIL_TEMPLATE]: {
     path: URL_PATHS.DIARIES.DETAIL_TEMPLATE,
-    accessType: 'memberOnly',
+    accessType: "memberOnly",
     layout: {
       header: {
         visible: true,
@@ -109,7 +109,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
   // 사진목록
   [URL_PATHS.PICTURES.LIST]: {
     path: URL_PATHS.PICTURES.LIST,
-    accessType: 'anyone',
+    accessType: "anyone",
     layout: {
       header: {
         visible: true,
@@ -134,7 +134,7 @@ export const getPageMetadata = (pathname: string): PageMetadata | undefined => {
   }
 
   // 다이나믹 라우팅 경로 매칭
-  if (pathname.startsWith('/diaries/') && pathname !== '/diaries') {
+  if (pathname.startsWith("/diaries/") && pathname !== "/diaries") {
     return PAGE_METADATA[URL_PATHS.DIARIES.DETAIL_TEMPLATE];
   }
 
@@ -153,4 +153,3 @@ export const getAllPaths = (): string[] => {
     URL_PATHS.PICTURES.LIST,
   ];
 };
-
