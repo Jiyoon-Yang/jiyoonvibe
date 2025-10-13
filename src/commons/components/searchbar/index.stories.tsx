@@ -19,6 +19,13 @@ const meta: Meta<typeof Searchbar> = {
 - 로딩 상태 지원
 - 전체 너비 옵션
 - 키보드 이벤트 지원 (Enter키로 검색)
+- 텍스트 입력 시 너비 고정 (overflow 시 스크롤)
+
+## 디자인 특징
+- 피그마 디자인을 기반으로 구현
+- 포커스 시 테두리 색상 및 그림자 효과
+- 긴 텍스트 입력 시에도 검색바 너비 유지
+- 호버, 포커스, 비활성화 등 다양한 상태 지원
 
 ## 사용 예시
 \`\`\`tsx
@@ -159,6 +166,21 @@ export const WithValue: Story = {
   },
 };
 
+export const WithLongValue: Story = {
+  args: {
+    placeholder: "검색어를 입력해 주세요.",
+    value: "매우 긴 검색어를 입력해도 텍스트 박스 길이가 늘어나지 않고 일정하게 유지됩니다",
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "긴 텍스트를 입력해도 검색바의 너비는 고정되어 있으며, 텍스트는 스크롤됩니다.",
+      },
+    },
+  },
+};
+
 // ========================
 // Variant 스토리들
 // ========================
@@ -236,6 +258,37 @@ export const Dark: Story = {
 // ========================
 // 상태별 스토리들
 // ========================
+
+export const Focused: Story = {
+  args: {
+    placeholder: "포커스된 검색바",
+    autoFocus: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "검색바가 포커스되면 테두리 색상이 변경되고 그림자 효과가 나타납니다.",
+      },
+    },
+  },
+};
+
+export const WithTyping: Story = {
+  args: {
+    placeholder: "검색어를 입력해 주세요.",
+    value: "입력 중",
+    autoFocus: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "사용자가 텍스트를 입력하는 동안의 상태입니다. 초기화 버튼이 표시됩니다.",
+      },
+    },
+  },
+};
 
 export const Loading: Story = {
   args: {
@@ -395,15 +448,55 @@ export const AllStates: Story = {
         gap: "16px",
         width: "400px",
       }}>
-      <Searchbar placeholder="기본 상태" />
-      <Searchbar placeholder="값이 있는 상태" value="검색어" />
-      <Searchbar placeholder="로딩 상태" value="검색어" loading />
-      <Searchbar placeholder="비활성화 상태" value="검색어" disabled />
-      <Searchbar
-        placeholder="초기화 버튼 없음"
-        value="검색어"
-        showClearButton={false}
-      />
+      <div>
+        <p style={{ marginBottom: "8px", fontSize: "12px", color: "#666" }}>
+          기본 상태
+        </p>
+        <Searchbar placeholder="기본 상태" />
+      </div>
+      <div>
+        <p style={{ marginBottom: "8px", fontSize: "12px", color: "#666" }}>
+          값이 있는 상태
+        </p>
+        <Searchbar placeholder="값이 있는 상태" value="검색어" />
+      </div>
+      <div>
+        <p style={{ marginBottom: "8px", fontSize: "12px", color: "#666" }}>
+          긴 텍스트 (너비 고정)
+        </p>
+        <Searchbar
+          placeholder="긴 텍스트"
+          value="매우 긴 검색어를 입력해도 텍스트 박스 길이가 늘어나지 않습니다"
+        />
+      </div>
+      <div>
+        <p style={{ marginBottom: "8px", fontSize: "12px", color: "#666" }}>
+          포커스 상태
+        </p>
+        <Searchbar placeholder="포커스 상태" autoFocus />
+      </div>
+      <div>
+        <p style={{ marginBottom: "8px", fontSize: "12px", color: "#666" }}>
+          로딩 상태
+        </p>
+        <Searchbar placeholder="로딩 상태" value="검색어" loading />
+      </div>
+      <div>
+        <p style={{ marginBottom: "8px", fontSize: "12px", color: "#666" }}>
+          비활성화 상태
+        </p>
+        <Searchbar placeholder="비활성화 상태" value="검색어" disabled />
+      </div>
+      <div>
+        <p style={{ marginBottom: "8px", fontSize: "12px", color: "#666" }}>
+          초기화 버튼 없음
+        </p>
+        <Searchbar
+          placeholder="초기화 버튼 없음"
+          value="검색어"
+          showClearButton={false}
+        />
+      </div>
     </div>
   ),
   parameters: {
