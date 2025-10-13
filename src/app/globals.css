@@ -97,6 +97,108 @@
   --border: #e4e4e4;
   --border-dark: #d4d3d3;
 
+  /* Typography - Font Family */
+  --font-korean: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+  --font-english: "SUIT Variable", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
+
+  /* Typography - Font Weight */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* Typography - Web Headline (Desktop) */
+  --typo-web-headline01-size: 48px;
+  --typo-web-headline01-line: 60px;
+  --typo-web-headline01-weight: var(--font-weight-semibold);
+
+  --typo-web-headline02-size: 36px;
+  --typo-web-headline02-line: 48px;
+  --typo-web-headline02-weight: var(--font-weight-semibold);
+
+  --typo-web-headline03-size: 28px;
+  --typo-web-headline03-line: 36px;
+  --typo-web-headline03-weight: var(--font-weight-semibold);
+
+  /* Typography - Headline */
+  --typo-headline01-size: 24px;
+  --typo-headline01-line: 32px;
+  --typo-headline01-weight: var(--font-weight-bold);
+
+  --typo-headline02-size: 22px;
+  --typo-headline02-line: 30px;
+  --typo-headline02-weight: var(--font-weight-extrabold);
+
+  --typo-headline03-size: 20px;
+  --typo-headline03-line: 28px;
+  --typo-headline03-weight: var(--font-weight-bold);
+
+  /* Typography - Title */
+  --typo-title01-size: 18px;
+  --typo-title01-line: 24px;
+  --typo-title01-weight: var(--font-weight-bold);
+
+  --typo-title02-size: 16px;
+  --typo-title02-line: 22px;
+  --typo-title02-weight: var(--font-weight-bold);
+
+  --typo-title03-size: 14px;
+  --typo-title03-line: 20px;
+  --typo-title03-weight: var(--font-weight-bold);
+
+  --typo-subtitle01-size: 14px;
+  --typo-subtitle01-line: 22px;
+  --typo-subtitle01-weight: var(--font-weight-semibold);
+
+  --typo-subtitle02-size: 12px;
+  --typo-subtitle02-line: 18px;
+  --typo-subtitle02-weight: var(--font-weight-semibold);
+
+  /* Typography - Body */
+  --typo-body01-size: 16px;
+  --typo-body01-line: 24px;
+  --typo-body01-weight: var(--font-weight-medium);
+
+  --typo-body01-r-size: 16px;
+  --typo-body01-r-line: 22px;
+  --typo-body01-r-weight: var(--font-weight-regular);
+
+  --typo-body02-m-size: 14px;
+  --typo-body02-m-line: 22px;
+  --typo-body02-m-weight: var(--font-weight-medium);
+
+  --typo-body02-s-size: 14px;
+  --typo-body02-s-line: 20px;
+  --typo-body02-s-weight: var(--font-weight-regular);
+
+  --typo-body03-size: 12px;
+  --typo-body03-line: 18px;
+  --typo-body03-weight: var(--font-weight-medium);
+
+  --typo-body03-r-size: 12px;
+  --typo-body03-r-line: 16px;
+  --typo-body03-r-weight: var(--font-weight-regular);
+
+  /* Typography - Caption */
+  --typo-caption01-size: 12px;
+  --typo-caption01-line: 14px;
+  --typo-caption01-weight: var(--font-weight-semibold);
+
+  --typo-caption02-m-size: 10px;
+  --typo-caption02-m-line: 12px;
+  --typo-caption02-m-weight: var(--font-weight-semibold);
+
+  --typo-caption02-s-size: 10px;
+  --typo-caption02-s-line: 12px;
+  --typo-caption02-s-weight: var(--font-weight-medium);
+
+  --typo-caption03-size: 8px;
+  --typo-caption03-line: 10px;
+  --typo-caption03-weight: var(--font-weight-semibold);
+
   /* Legacy */
   --background: var(--bg-primary);
   --foreground: var(--text-primary);
@@ -148,11 +250,195 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-korean);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Typography Utility Classes */
+
+  /* Web Headline */
+  .typo-web-headline01 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-web-headline01-size);
+    line-height: var(--typo-web-headline01-line);
+    font-weight: var(--typo-web-headline01-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-web-headline02 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-web-headline02-size);
+    line-height: var(--typo-web-headline02-line);
+    font-weight: var(--typo-web-headline02-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-web-headline03 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-web-headline03-size);
+    line-height: var(--typo-web-headline03-line);
+    font-weight: var(--typo-web-headline03-weight);
+    letter-spacing: 0;
+  }
+
+  /* Headline */
+  .typo-headline01 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-headline01-size);
+    line-height: var(--typo-headline01-line);
+    font-weight: var(--typo-headline01-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-headline02 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-headline02-size);
+    line-height: var(--typo-headline02-line);
+    font-weight: var(--typo-headline02-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-headline03 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-headline03-size);
+    line-height: var(--typo-headline03-line);
+    font-weight: var(--typo-headline03-weight);
+    letter-spacing: 0;
+  }
+
+  /* Title */
+  .typo-title01 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-title01-size);
+    line-height: var(--typo-title01-line);
+    font-weight: var(--typo-title01-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-title02 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-title02-size);
+    line-height: var(--typo-title02-line);
+    font-weight: var(--typo-title02-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-title03 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-title03-size);
+    line-height: var(--typo-title03-line);
+    font-weight: var(--typo-title03-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-subtitle01 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-subtitle01-size);
+    line-height: var(--typo-subtitle01-line);
+    font-weight: var(--typo-subtitle01-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-subtitle02 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-subtitle02-size);
+    line-height: var(--typo-subtitle02-line);
+    font-weight: var(--typo-subtitle02-weight);
+    letter-spacing: 0;
+  }
+
+  /* Body */
+  .typo-body01 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-body01-size);
+    line-height: var(--typo-body01-line);
+    font-weight: var(--typo-body01-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-body01-r {
+    font-family: var(--font-korean);
+    font-size: var(--typo-body01-r-size);
+    line-height: var(--typo-body01-r-line);
+    font-weight: var(--typo-body01-r-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-body02-m {
+    font-family: var(--font-korean);
+    font-size: var(--typo-body02-m-size);
+    line-height: var(--typo-body02-m-line);
+    font-weight: var(--typo-body02-m-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-body02-s {
+    font-family: var(--font-korean);
+    font-size: var(--typo-body02-s-size);
+    line-height: var(--typo-body02-s-line);
+    font-weight: var(--typo-body02-s-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-body03 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-body03-size);
+    line-height: var(--typo-body03-line);
+    font-weight: var(--typo-body03-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-body03-r {
+    font-family: var(--font-korean);
+    font-size: var(--typo-body03-r-size);
+    line-height: var(--typo-body03-r-line);
+    font-weight: var(--typo-body03-r-weight);
+    letter-spacing: 0;
+  }
+
+  /* Caption */
+  .typo-caption01 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-caption01-size);
+    line-height: var(--typo-caption01-line);
+    font-weight: var(--typo-caption01-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-caption02-m {
+    font-family: var(--font-korean);
+    font-size: var(--typo-caption02-m-size);
+    line-height: var(--typo-caption02-m-line);
+    font-weight: var(--typo-caption02-m-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-caption02-s {
+    font-family: var(--font-korean);
+    font-size: var(--typo-caption02-s-size);
+    line-height: var(--typo-caption02-s-line);
+    font-weight: var(--typo-caption02-s-weight);
+    letter-spacing: 0;
+  }
+
+  .typo-caption03 {
+    font-family: var(--font-korean);
+    font-size: var(--typo-caption03-size);
+    line-height: var(--typo-caption03-line);
+    font-weight: var(--typo-caption03-weight);
+    letter-spacing: 0;
+  }
+
+  /* Font Family Utilities */
+  .font-korean {
+    font-family: var(--font-korean);
+  }
+
+  .font-english {
+    font-family: var(--font-english);
   }
 }
