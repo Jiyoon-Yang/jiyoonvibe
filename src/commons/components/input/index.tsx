@@ -86,11 +86,11 @@ export interface InputProps
  * <Input variant="tertiary" size="small" placeholder="입력하세요" />
  *
  * // 라벨과 에러 메시지가 있는 인풋
- * <Input 
- *   label="이메일" 
- *   required 
- *   error 
- *   errorMessage="올바른 이메일을 입력하세요" 
+ * <Input
+ *   label="이메일"
+ *   required
+ *   error
+ *   errorMessage="올바른 이메일을 입력하세요"
  * />
  *
  * // 아이콘이 있는 인풋
@@ -161,8 +161,8 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
               error && errorMessage
                 ? "error-message"
                 : helperText
-                  ? "helper-text"
-                  : undefined
+                ? "helper-text"
+                : undefined
             }
             {...rest}
           />
@@ -188,4 +188,3 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
 Input.displayName = "Input";
 
 export default Input;
-

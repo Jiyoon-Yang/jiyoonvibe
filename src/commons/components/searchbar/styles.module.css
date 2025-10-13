@@ -1,0 +1,501 @@
+/* Searchbar Wrapper */
+.searchbar__wrapper {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+}
+
+.searchbar__wrapper--fullWidth {
+  width: 100%;
+}
+
+/* Searchbar Container */
+.searchbar__container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-radius: 100px;
+  border: 1px solid;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.searchbar__container:focus-within {
+  outline: none;
+}
+
+/* Input Field */
+.searchbar__input {
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  flex: 1;
+  color: inherit;
+}
+
+.searchbar__input::placeholder {
+  font-weight: 500;
+}
+
+/* Search Button */
+.searchbar__searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.searchbar__searchButton:hover:not(:disabled) {
+  opacity: 0.7;
+}
+
+.searchbar__searchButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.searchbar__searchIcon {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Clear Button */
+.searchbar__clearButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: all 0.2s ease-in-out;
+  border-radius: 50%;
+}
+
+.searchbar__clearButton:hover:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.searchbar__clearButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.searchbar__clearIcon {
+  display: block;
+  flex-shrink: 0;
+}
+
+/* Loading Spinner */
+.searchbar__loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.searchbar__loadingIcon {
+  display: block;
+  flex-shrink: 0;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ======================== */
+/* SIZE VARIANTS */
+/* ======================== */
+
+/* Small */
+.searchbar__container--small {
+  height: 36px;
+  padding: 6px 12px;
+  gap: 8px;
+}
+
+.searchbar__input--small {
+  font-size: 14px;
+  line-height: 20px;
+  padding: 0;
+}
+
+.searchbar__container--small .searchbar__searchButton {
+  width: 20px;
+  height: 20px;
+}
+
+.searchbar__container--small .searchbar__searchIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.searchbar__container--small .searchbar__clearButton {
+  width: 20px;
+  height: 20px;
+  padding: 2px;
+}
+
+.searchbar__container--small .searchbar__clearIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.searchbar__container--small .searchbar__loadingIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Medium */
+.searchbar__container--medium {
+  height: 48px;
+  padding: 12px 16px;
+  gap: 8px;
+}
+
+.searchbar__input--medium {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  padding: 0;
+}
+
+.searchbar__container--medium .searchbar__searchButton {
+  width: 24px;
+  height: 24px;
+}
+
+.searchbar__container--medium .searchbar__searchIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.searchbar__container--medium .searchbar__clearButton {
+  width: 24px;
+  height: 24px;
+  padding: 2px;
+}
+
+.searchbar__container--medium .searchbar__clearIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.searchbar__container--medium .searchbar__loadingIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Large */
+.searchbar__container--large {
+  height: 56px;
+  padding: 16px 20px;
+  gap: 12px;
+}
+
+.searchbar__input--large {
+  font-size: 18px;
+  line-height: 24px;
+  padding: 0;
+}
+
+.searchbar__container--large .searchbar__searchButton {
+  width: 28px;
+  height: 28px;
+}
+
+.searchbar__container--large .searchbar__searchIcon {
+  width: 28px;
+  height: 28px;
+}
+
+.searchbar__container--large .searchbar__clearButton {
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+}
+
+.searchbar__container--large .searchbar__clearIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.searchbar__container--large .searchbar__loadingIcon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ======================== */
+/* VARIANT - PRIMARY */
+/* ======================== */
+
+/* Primary Light */
+.searchbar__container--primary.searchbar__container--light {
+  background-color: #ffffff;
+  border-color: #c7c7c7;
+  color: #333333;
+}
+
+.searchbar__container--primary.searchbar__container--light
+  .searchbar__input::placeholder {
+  color: #ababab;
+}
+
+.searchbar__container--primary.searchbar__container--light:hover {
+  border-color: #ababab;
+}
+
+.searchbar__container--primary.searchbar__container--light:focus-within {
+  border-color: #6da5fa;
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.1);
+}
+
+.searchbar__container--primary.searchbar__container--light
+  .searchbar__searchIcon,
+.searchbar__container--primary.searchbar__container--light
+  .searchbar__clearIcon {
+  color: #777777;
+}
+
+.searchbar__container--primary.searchbar__container--light
+  .searchbar__loadingIcon {
+  color: #6da5fa;
+}
+
+/* Primary Dark */
+.searchbar__container--primary.searchbar__container--dark {
+  background-color: #1c1c1c;
+  border-color: #5f5f5f;
+  color: #ffffff;
+}
+
+.searchbar__container--primary.searchbar__container--dark
+  .searchbar__input::placeholder {
+  color: #919191;
+}
+
+.searchbar__container--primary.searchbar__container--dark:hover {
+  border-color: #777777;
+}
+
+.searchbar__container--primary.searchbar__container--dark:focus-within {
+  border-color: #6da5fa;
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.15);
+}
+
+.searchbar__container--primary.searchbar__container--dark
+  .searchbar__searchIcon,
+.searchbar__container--primary.searchbar__container--dark
+  .searchbar__clearIcon {
+  color: #c7c7c7;
+}
+
+.searchbar__container--primary.searchbar__container--dark
+  .searchbar__loadingIcon {
+  color: #6da5fa;
+}
+
+.searchbar__container--primary.searchbar__container--dark
+  .searchbar__clearButton:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ======================== */
+/* VARIANT - SECONDARY */
+/* ======================== */
+
+/* Secondary Light */
+.searchbar__container--secondary.searchbar__container--light {
+  background-color: #f2f2f2;
+  border-color: #e4e4e4;
+  color: #333333;
+}
+
+.searchbar__container--secondary.searchbar__container--light
+  .searchbar__input::placeholder {
+  color: #ababab;
+}
+
+.searchbar__container--secondary.searchbar__container--light:hover {
+  background-color: #e4e4e4;
+  border-color: #d4d3d3;
+}
+
+.searchbar__container--secondary.searchbar__container--light:focus-within {
+  background-color: #ffffff;
+  border-color: #6da5fa;
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.1);
+}
+
+.searchbar__container--secondary.searchbar__container--light
+  .searchbar__searchIcon,
+.searchbar__container--secondary.searchbar__container--light
+  .searchbar__clearIcon {
+  color: #777777;
+}
+
+.searchbar__container--secondary.searchbar__container--light
+  .searchbar__loadingIcon {
+  color: #6da5fa;
+}
+
+/* Secondary Dark */
+.searchbar__container--secondary.searchbar__container--dark {
+  background-color: #333333;
+  border-color: #5f5f5f;
+  color: #ffffff;
+}
+
+.searchbar__container--secondary.searchbar__container--dark
+  .searchbar__input::placeholder {
+  color: #919191;
+}
+
+.searchbar__container--secondary.searchbar__container--dark:hover {
+  background-color: #5f5f5f;
+  border-color: #777777;
+}
+
+.searchbar__container--secondary.searchbar__container--dark:focus-within {
+  background-color: #1c1c1c;
+  border-color: #6da5fa;
+  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.15);
+}
+
+.searchbar__container--secondary.searchbar__container--dark
+  .searchbar__searchIcon,
+.searchbar__container--secondary.searchbar__container--dark
+  .searchbar__clearIcon {
+  color: #c7c7c7;
+}
+
+.searchbar__container--secondary.searchbar__container--dark
+  .searchbar__loadingIcon {
+  color: #6da5fa;
+}
+
+.searchbar__container--secondary.searchbar__container--dark
+  .searchbar__clearButton:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ======================== */
+/* VARIANT - TERTIARY */
+/* ======================== */
+
+/* Tertiary Light */
+.searchbar__container--tertiary.searchbar__container--light {
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: 1px solid #d4d3d3;
+  border-radius: 0;
+  color: #333333;
+}
+
+.searchbar__container--tertiary.searchbar__container--light
+  .searchbar__input::placeholder {
+  color: #ababab;
+}
+
+.searchbar__container--tertiary.searchbar__container--light:hover {
+  border-bottom-color: #c7c7c7;
+}
+
+.searchbar__container--tertiary.searchbar__container--light:focus-within {
+  border-bottom-color: #6da5fa;
+  box-shadow: none;
+}
+
+.searchbar__container--tertiary.searchbar__container--light
+  .searchbar__searchIcon,
+.searchbar__container--tertiary.searchbar__container--light
+  .searchbar__clearIcon {
+  color: #777777;
+}
+
+.searchbar__container--tertiary.searchbar__container--light
+  .searchbar__loadingIcon {
+  color: #6da5fa;
+}
+
+/* Tertiary Dark */
+.searchbar__container--tertiary.searchbar__container--dark {
+  background-color: transparent;
+  border-color: transparent;
+  border-bottom: 1px solid #5f5f5f;
+  border-radius: 0;
+  color: #ffffff;
+}
+
+.searchbar__container--tertiary.searchbar__container--dark
+  .searchbar__input::placeholder {
+  color: #919191;
+}
+
+.searchbar__container--tertiary.searchbar__container--dark:hover {
+  border-bottom-color: #777777;
+}
+
+.searchbar__container--tertiary.searchbar__container--dark:focus-within {
+  border-bottom-color: #6da5fa;
+  box-shadow: none;
+}
+
+.searchbar__container--tertiary.searchbar__container--dark
+  .searchbar__searchIcon,
+.searchbar__container--tertiary.searchbar__container--dark
+  .searchbar__clearIcon {
+  color: #c7c7c7;
+}
+
+.searchbar__container--tertiary.searchbar__container--dark
+  .searchbar__loadingIcon {
+  color: #6da5fa;
+}
+
+.searchbar__container--tertiary.searchbar__container--dark
+  .searchbar__clearButton:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ======================== */
+/* DISABLED STATE */
+/* ======================== */
+
+.searchbar__container--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ======================== */
+/* LOADING STATE */
+/* ======================== */
+
+.searchbar__container--loading .searchbar__input {
+  pointer-events: none;
+}
+
+.searchbar__container--loading .searchbar__searchButton {
+  pointer-events: none;
+  opacity: 0.5;
+}
