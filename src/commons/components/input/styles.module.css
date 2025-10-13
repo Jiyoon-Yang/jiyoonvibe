@@ -12,7 +12,8 @@
 
 /* Label */
 .input__label {
-  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
@@ -36,7 +37,8 @@
 
 /* Base Input Styles */
 .input {
-  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
   font-weight: 500;
   border-radius: 8px;
   border: 1px solid;
@@ -79,7 +81,8 @@
 /* Messages */
 .input__errorMessage,
 .input__helperText {
-  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
@@ -329,12 +332,7 @@
 .input--disabled {
   cursor: not-allowed;
   opacity: 0.5;
-}
-
-.input--disabled:hover,
-.input--disabled:focus {
-  border-color: inherit !important;
-  box-shadow: none !important;
+  pointer-events: none;
 }
 
 /* Dark theme label */
@@ -345,4 +343,3 @@
 .input--dark ~ .input__helperText {
   color: #c7c7c7;
 }
-
