@@ -1,0 +1,266 @@
+/* ============================================
+   Button Base Styles
+   ============================================ */
+
+.button {
+  /* Layout */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  /* Box Model */
+  border: none;
+  border-radius: 8px;
+
+  /* Typography */
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+  font-weight: 600;
+  white-space: nowrap;
+
+  /* Interaction */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+.button:focus-visible {
+  outline: 2px solid #6da5fa;
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Button Size Variants
+   ============================================ */
+
+/* Small */
+.button--small {
+  height: 36px;
+  padding: 8px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.14px;
+}
+
+/* Medium */
+.button--medium {
+  height: 48px;
+  padding: 12px 24px;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.18px;
+}
+
+/* Large */
+.button--large {
+  height: 56px;
+  padding: 16px 32px;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+}
+
+/* ============================================
+   Button Variant Styles - Light Theme
+   ============================================ */
+
+/* Primary Light */
+.button--primary.button--light {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.button--primary.button--light:hover {
+  background-color: #333333;
+}
+
+.button--primary.button--light:active {
+  background-color: #1c1c1c;
+}
+
+/* Secondary Light */
+.button--secondary.button--light {
+  background-color: #f2f2f2;
+  color: #000000;
+}
+
+.button--secondary.button--light:hover {
+  background-color: #e4e4e4;
+}
+
+.button--secondary.button--light:active {
+  background-color: #d4d3d3;
+}
+
+/* Tertiary Light */
+.button--tertiary.button--light {
+  background-color: transparent;
+  color: #000000;
+  border: 1px solid #e4e4e4;
+}
+
+.button--tertiary.button--light:hover {
+  background-color: #f2f2f2;
+  border-color: #d4d3d3;
+}
+
+.button--tertiary.button--light:active {
+  background-color: #e4e4e4;
+  border-color: #c7c7c7;
+}
+
+/* ============================================
+   Button Variant Styles - Dark Theme
+   ============================================ */
+
+/* Primary Dark */
+.button--primary.button--dark {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.button--primary.button--dark:hover {
+  background-color: #e4e4e4;
+}
+
+.button--primary.button--dark:active {
+  background-color: #f2f2f2;
+}
+
+/* Secondary Dark */
+.button--secondary.button--dark {
+  background-color: #333333;
+  color: #ffffff;
+}
+
+.button--secondary.button--dark:hover {
+  background-color: #5f5f5f;
+}
+
+.button--secondary.button--dark:active {
+  background-color: #1c1c1c;
+}
+
+/* Tertiary Dark */
+.button--tertiary.button--dark {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #333333;
+}
+
+.button--tertiary.button--dark:hover {
+  background-color: #1c1c1c;
+  border-color: #5f5f5f;
+}
+
+.button--tertiary.button--dark:active {
+  background-color: #333333;
+  border-color: #777777;
+}
+
+/* ============================================
+   Button States
+   ============================================ */
+
+/* Disabled State */
+.button--disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Loading State */
+.button--loading {
+  cursor: wait;
+  pointer-events: none;
+}
+
+/* ============================================
+   Full Width
+   ============================================ */
+
+.button--fullWidth {
+  width: 100%;
+}
+
+/* ============================================
+   Icon Styles
+   ============================================ */
+
+.button__iconLeft,
+.button__iconRight {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.button__iconLeft {
+  margin-right: -4px;
+}
+
+.button__iconRight {
+  margin-left: -4px;
+}
+
+/* Small Size Icons */
+.button--small .button__iconLeft svg,
+.button--small .button__iconRight svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Medium Size Icons */
+.button--medium .button__iconLeft svg,
+.button--medium .button__iconRight svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Large Size Icons */
+.button--large .button__iconLeft svg,
+.button--large .button__iconRight svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ============================================
+   Loading Spinner
+   ============================================ */
+
+.button__loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button__spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+
+.button--medium .button__spinner {
+  width: 20px;
+  height: 20px;
+  border-width: 2.5px;
+}
+
+.button--large .button__spinner {
+  width: 24px;
+  height: 24px;
+  border-width: 3px;
+}
+
+/* ============================================
+   Text Wrapper
+   ============================================ */
+
+.button__text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
