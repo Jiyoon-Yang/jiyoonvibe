@@ -17,10 +17,30 @@
   width: 1168px;
   height: 48px;
   flex-shrink: 0;
-  background-color: var(--gray-10);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.search__left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.search__selectbox {
+  width: 120px;
+}
+
+.search__searchbar {
+  width: 320px;
+}
+
+.search__button {
+  width: 110px;
+  background-color: var(--gray-black);
+  color: var(--gray-white);
 }
 
 /* gap: 1168 * 42 */
@@ -65,4 +85,3 @@
   height: 40px;
   flex-shrink: 0;
 }
-
