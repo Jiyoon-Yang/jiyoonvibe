@@ -53,12 +53,106 @@
 /* main: 1168 * 936 */
 .main {
   width: 1168px;
-  height: 936px;
+  min-height: 936px;
   flex-shrink: 0;
-  background-color: var(--gray-10);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 274px);
+  gap: 24px;
+  row-gap: 24px;
+  width: 1168px;
+}
+
+.diaryCard {
+  width: 274px;
+  height: 296px;
+  background-color: var(--gray-white);
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.diaryCard:hover {
+  transform: translateY(-4px);
+}
+
+.cardImageWrapper {
+  position: relative;
+  width: 274px;
+  height: 208px;
+}
+
+.cardImage {
+  object-fit: cover;
+  border-radius: 16px 16px 16px 16px;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  background-color: var(--gray-white);
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: var(--gray-10);
+}
+
+.cardContent {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.emotionLabel {
+  font-family: var(--font-korean);
+  font-size: var(--typo-subtitle01-size);
+  line-height: var(--typo-subtitle01-line);
+  font-weight: var(--typo-subtitle01-weight);
+  letter-spacing: -0.14px;
+}
+
+.date {
+  font-family: var(--font-korean);
+  font-size: var(--typo-body02-s-size);
+  line-height: var(--typo-body02-s-line);
+  font-weight: var(--typo-body02-s-weight);
+  letter-spacing: -0.14px;
+  color: var(--gray-50);
+}
+
+.cardTitle {
+  font-family: var(--font-korean);
+  font-size: var(--typo-title01-size);
+  line-height: var(--typo-title01-line);
+  font-weight: var(--typo-title01-weight);
+  letter-spacing: -0.18px;
+  color: var(--gray-black);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* gap: 1168 * 40 */
