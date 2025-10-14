@@ -6,38 +6,97 @@
   min-height: 100vh;
 }
 
+/* Header */
 .header {
   width: 1168px;
   height: 60px;
-  background-color: #f0f0f0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
+.logo {
+  width: 120px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.logoText {
+  font-family: var(--font-korean);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: -0.18px;
+  color: var(--gray-black);
+}
+
+/* Gap */
 .gap {
   width: 1168px;
   height: 24px;
 }
 
+/* Banner */
 .banner {
   width: 1168px;
   height: 240px;
-  background-color: #e0e0e0;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
+.bannerImage {
+  width: 1168px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+/* Navigation */
 .navigation {
   width: 1168px;
   height: 48px;
-  background-color: #d0d0d0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.navTabs {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.tab {
+  width: 119px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.tabText {
+  font-family: var(--font-korean);
+  font-size: var(--typo-headline01-size);
+  line-height: var(--typo-headline01-line);
+  letter-spacing: -0.24px;
+  font-weight: 500;
+  color: var(--gray-40);
+}
+
+.tabActive .tabText {
+  font-weight: var(--typo-headline01-weight);
+  color: var(--gray-black);
+}
+
+.tabActive {
+  border-bottom: 2px solid var(--gray-black);
+}
+
+/* Main */
 .main {
   width: 1168px;
   flex: 1;
@@ -45,12 +104,47 @@
   flex-direction: column;
 }
 
+/* Footer */
 .footer {
-  width: 1168px;
+  width: 100%;
   height: 160px;
-  background-color: #c0c0c0;
+  background-color: var(--gray-5);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.footerContent {
+  width: 1168px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footerTitle {
+  font-family: var(--font-korean);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: -0.2px;
+  color: var(--gray-black);
+}
+
+.footerInfo {
+  font-family: var(--font-korean);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: -0.14px;
+  color: var(--gray-70);
+}
+
+.footerCopyright {
+  font-family: var(--font-korean);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 16px;
+  letter-spacing: -0.14px;
+  color: var(--gray-50);
 }
 
