@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Selectbox } from "@/commons/components/selectbox";
 import { Searchbar } from "@/commons/components/searchbar";
 import { Button } from "@/commons/components/button";
+import { Pagination } from "@/commons/components/pagination";
 import { EmotionType, emotions } from "@/commons/constants/enum";
 import styles from "./styles.module.css";
 
@@ -108,6 +109,7 @@ const mockDiaries: DiaryCard[] = [
 export default function Diaries() {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
   const [searchValue, setSearchValue] = useState<string>("");
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const filterOptions = [
     { value: "all", label: "전체" },
@@ -132,6 +134,11 @@ export default function Diaries() {
 
   const handleDeleteCard = (id: number) => {
     console.log("카드 삭제:", id);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    console.log("페이지 변경:", page);
   };
 
   return (
@@ -230,7 +237,33 @@ export default function Diaries() {
       <div className={styles.gap_middle_2}></div>
 
       {/* pagination: 1168 * 32 */}
-      <div className={styles.pagination}>Pagination Area</div>
+      <div className={styles.pagination}>
+        <Pagination
+          variant="primary"
+          size="medium"
+          theme="light"
+          currentPage={currentPage}
+          totalPages={5}
+          pageRangeDisplayed={5}
+          onPageChange={handlePageChange}
+          previousIcon={
+            <Image
+              src="/icons/leftenable_outline_light_m.svg"
+              alt=""
+              width={24}
+              height={24}
+            />
+          }
+          nextIcon={
+            <Image
+              src="/icons/rightenable_outline_light_m.svg"
+              alt=""
+              width={24}
+              height={24}
+            />
+          }
+        />
+      </div>
 
       {/* gap: 1168 * 40 */}
       <div className={styles.gap_bottom}></div>

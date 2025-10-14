@@ -162,7 +162,6 @@
   width: 1168px;
   height: 32px;
   flex-shrink: 0;
-  background-color: var(--gray-10);
   display: flex;
   align-items: center;
   justify-content: center;
