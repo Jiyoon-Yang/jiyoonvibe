@@ -15,7 +15,8 @@
 
 /* Label */
 .selectbox__label {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
   font-size: 14px;
   line-height: 20px;
   font-weight: 600;
@@ -64,7 +65,8 @@
 /* Value Display */
 .selectbox__value {
   flex: 1;
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
   font-weight: 500;
   color: #1c1c1c;
   white-space: nowrap;
@@ -82,7 +84,8 @@
   border: none;
   outline: none;
   background: transparent;
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
   font-weight: 500;
   color: #1c1c1c;
 }
@@ -151,7 +154,8 @@
 /* Option Item */
 .selectbox__option {
   padding: 8px 12px;
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
   font-weight: 500;
   color: #1c1c1c;
   cursor: pointer;
@@ -186,7 +190,8 @@
 /* No Options */
 .selectbox__noOptions {
   padding: 12px;
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
   font-size: 14px;
   color: #ababab;
   text-align: center;
@@ -194,7 +199,8 @@
 
 /* Helper Text */
 .selectbox__helperText {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
@@ -203,7 +209,8 @@
 
 /* Error Message */
 .selectbox__errorMessage {
-  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+    sans-serif;
   font-size: 12px;
   line-height: 16px;
   font-weight: 400;
@@ -245,7 +252,7 @@
 
 /* Medium (Default) */
 .selectbox--medium {
-  height: 40px;
+  height: 48px;
   min-width: 100px;
 }
 
@@ -262,9 +269,9 @@
 }
 
 .selectbox__dropdown--medium .selectbox__option {
-  padding: 8px 12px;
-  font-size: 14px;
-  line-height: 20px;
+  padding: 12px 12px;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 /* Large */
