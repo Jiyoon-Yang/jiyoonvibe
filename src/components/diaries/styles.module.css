@@ -75,11 +75,6 @@
   border-radius: 16px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.diaryCard:hover {
-  transform: translateY(-4px);
 }
 
 .cardImageWrapper {
