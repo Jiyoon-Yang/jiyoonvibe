@@ -3,9 +3,9 @@ import { Searchbar } from "./index";
 
 /**
  * Searchbar 컴포넌트
- * 
+ *
  * 검색 기능을 제공하는 공통 컴포넌트입니다.
- * 
+ *
  * ## 주요 기능
  * - 3가지 variant: primary, secondary, tertiary
  * - 3가지 size: small, medium, large
@@ -113,7 +113,8 @@ const meta: Meta<typeof Searchbar> = {
     },
     loading: {
       control: { type: "boolean" },
-      description: "로딩 상태를 설정합니다. true일 경우 로딩 스피너가 표시됩니다.",
+      description:
+        "로딩 상태를 설정합니다. true일 경우 로딩 스피너가 표시됩니다.",
       table: {
         type: { summary: "boolean" },
         defaultValue: { summary: "false" },
@@ -143,7 +144,8 @@ const meta: Meta<typeof Searchbar> = {
     },
     onSearch: {
       action: "searched",
-      description: "검색 버튼 클릭 또는 Enter키 입력 시 호출되는 콜백 함수입니다.",
+      description:
+        "검색 버튼 클릭 또는 Enter키 입력 시 호출되는 콜백 함수입니다.",
       table: {
         type: { summary: "(value: string) => void" },
       },
@@ -180,7 +182,7 @@ type Story = StoryObj<typeof meta>;
 
 /**
  * 기본 Searchbar 컴포넌트
- * 
+ *
  * 가장 기본적인 형태의 검색바입니다.
  */
 export const Default: Story = {
@@ -190,7 +192,8 @@ export const Default: Story = {
   parameters: {
     docs: {
       description: {
-        story: "기본 설정의 Searchbar 컴포넌트입니다. variant는 primary, size는 medium, theme는 light가 기본값입니다.",
+        story:
+          "기본 설정의 Searchbar 컴포넌트입니다. variant는 primary, size는 medium, theme는 light가 기본값입니다.",
       },
     },
   },
@@ -215,7 +218,7 @@ export const WithValue: Story = {
 
 /**
  * 긴 텍스트가 입력된 Searchbar
- * 
+ *
  * 검색바의 너비는 고정되어 있으며, 텍스트가 길어지면 스크롤됩니다.
  */
 export const WithLongValue: Story = {
@@ -240,7 +243,7 @@ export const WithLongValue: Story = {
 
 /**
  * Primary Variant
- * 
+ *
  * 기본 스타일의 검색바입니다. 흰색 배경에 회색 테두리를 가지고 있습니다.
  */
 export const Primary: Story = {
@@ -260,7 +263,7 @@ export const Primary: Story = {
 
 /**
  * Secondary Variant
- * 
+ *
  * 배경색이 있는 검색바입니다. Light 테마에서는 회색 배경, 호버 시 배경색이 진해집니다.
  */
 export const Secondary: Story = {
@@ -280,7 +283,7 @@ export const Secondary: Story = {
 
 /**
  * Tertiary Variant
- * 
+ *
  * 밑줄 스타일의 검색바입니다. 배경이 투명하며 하단에만 밑줄이 표시됩니다.
  */
 export const Tertiary: Story = {
@@ -304,7 +307,7 @@ export const Tertiary: Story = {
 
 /**
  * Small Size
- * 
+ *
  * 작은 크기(36px)의 검색바입니다.
  */
 export const Small: Story = {
@@ -324,7 +327,7 @@ export const Small: Story = {
 
 /**
  * Medium Size
- * 
+ *
  * 중간 크기(48px)의 검색바입니다. 기본 크기입니다.
  */
 export const Medium: Story = {
@@ -344,7 +347,7 @@ export const Medium: Story = {
 
 /**
  * Large Size
- * 
+ *
  * 큰 크기(56px)의 검색바입니다.
  */
 export const Large: Story = {
@@ -368,7 +371,7 @@ export const Large: Story = {
 
 /**
  * Light Theme
- * 
+ *
  * 라이트 테마의 검색바입니다.
  */
 export const Light: Story = {
@@ -389,7 +392,7 @@ export const Light: Story = {
 
 /**
  * Dark Theme
- * 
+ *
  * 다크 테마의 검색바입니다.
  */
 export const Dark: Story = {
@@ -414,7 +417,7 @@ export const Dark: Story = {
 
 /**
  * Focused State
- * 
+ *
  * 포커스된 상태의 검색바입니다.
  */
 export const Focused: Story = {
@@ -434,7 +437,7 @@ export const Focused: Story = {
 
 /**
  * Typing State
- * 
+ *
  * 사용자가 텍스트를 입력하는 중인 상태입니다.
  */
 export const WithTyping: Story = {
@@ -455,7 +458,7 @@ export const WithTyping: Story = {
 
 /**
  * Loading State
- * 
+ *
  * 검색 중인 로딩 상태입니다.
  */
 export const Loading: Story = {
@@ -476,7 +479,7 @@ export const Loading: Story = {
 
 /**
  * Disabled State
- * 
+ *
  * 비활성화된 상태의 검색바입니다.
  */
 export const Disabled: Story = {
@@ -497,7 +500,7 @@ export const Disabled: Story = {
 
 /**
  * Without Clear Button
- * 
+ *
  * 초기화 버튼이 없는 검색바입니다.
  */
 export const WithoutClearButton: Story = {
@@ -518,7 +521,7 @@ export const WithoutClearButton: Story = {
 
 /**
  * Full Width
- * 
+ *
  * 전체 너비를 사용하는 검색바입니다.
  */
 export const FullWidth: Story = {
@@ -543,7 +546,7 @@ export const FullWidth: Story = {
 
 /**
  * All Variants Comparison
- * 
+ *
  * 모든 variant를 한눈에 비교할 수 있습니다.
  */
 export const AllVariants: Story = {
@@ -573,7 +576,7 @@ export const AllVariants: Story = {
 
 /**
  * All Sizes Comparison
- * 
+ *
  * 모든 size를 한눈에 비교할 수 있습니다.
  */
 export const AllSizes: Story = {
@@ -603,7 +606,7 @@ export const AllSizes: Story = {
 
 /**
  * All Themes Comparison
- * 
+ *
  * Light와 Dark 테마의 모든 variant를 비교할 수 있습니다.
  */
 export const AllThemes: Story = {
@@ -687,7 +690,7 @@ export const AllThemes: Story = {
 
 /**
  * All States Comparison
- * 
+ *
  * 검색바의 모든 상태를 한눈에 비교할 수 있습니다.
  */
 export const AllStates: Story = {
@@ -767,7 +770,7 @@ export const AllStates: Story = {
 
 /**
  * Interactive Example
- * 
+ *
  * 검색, 초기화, 입력 변경 이벤트를 확인할 수 있습니다.
  */
 export const WithInteractions: Story = {
@@ -799,7 +802,7 @@ export const WithInteractions: Story = {
 
 /**
  * Search Scenarios
- * 
+ *
  * 실제 사용 시나리오에서의 검색바 활용 예시입니다.
  */
 export const SearchScenarios: Story = {
@@ -878,7 +881,7 @@ export const SearchScenarios: Story = {
 
 /**
  * Responsive Example
- * 
+ *
  * 다양한 컨테이너 너비에서의 반응형 동작을 확인할 수 있습니다.
  */
 export const ResponsiveExample: Story = {
@@ -886,7 +889,8 @@ export const ResponsiveExample: Story = {
     <div style={{ padding: "24px" }}>
       <h3 style={{ marginBottom: "16px" }}>반응형 검색바</h3>
       <p style={{ marginBottom: "24px", fontSize: "14px", color: "#666" }}>
-        fullWidth prop을 사용하면 부모 컨테이너의 너비에 맞춰 검색바의 너비가 조절됩니다.
+        fullWidth prop을 사용하면 부모 컨테이너의 너비에 맞춰 검색바의 너비가
+        조절됩니다.
       </p>
       <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
         <div style={{ width: "100%" }}>
