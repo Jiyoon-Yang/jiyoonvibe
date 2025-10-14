@@ -1,601 +1,387 @@
-/* =================================================================== */
-/* Selectbox Component Styles */
-/* =================================================================== */
-
-/* Wrapper */
-.selectbox__wrapper {
-  display: flex;
+/* Container */
+.container {
+  display: inline-flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  position: relative;
 }
 
-.selectbox__wrapper--fullWidth {
+.container.fullWidth {
   width: 100%;
 }
 
 /* Label */
-.selectbox__label {
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
-    sans-serif;
+.label {
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
   font-size: 14px;
+  font-weight: 500;
   line-height: 20px;
-  font-weight: 600;
   color: #1c1c1c;
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.selectbox__required {
-  color: #f03851;
+.required {
+  color: #ff4d4f;
 }
 
-/* Main Selectbox */
-.selectbox {
+/* Select Wrapper */
+.selectWrapper {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  background: #ffffff;
-  border: 1px solid #c7c7c7;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  outline: none;
+  display: inline-block;
+  width: 100%;
 }
 
-.selectbox:hover {
-  border-color: #ababab;
-}
-
-.selectbox:focus {
-  border-color: #6da5fa;
-  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.1);
-}
-
-/* Container */
-.selectbox__container {
+/* Trigger Button */
+.trigger {
   display: flex;
   align-items: center;
-  width: 100%;
+  justify-content: space-between;
   gap: 8px;
-  padding: 0 12px;
-  flex: 1;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #c7c7c7;
+  background-color: #ffffff;
+  cursor: pointer;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  color: #1c1c1c;
+  width: 100%;
+  min-width: 120px;
+  height: 48px;
+  box-sizing: border-box;
 }
 
-/* Value Display */
-.selectbox__value {
+/* Hover effect removed as per Figma design */
+/* .trigger:hover:not(.disabled) {
+  border-color: #999999;
+} */
+
+.trigger:focus {
+  outline: none;
+  border-color: #c7c7c7;
+}
+
+/* Variant Styles */
+.trigger.variant-primary {
+  border-color: #c7c7c7;
+}
+
+/* Hover effect removed as per Figma design */
+/* .trigger.variant-primary:hover:not(.disabled) {
+  border-color: #299c00;
+} */
+
+.trigger.variant-secondary {
+  border-color: #e0e0e0;
+  background-color: #f5f5f5;
+}
+
+/* Hover effect removed as per Figma design */
+/* .trigger.variant-secondary:hover:not(.disabled) {
+  background-color: #ebebeb;
+  border-color: #999999;
+} */
+
+.trigger.variant-tertiary {
+  border: none;
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Hover effect removed as per Figma design */
+/* .trigger.variant-tertiary:hover:not(.disabled) {
+  background-color: rgba(0, 0, 0, 0.04);
+} */
+
+/* Size Styles */
+.trigger.size-small {
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 20px;
+  height: 36px;
+}
+
+.trigger.size-medium {
+  padding: 10px 12px;
+  font-size: 16px;
+  line-height: 24px;
+  height: 48px;
+}
+
+.trigger.size-large {
+  padding: 13px 16px;
+  font-size: 18px;
+  line-height: 26px;
+  height: 56px;
+}
+
+/* Theme Styles */
+.trigger.theme-dark {
+  background-color: #2a2a2a;
+  border-color: #4a4a4a;
+  color: #ffffff;
+}
+
+/* Hover effect removed as per Figma design */
+/* .trigger.theme-dark:hover:not(.disabled) {
+  border-color: #3ab50f;
+  background-color: #333333;
+} */
+
+.trigger.theme-dark:focus {
+  border-color: #3ab50f;
+  box-shadow: 0 0 0 2px rgba(58, 181, 15, 0.2);
+}
+
+/* State Styles */
+.trigger.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: #f5f5f5;
+}
+
+.trigger.error {
+  border-color: #ff4d4f;
+}
+
+/* Hover effect removed as per Figma design */
+/* .trigger.error:hover:not(.disabled) {
+  border-color: #ff7875;
+} */
+
+.trigger.error:focus {
+  border-color: #ff4d4f;
+  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.1);
+}
+
+.trigger.open {
+  border-color: #c7c7c7;
+}
+
+/* Trigger Content */
+.iconLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: #5f5f5f;
+}
+
+.value {
   flex: 1;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
-    sans-serif;
-  font-weight: 500;
-  color: #1c1c1c;
-  white-space: nowrap;
+  text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
-  display: flex;
-  align-items: center;
+  white-space: nowrap;
 }
 
-/* Placeholder styling is handled in the component logic */
-
-/* Search Input */
-.selectbox__searchInput {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
-    sans-serif;
-  font-weight: 500;
-  color: #1c1c1c;
+.trigger:not(.disabled) .value:empty::before {
+  content: attr(data-placeholder);
+  color: #999999;
 }
 
-.selectbox__searchInput::placeholder {
-  color: #ababab;
-}
-
-/* Icons */
-.selectbox__iconLeft {
+.iconRight {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #777777;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: #5f5f5f;
 }
 
-.selectbox__arrow {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #777777;
-  transition: transform 0.2s ease-in-out;
-}
-
-.selectbox--open .selectbox__arrow {
+.iconRight.iconRotate {
   transform: rotate(180deg);
 }
 
 /* Dropdown */
-.selectbox__dropdown {
+.dropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 4px);
   left: 0;
   right: 0;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  background: #ffffff;
-  border: 1px solid #e4e4e4;
+  background-color: #ffffff;
+  border: 1px solid #c7c7c7;
   border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  margin-top: 4px;
-  max-height: 200px;
-  overflow: hidden;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  max-height: 288px;
+  overflow-y: auto;
+  display: none;
 }
 
-.selectbox__dropdown--open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+.dropdown.open {
+  display: block;
+}
+
+.dropdown.theme-dark {
+  background-color: #2a2a2a;
+  border-color: #4a4a4a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Search */
+.searchWrapper {
+  padding: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #c7c7c7;
+  border-radius: 6px;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1c1c1c;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.searchInput:focus {
+  border-color: #299c00;
+  box-shadow: 0 0 0 2px rgba(41, 156, 0, 0.1);
 }
 
 /* Option List */
-.selectbox__optionList {
+.optionList {
   list-style: none;
   margin: 0;
-  padding: 4px 0;
-  max-height: 192px;
-  overflow-y: auto;
+  padding: 0;
 }
 
-/* Option Item */
-.selectbox__option {
-  padding: 8px 12px;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
-    sans-serif;
-  font-weight: 500;
-  color: #1c1c1c;
-  cursor: pointer;
-  transition: background-color 0.15s ease-in-out;
+/* Option */
+.option {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+  color: #5f5f5f;
+  cursor: pointer;
+  height: 48px;
+  box-sizing: border-box;
 }
 
-.selectbox__option:hover {
-  background-color: #f2f2f2;
+.option:hover:not(.optionDisabled) {
+  background-color: rgba(0, 0, 0, 0.04);
 }
 
-.selectbox__option--selected {
-  background-color: #6da5fa;
-  color: #ffffff;
+.option.selected {
+  background-color: rgba(58, 181, 15, 0.05);
+  color: #299c00;
+  font-weight: 700;
 }
 
-.selectbox__option--selected:hover {
-  background-color: #497cff;
+.option.selected:hover {
+  background-color: rgba(58, 181, 15, 0.08);
 }
 
-.selectbox__option--disabled {
-  color: #ababab;
+.option.optionDisabled {
   cursor: not-allowed;
-  background-color: transparent;
+  opacity: 0.4;
 }
 
-.selectbox__option--disabled:hover {
-  background-color: transparent;
+.dropdown.theme-dark .option {
+  color: #e0e0e0;
 }
 
-/* No Options */
-.selectbox__noOptions {
-  padding: 12px;
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
-    sans-serif;
-  font-size: 14px;
-  color: #ababab;
-  text-align: center;
+.dropdown.theme-dark .option:hover:not(.optionDisabled) {
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
-/* Helper Text */
-.selectbox__helperText {
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
-    sans-serif;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 400;
-  color: #777777;
+.dropdown.theme-dark .option.selected {
+  background-color: rgba(58, 181, 15, 0.15);
+  color: #3ab50f;
 }
 
-/* Error Message */
-.selectbox__errorMessage {
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
-    sans-serif;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 400;
-  color: #f03851;
+.dropdown.theme-dark .option.selected:hover {
+  background-color: rgba(58, 181, 15, 0.2);
 }
 
-/* =================================================================== */
-/* Size Variants */
-/* =================================================================== */
-
-/* Small */
-.selectbox--small {
-  height: 32px;
-  min-width: 80px;
+/* Option Content */
+.optionLabel {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.selectbox--small .selectbox__container {
-  padding: 0 8px;
-  gap: 6px;
-}
-
-.selectbox--small .selectbox__value,
-.selectbox--small .selectbox__searchInput {
-  font-size: 12px;
-  line-height: 16px;
-}
-
-.selectbox--small .selectbox__iconLeft,
-.selectbox--small .selectbox__arrow {
+.checkIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 16px;
   height: 16px;
+  flex-shrink: 0;
+  margin-left: 8px;
+  color: currentColor;
 }
 
-.selectbox__dropdown--small .selectbox__option {
-  padding: 6px 8px;
-  font-size: 12px;
-  line-height: 16px;
-}
-
-/* Medium (Default) */
-.selectbox--medium {
-  height: 48px;
-  min-width: 100px;
-}
-
-.selectbox--medium .selectbox__value,
-.selectbox--medium .selectbox__searchInput {
+/* No Results */
+.noResults {
+  padding: 16px 12px;
+  text-align: center;
+  color: #999999;
   font-size: 14px;
-  line-height: 20px;
 }
 
-.selectbox--medium .selectbox__iconLeft,
-.selectbox--medium .selectbox__arrow {
-  width: 20px;
-  height: 20px;
+/* Helper & Error Text */
+.helperText,
+.errorMessage {
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  margin: 0;
 }
 
-.selectbox__dropdown--medium .selectbox__option {
-  padding: 12px 12px;
-  font-size: 16px;
-  line-height: 24px;
+.helperText {
+  color: #5f5f5f;
 }
 
-/* Large */
-.selectbox--large {
-  height: 48px;
-  min-width: 120px;
+.errorMessage {
+  color: #ff4d4f;
 }
 
-.selectbox--large .selectbox__container {
-  padding: 0 16px;
-  gap: 10px;
+/* Scrollbar Styles */
+.dropdown::-webkit-scrollbar {
+  width: 6px;
 }
 
-.selectbox--large .selectbox__value,
-.selectbox--large .selectbox__searchInput {
-  font-size: 16px;
-  line-height: 24px;
+.dropdown::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.selectbox--large .selectbox__iconLeft,
-.selectbox--large .selectbox__arrow {
-  width: 24px;
-  height: 24px;
+.dropdown::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+  border-radius: 3px;
 }
 
-.selectbox__dropdown--large .selectbox__option {
-  padding: 10px 16px;
-  font-size: 16px;
-  line-height: 24px;
+.dropdown::-webkit-scrollbar-thumb:hover {
+  background: #999999;
 }
 
-/* =================================================================== */
-/* Variant Styles */
-/* =================================================================== */
-
-/* Primary */
-.selectbox--primary {
-  border-color: #c7c7c7;
+.dropdown.theme-dark::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
 }
 
-.selectbox--primary:hover {
-  border-color: #ababab;
-}
-
-.selectbox--primary:focus {
-  border-color: #6da5fa;
-  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.1);
-}
-
-/* Secondary */
-.selectbox--secondary {
-  border-color: #e4e4e4;
-  background-color: #f2f2f2;
-}
-
-.selectbox--secondary:hover {
-  border-color: #d4d3d3;
-  background-color: #e4e4e4;
-}
-
-.selectbox--secondary:focus {
-  border-color: #6da5fa;
-  background-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.1);
-}
-
-.selectbox--secondary.selectbox--dark {
-  border-color: #5f5f5f;
-  background-color: #333333;
-}
-
-.selectbox--secondary.selectbox--dark:hover {
-  border-color: #777777;
-  background-color: #5f5f5f;
-}
-
-.selectbox--secondary.selectbox--dark:focus {
-  border-color: #6da5fa;
-  background-color: #1c1c1c;
-  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.2);
-}
-
-/* Tertiary */
-.selectbox--tertiary {
-  border-color: transparent;
-  background-color: transparent;
-  border-bottom: 2px solid #e4e4e4;
-  border-radius: 0;
-}
-
-.selectbox--tertiary:hover {
-  border-bottom-color: #c7c7c7;
-}
-
-.selectbox--tertiary:focus {
-  border-bottom-color: #6da5fa;
-  box-shadow: none;
-}
-
-.selectbox--tertiary.selectbox--dark {
-  border-bottom-color: #5f5f5f;
-}
-
-.selectbox--tertiary.selectbox--dark:hover {
-  border-bottom-color: #777777;
-}
-
-.selectbox--tertiary.selectbox--dark:focus {
-  border-bottom-color: #6da5fa;
-}
-
-/* =================================================================== */
-/* Theme Variants */
-/* =================================================================== */
-
-/* Light Theme (Default) */
-.selectbox--light {
-  background-color: #ffffff;
-  color: #1c1c1c;
-}
-
-.selectbox--light .selectbox__value {
-  color: #1c1c1c;
-}
-
-.selectbox--light .selectbox__searchInput {
-  color: #1c1c1c;
-}
-
-.selectbox--light .selectbox__searchInput::placeholder {
-  color: #ababab;
-}
-
-.selectbox--light .selectbox__iconLeft,
-.selectbox--light .selectbox__arrow {
-  color: #777777;
-}
-
-.selectbox__dropdown--light {
-  background-color: #ffffff;
-  border-color: #e4e4e4;
-}
-
-.selectbox__dropdown--light .selectbox__option {
-  color: #1c1c1c;
-}
-
-.selectbox__dropdown--light .selectbox__option:hover {
-  background-color: #f2f2f2;
-}
-
-.selectbox__dropdown--light .selectbox__option--selected {
-  background-color: #6da5fa;
-  color: #ffffff;
-}
-
-/* Dark Theme */
-.selectbox--dark {
-  background-color: #1c1c1c;
-  border-color: #5f5f5f;
-  color: #ffffff;
-}
-
-.selectbox--dark:hover {
-  border-color: #777777;
-}
-
-.selectbox--dark:focus {
-  border-color: #6da5fa;
-  box-shadow: 0 0 0 3px rgba(109, 165, 250, 0.2);
-}
-
-.selectbox--dark .selectbox__value {
-  color: #ffffff;
-}
-
-.selectbox--dark .selectbox__searchInput {
-  color: #ffffff;
-}
-
-.selectbox--dark .selectbox__searchInput::placeholder {
-  color: #919191;
-}
-
-.selectbox--dark .selectbox__iconLeft,
-.selectbox--dark .selectbox__arrow {
-  color: #c7c7c7;
-}
-
-.selectbox__dropdown--dark {
-  background-color: #333333;
-  border-color: #5f5f5f;
-}
-
-.selectbox__dropdown--dark .selectbox__option {
-  color: #ffffff;
-}
-
-.selectbox__dropdown--dark .selectbox__option:hover {
-  background-color: #5f5f5f;
-}
-
-.selectbox__dropdown--dark .selectbox__option--selected {
-  background-color: #6da5fa;
-  color: #ffffff;
-}
-
-/* Dark theme wrapper */
-.selectbox__wrapper:has(.selectbox--dark) .selectbox__label {
-  color: #ffffff;
-}
-
-/* Fallback for browsers without :has() support */
-.selectbox--dark ~ .selectbox__label,
-.selectbox--dark + .selectbox__label {
-  color: #ffffff;
-}
-
-/* =================================================================== */
-/* State Variants */
-/* =================================================================== */
-
-/* Error State */
-.selectbox--error {
-  border-color: #f03851;
-}
-
-.selectbox--error:hover {
-  border-color: #e4112e;
-}
-
-.selectbox--error:focus {
-  border-color: #f03851;
-  box-shadow: 0 0 0 3px rgba(240, 56, 81, 0.1);
-}
-
-/* Disabled State */
-.selectbox--disabled {
-  background-color: #f2f2f2;
-  border-color: #e4e4e4;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.selectbox--disabled:hover {
-  border-color: #e4e4e4;
-}
-
-.selectbox--disabled .selectbox__value {
-  color: #ababab;
-}
-
-.selectbox--disabled .selectbox__searchInput {
-  color: #ababab;
-  cursor: not-allowed;
-}
-
-.selectbox--disabled .selectbox__iconLeft,
-.selectbox--disabled .selectbox__arrow {
-  color: #ababab;
-}
-
-/* Dark theme disabled state */
-.selectbox--disabled.selectbox--dark {
-  background-color: #333333;
-  border-color: #5f5f5f;
-}
-
-.selectbox--disabled.selectbox--dark .selectbox__value,
-.selectbox--disabled.selectbox--dark .selectbox__searchInput,
-.selectbox--disabled.selectbox--dark .selectbox__iconLeft,
-.selectbox--disabled.selectbox--dark .selectbox__arrow {
-  color: #777777;
-}
-
-/* =================================================================== */
-/* Responsive Design */
-/* =================================================================== */
-
-@media (max-width: 768px) {
-  .selectbox__dropdown {
-    max-height: 160px;
-  }
-
-  .selectbox__optionList {
-    max-height: 152px;
-  }
-}
-
-/* =================================================================== */
-/* Accessibility */
-/* =================================================================== */
-
-.selectbox:focus-visible {
-  outline: 2px solid #6da5fa;
-  outline-offset: 2px;
-}
-
-.selectbox__option:focus {
-  outline: none;
-  background-color: #f2f2f2;
-}
-
-.selectbox--dark .selectbox__option:focus {
-  background-color: #5f5f5f;
-}
-
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-  .selectbox {
-    border-width: 2px;
-  }
-
-  .selectbox:focus {
-    outline: 3px solid;
-  }
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-  .selectbox,
-  .selectbox__dropdown,
-  .selectbox__arrow,
-  .selectbox__option {
-    transition: none;
-  }
+.dropdown.theme-dark::-webkit-scrollbar-thumb:hover {
+  background: #5a5a5a;
 }
