@@ -83,7 +83,7 @@ export default function DiariesNew() {
           placeholder="제목을 입력해 주세요."
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className={styles.input_title__input}
+          fullWidth
         />
       </div>
 
