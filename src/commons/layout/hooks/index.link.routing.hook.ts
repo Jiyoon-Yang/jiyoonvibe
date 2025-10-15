@@ -4,11 +4,28 @@ import { usePathname, useRouter } from "next/navigation";
 import { URL_PATHS } from "@/commons/constants/url";
 
 /**
- * Layout 링크 라우팅 훅
- * - 현재 경로를 확인하여 네비게이션 active 상태 관리
- * - 클릭 이벤트를 통한 페이지 이동 처리
+ * Layout 링크 라우팅 Hook
+ *
+ * 현재 경로를 확인하여 네비게이션 active 상태를 관리하고,
+ * 클릭 이벤트를 통한 페이지 이동을 처리합니다.
+ *
+ * @returns {Object} 네비게이션 상태 및 핸들러
+ * - isDiariesActive: 일기보관함 탭 활성화 여부
+ * - isPicturesActive: 사진보관함 탭 활성화 여부
+ * - handleLogoClick: 로고 클릭 핸들러
+ * - handleDiariesClick: 일기보관함 탭 클릭 핸들러
+ * - handlePicturesClick: 사진보관함 탭 클릭 핸들러
+ *
+ * @example
+ * ```tsx
+ * const {
+ *   isDiariesActive,
+ *   handleLogoClick,
+ *   handleDiariesClick
+ * } = useLinkRouting();
+ * ```
  */
-export function useLinkRouting() {
+export const useLinkRouting = () => {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -41,4 +58,4 @@ export function useLinkRouting() {
     handleDiariesClick,
     handlePicturesClick,
   };
-}
+};
