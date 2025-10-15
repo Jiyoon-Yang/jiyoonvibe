@@ -47,4 +47,3 @@ test.describe("Layout Link Routing", () => {
   // /pictures 페이지는 skip
   test.skip("사진보관함 페이지 (/pictures)", () => {});
 });
-

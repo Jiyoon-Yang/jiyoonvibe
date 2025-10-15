@@ -13,7 +13,8 @@ export function useLinkRouting() {
   const router = useRouter();
 
   // 현재 경로가 일기보관함인지 확인
-  const isDiariesActive = pathname === URL_PATHS.DIARIES.LIST || pathname.startsWith("/diaries/");
+  const isDiariesActive =
+    pathname === URL_PATHS.DIARIES.LIST || pathname.startsWith("/diaries/");
 
   // 현재 경로가 사진보관함인지 확인
   const isPicturesActive = pathname === URL_PATHS.PICTURES.LIST;
@@ -41,4 +42,3 @@ export function useLinkRouting() {
     handlePicturesClick,
   };
 }
-
