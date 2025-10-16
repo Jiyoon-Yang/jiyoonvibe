@@ -79,7 +79,8 @@
   outline-offset: 2px;
 }
 
-.pagination__arrow svg {
+.pagination__arrow svg,
+.pagination__arrow img {
   width: 24px;
   height: 24px;
 }
@@ -103,7 +104,8 @@
   font-weight: 500;
 }
 
-.pagination--small .pagination__arrow svg {
+.pagination--small .pagination__arrow svg,
+.pagination--small .pagination__arrow img {
   width: 20px;
   height: 20px;
 }
@@ -127,7 +129,8 @@
   font-weight: 500;
 }
 
-.pagination--medium .pagination__arrow svg {
+.pagination--medium .pagination__arrow svg,
+.pagination--medium .pagination__arrow img {
   width: 24px;
   height: 24px;
 }
@@ -151,7 +154,8 @@
   font-weight: 500;
 }
 
-.pagination--large .pagination__arrow svg {
+.pagination--large .pagination__arrow svg,
+.pagination--large .pagination__arrow img {
   width: 28px;
   height: 28px;
 }
@@ -454,7 +458,8 @@
     line-height: 24px;
   }
 
-  .pagination--large .pagination__arrow svg {
+  .pagination--large .pagination__arrow svg,
+  .pagination--large .pagination__arrow img {
     width: 24px;
     height: 24px;
   }

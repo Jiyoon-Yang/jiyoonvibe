@@ -198,17 +198,16 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           disabled={isPreviousDisabled}
           aria-label="이전 페이지">
           {previousIcon || (
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M15.41 7.41L14 6L8 12L14 18L15.41 16.59L10.83 12L15.41 7.41Z"
-                fill="currentColor"
-              />
-            </svg>
+            <img
+              src={
+                isPreviousDisabled
+                  ? "/icons/leftdisabled_outline_light_m.svg"
+                  : "/icons/leftenable_outline_light_m.svg"
+              }
+              alt="이전 페이지"
+              width={24}
+              height={24}
+            />
           )}
         </button>
 
@@ -246,17 +245,16 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           disabled={isNextDisabled}
           aria-label="다음 페이지">
           {nextIcon || (
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M8.59 16.59L10 18L16 12L10 6L8.59 7.41L13.17 12L8.59 16.59Z"
-                fill="currentColor"
-              />
-            </svg>
+            <img
+              src={
+                isNextDisabled
+                  ? "/icons/rightdisabled_outline_light_m.svg"
+                  : "/icons/rightenable_outline_light_m.svg"
+              }
+              alt="다음 페이지"
+              width={24}
+              height={24}
+            />
           )}
         </button>
       </div>
