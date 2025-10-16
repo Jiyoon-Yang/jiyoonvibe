@@ -8,6 +8,7 @@ import { Button } from "@/commons/components/button";
 import { Pagination } from "@/commons/components/pagination";
 import { EmotionType, emotions } from "@/commons/constants/enum";
 import styles from "./styles.module.css";
+import { useDiaryModal } from "./hooks/index.link.modal.hook";
 
 // Mock 데이터 타입 정의
 interface DiaryCard {
@@ -110,6 +111,7 @@ export default function Diaries() {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
   const [searchValue, setSearchValue] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const { openDiaryModal } = useDiaryModal();
 
   const filterOptions = [
     { value: "all", label: "전체" },
@@ -129,7 +131,7 @@ export default function Diaries() {
   };
 
   const handleNewDiary = () => {
-    console.log("일기쓰기 클릭");
+    openDiaryModal();
   };
 
   const handleDeleteCard = (id: number) => {
@@ -142,7 +144,7 @@ export default function Diaries() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="diaries-container">
       {/* gap: 1168 * 32 */}
       <div className={styles.gap_top}></div>
 

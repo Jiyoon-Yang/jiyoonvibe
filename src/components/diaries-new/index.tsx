@@ -6,6 +6,7 @@ import { Button } from "@/commons/components/button";
 import { Input } from "@/commons/components/input";
 import { EmotionType, emotionList } from "@/commons/constants/enum";
 import Image from "next/image";
+import { useModal } from "@/commons/providers/modal/modal.provider";
 
 export default function DiariesNew() {
   const [selectedEmotion, setSelectedEmotion] = useState<EmotionType | null>(
@@ -13,6 +14,7 @@ export default function DiariesNew() {
   );
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const { closeModal } = useModal();
 
   return (
     <div className={styles.wrapper}>
@@ -110,6 +112,7 @@ export default function DiariesNew() {
           variant="secondary"
           theme="light"
           size="medium"
+          onClick={closeModal}
           className={styles.footer__button_close}>
           닫기
         </Button>
