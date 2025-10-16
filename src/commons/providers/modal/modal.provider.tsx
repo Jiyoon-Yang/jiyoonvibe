@@ -68,7 +68,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
 
             {/* 모달 컨텐츠 */}
             <div
-              className="relative z-10 bg-white dark:bg-gray-800 rounded-lg shadow-xl"
+              className="relative z-10 dark:bg-gray-800 rounded-lg shadow-xl"
               onClick={(e) => e.stopPropagation()}>
               {modalContent}
             </div>
