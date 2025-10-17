@@ -10,7 +10,7 @@
 
 ==============================================
 
-조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: 2crz0ia6)
+조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: 2rw9phkl)
 조건-피그마) 참고할 공통컴포넌트 노드ID: 5703:1244
 조건-파일경로) 구현될 TSX 파일경로: src/commons/components/pagination/index.tsx
 조건-파일경로) 구현될 CSS 파일경로: src/commons/components/pagination/styles.module.css
@@ -25,4 +25,3 @@
             - theme: 'light' | 'dark'
 ==============================================
 
-핵심요구사항) styles_pagination의 숫자가 1과 5에 해당할 때 disable arrow 아이콘으로 바뀌어야 하는데 안바뀌고 있음, public/icons 폴더를 참고해서 수정할 것.

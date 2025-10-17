@@ -6,8 +6,15 @@ import React, {
   useState,
   useCallback,
   ReactNode,
+  useEffect,
 } from "react";
 import { createPortal } from "react-dom";
+import styles from "./styles.module.css";
+
+interface Modal {
+  id: string;
+  content: ReactNode;
+}
 
 interface ModalContextType {
   isOpen: boolean;
@@ -31,49 +38,66 @@ interface ModalProviderProps {
 }
 
 export const ModalProvider = ({ children }: ModalProviderProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [modalContent, setModalContent] = useState<ReactNode | null>(null);
+  const [modalStack, setModalStack] = useState<Modal[]>([]);
   const [isMounted, setIsMounted] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsMounted(true);
   }, []);
 
+  // 모달이 1개라도 열려 있으면 body 스크롤 제거
+  useEffect(() => {
+    if (modalStack.length > 0) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [modalStack.length]);
+
   const openModal = useCallback((content: ReactNode) => {
-    setModalContent(content);
-    setIsOpen(true);
+    const id = `modal-${Date.now()}-${Math.random()}`;
+    setModalStack((prev) => [...prev, { id, content }]);
   }, []);
 
   const closeModal = useCallback(() => {
-    setIsOpen(false);
-    setTimeout(() => {
-      setModalContent(null);
-    }, 300);
+    setModalStack((prev) => prev.slice(0, -1));
   }, []);
 
   const modalRoot = isMounted ? document.body : null;
+
+  // 하위 호환성을 위한 값
+  const isOpen = modalStack.length > 0;
+  const modalContent =
+    modalStack.length > 0 ? modalStack[modalStack.length - 1].content : null;
 
   return (
     <ModalContext.Provider
       value={{ isOpen, modalContent, openModal, closeModal }}>
       {children}
       {modalRoot &&
-        isOpen &&
-        createPortal(
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center"
-            onClick={closeModal}>
-            {/* 오버레이 배경 */}
-            <div className="absolute inset-0 bg-black bg-opacity-50" />
-
-            {/* 모달 컨텐츠 */}
+        modalStack.map((modal, index) =>
+          createPortal(
             <div
-              className="relative z-10 dark:bg-gray-800 rounded-lg shadow-xl"
-              onClick={(e) => e.stopPropagation()}>
-              {modalContent}
-            </div>
-          </div>,
-          modalRoot
+              key={modal.id}
+              className={styles.modalWrapper}
+              style={{ zIndex: 50 + index }}
+              onClick={closeModal}>
+              {/* 오버레이 배경 - 각 모달마다 독립적으로 렌더링 */}
+              <div className={styles.backdrop} />
+
+              {/* 모달 컨텐츠 */}
+              <div
+                className={styles.modalContent}
+                onClick={(e) => e.stopPropagation()}>
+                {modal.content}
+              </div>
+            </div>,
+            modalRoot
+          )
         )}
     </ModalContext.Provider>
   );

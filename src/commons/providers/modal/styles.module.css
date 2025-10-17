@@ -1,0 +1,65 @@
+/* ============================================
+   Modal Provider Base Styles
+   ============================================ */
+
+.modalWrapper {
+  /* Layout */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Interaction */
+  transition: all 0.2s ease-in-out;
+}
+
+/* ============================================
+   Modal Backdrop
+   ============================================ */
+
+.backdrop {
+  /* Layout */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  /* Visual */
+  background-color: rgba(0, 0, 0, 0.5);
+
+  /* Interaction */
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* ============================================
+   Modal Content Container
+   ============================================ */
+
+.modalContent {
+  /* Layout */
+  position: relative;
+  z-index: 10;
+
+  /* Box Model */
+  border-radius: 8px;
+
+  /* Visual */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+
+  /* Interaction */
+  transition: all 0.2s ease-in-out;
+}
+
+/* ============================================
+   Modal Theme Styles
+   ============================================ */
+
+/* Dark Theme */
+:global(.dark) .modalContent {
+  background-color: #1c1c1c;
+}
