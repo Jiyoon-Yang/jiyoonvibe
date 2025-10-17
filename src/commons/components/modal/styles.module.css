@@ -122,7 +122,7 @@
    Button Fixed Width (Dual Actions Only)
    ============================================ */
 
-.modal__button_fixed {
+.modal__buttonFixed {
   width: 104px !important;
   min-width: 104px;
   max-width: 104px;

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button } from "../button";
+import { Button, type ButtonVariant } from "../button";
 import styles from "./styles.module.css";
 
 export type ModalVariant = "info" | "danger";
@@ -22,7 +22,7 @@ export interface ModalAction {
   /**
    * 버튼 variant (미지정 시 자동 결정)
    */
-  variant?: "primary" | "secondary";
+  variant?: ButtonVariant;
 }
 
 export interface ModalProps {
@@ -158,11 +158,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
             // Dual actions: 버튼 2개 (각 104px 고정)
             <>
               <Button
-                variant={cancelAction?.variant || "secondary"}
+                variant={cancelAction?.variant || "tertiary"}
                 size="medium"
                 theme={theme}
                 onClick={cancelAction?.onClick}
-                className={styles.modal__button_fixed}>
+                className={styles.modal__buttonFixed}>
                 {cancelAction?.label || "취소"}
               </Button>
               <Button
@@ -170,7 +170,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 size="medium"
                 theme={theme}
                 onClick={confirmAction?.onClick}
-                className={styles.modal__button_fixed}>
+                className={styles.modal__buttonFixed}>
                 {confirmAction?.label || "확인"}
               </Button>
             </>
