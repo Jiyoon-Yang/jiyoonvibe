@@ -7,6 +7,7 @@ import { Input } from "@/commons/components/input";
 import { EmotionType, emotionList } from "@/commons/constants/enum";
 import Image from "next/image";
 import { useLinkModalClose } from "./hooks/index.link.modal.close.hook";
+import { useDiaryForm } from "./hooks/index.form.hook";
 
 export default function DiariesNew() {
   const [selectedEmotion, setSelectedEmotion] = useState<EmotionType | null>(
@@ -15,6 +16,7 @@ export default function DiariesNew() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { handleClose } = useLinkModalClose();
+  const { handleSubmit, setValue } = useDiaryForm();
 
   return (
     <div className={styles.wrapper} data-testid="diaries-new-modal">
@@ -39,7 +41,10 @@ export default function DiariesNew() {
                 name="emotion"
                 value={emotion.type}
                 checked={selectedEmotion === emotion.type}
-                onChange={() => setSelectedEmotion(emotion.type)}
+                onChange={() => {
+                  setSelectedEmotion(emotion.type);
+                  setValue("emotion", emotion.type);
+                }}
                 className={styles.emotion_box__radio_input}
               />
               <span
@@ -84,7 +89,10 @@ export default function DiariesNew() {
           label="제목"
           placeholder="제목을 입력해 주세요."
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {
+            setTitle(e.target.value);
+            setValue("title", e.target.value);
+          }}
           fullWidth
         />
       </div>
@@ -98,7 +106,10 @@ export default function DiariesNew() {
         <textarea
           placeholder="내용을 입력해 주세요."
           value={content}
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) => {
+            setContent(e.target.value);
+            setValue("content", e.target.value);
+          }}
           className={styles.input_content__textarea}
         />
       </div>
@@ -122,6 +133,7 @@ export default function DiariesNew() {
           theme="light"
           size="medium"
           disabled={!selectedEmotion || !title || !content}
+          onClick={handleSubmit}
           data-testid="submit-diary-button"
           className={styles.footer__button_submit}>
           등록하기

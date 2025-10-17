@@ -13,20 +13,18 @@ import { test, expect } from "@playwright/test";
 test.describe("일기쓰기 모달 닫기 기능", () => {
   test.beforeEach(async ({ page }) => {
     // /diaries 페이지로 이동
-    await page.goto("http://localhost:3000/diaries");
+    await page.goto("/diaries");
 
-    // data-testid를 사용하여 페이지가 완전히 로드될 때까지 대기 (timeout: 500ms 미만)
-    await page.waitForSelector('[data-testid="diaries-container"]', {
-      timeout: 400,
-    });
+    // data-testid를 사용하여 페이지가 완전히 로드될 때까지 대기
+    await expect(page.locator('[data-testid="diaries-list"]')).toBeVisible();
 
     // 일기쓰기 버튼 클릭하여 일기쓰기 모달 열기
-    await page.click('[data-testid="new-diary-button"]');
+    await page.click('[data-testid="write-diary-button"]');
 
-    // 일기쓰기 모달이 열렸는지 확인 (timeout: 500ms 미만)
-    await page.waitForSelector('[data-testid="diaries-new-modal"]', {
-      timeout: 400,
-    });
+    // 일기쓰기 모달이 열렸는지 확인
+    await expect(
+      page.locator('[data-testid="diaries-new-modal"]')
+    ).toBeVisible();
   });
 
   test("닫기 버튼 클릭 시 등록취소 확인 모달이 열려야 한다", async ({

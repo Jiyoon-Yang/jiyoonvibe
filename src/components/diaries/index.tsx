@@ -144,7 +144,7 @@ export default function Diaries() {
   };
 
   return (
-    <div className={styles.container} data-testid="diaries-container">
+    <div className={styles.container} data-testid="diaries-list">
       {/* gap: 1168 * 32 */}
       <div className={styles.gap_top}></div>
 
@@ -176,7 +176,7 @@ export default function Diaries() {
           size="medium"
           theme="light"
           onClick={handleNewDiary}
-          data-testid="new-diary-button"
+          data-testid="write-diary-button"
           iconLeft={
             <Image
               src="/icons/plus_outline_light_m.svg"

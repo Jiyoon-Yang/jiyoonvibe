@@ -6,7 +6,7 @@ test.describe("Diaries 모달 링크 기능", () => {
     await page.goto("/diaries");
 
     // 페이지 로드 완료 대기 - data-testid를 사용하여 컨테이너 확인
-    await page.waitForSelector('[data-testid="diaries-container"]');
+    await page.waitForSelector('[data-testid="diaries-list"]');
   });
 
   test("일기쓰기 버튼이 페이지에 존재해야 한다", async ({ page }) => {
@@ -125,7 +125,7 @@ test.describe("Diaries 모달 링크 기능", () => {
     await expect(modalTitle).toBeVisible();
 
     // 모달 뒤의 페이지 요소도 여전히 DOM에 존재하는지 확인 (overlay 확인)
-    const diariesContainer = page.locator('[data-testid="diaries-container"]');
+    const diariesContainer = page.locator('[data-testid="diaries-list"]');
     await expect(diariesContainer).toBeInViewport();
 
     // 일기쓰기 버튼도 여전히 DOM에 존재하는지 확인
