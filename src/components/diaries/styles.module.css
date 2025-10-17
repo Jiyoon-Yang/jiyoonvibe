@@ -92,20 +92,11 @@
   position: absolute;
   top: 12px;
   right: 12px;
-  width: 24px;
-  height: 24px;
-  background-color: var(--gray-white);
-  border-radius: 100px;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease;
-}
-
-.deleteButton:hover {
-  background-color: var(--gray-10);
 }
 
 .cardContent {

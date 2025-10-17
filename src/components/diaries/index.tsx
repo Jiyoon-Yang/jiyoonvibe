@@ -6,112 +6,17 @@ import { Selectbox } from "@/commons/components/selectbox";
 import { Searchbar } from "@/commons/components/searchbar";
 import { Button } from "@/commons/components/button";
 import { Pagination } from "@/commons/components/pagination";
-import { EmotionType, emotions } from "@/commons/constants/enum";
+import { emotions } from "@/commons/constants/enum";
 import styles from "./styles.module.css";
 import { useDiaryModal } from "./hooks/index.link.modal.hook";
-
-// Mock 데이터 타입 정의
-interface DiaryCard {
-  id: number;
-  emotion: EmotionType;
-  date: string;
-  title: string;
-  image: string;
-}
-
-// Mock 데이터
-const mockDiaries: DiaryCard[] = [
-  {
-    id: 1,
-    emotion: EmotionType.Sad,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다. 한줄까지만 노출 됩니다.",
-    image: "/images/emotion-sad-m.png",
-  },
-  {
-    id: 2,
-    emotion: EmotionType.Surprise,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다.",
-    image: "/images/emotion-surprise-m.png",
-  },
-  {
-    id: 3,
-    emotion: EmotionType.Angry,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다.",
-    image: "/images/emotion-angry-m.png",
-  },
-  {
-    id: 4,
-    emotion: EmotionType.Happy,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다.",
-    image: "/images/emotion-happy-m.png",
-  },
-  {
-    id: 5,
-    emotion: EmotionType.Etc,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다. 한줄까지만 노출 됩니다.",
-    image: "/images/emotion-etc-m.png",
-  },
-  {
-    id: 6,
-    emotion: EmotionType.Surprise,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다.",
-    image: "/images/emotion-surprise-m.png",
-  },
-  {
-    id: 7,
-    emotion: EmotionType.Angry,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다.",
-    image: "/images/emotion-angry-m.png",
-  },
-  {
-    id: 8,
-    emotion: EmotionType.Happy,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다.",
-    image: "/images/emotion-happy-m.png",
-  },
-  {
-    id: 9,
-    emotion: EmotionType.Sad,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다. 한줄까지만 노출 됩니다.",
-    image: "/images/emotion-sad-m.png",
-  },
-  {
-    id: 10,
-    emotion: EmotionType.Surprise,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다.",
-    image: "/images/emotion-surprise-m.png",
-  },
-  {
-    id: 11,
-    emotion: EmotionType.Angry,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다.",
-    image: "/images/emotion-angry-m.png",
-  },
-  {
-    id: 12,
-    emotion: EmotionType.Happy,
-    date: "2024. 03. 12",
-    title: "타이틀 영역 입니다.",
-    image: "/images/emotion-happy-m.png",
-  },
-];
+import { useDiaryBinding } from "./hooks/index.binding.hook";
 
 export default function Diaries() {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
   const [searchValue, setSearchValue] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { openDiaryModal } = useDiaryModal();
+  const { diaries, formatDate, getEmotionImage } = useDiaryBinding();
 
   const filterOptions = [
     { value: "all", label: "전체" },
@@ -196,13 +101,18 @@ export default function Diaries() {
       {/* main: 1168 * 936 */}
       <div className={styles.main}>
         <div className={styles.cardGrid}>
-          {mockDiaries.map((diary) => {
+          {diaries.map((diary) => {
             const emotionData = emotions[diary.emotion];
+            const emotionImage = getEmotionImage(diary.emotion);
+            const formattedDate = formatDate(diary.createdAt);
             return (
-              <div key={diary.id} className={styles.diaryCard}>
+              <div
+                key={diary.id}
+                className={styles.diaryCard}
+                data-testid="diary-card">
                 <div className={styles.cardImageWrapper}>
                   <Image
-                    src={diary.image}
+                    src={emotionImage}
                     alt={diary.title}
                     fill
                     className={styles.cardImage}
@@ -223,12 +133,17 @@ export default function Diaries() {
                   <div className={styles.cardHeader}>
                     <span
                       className={styles.emotionLabel}
+                      data-testid="emotion-label"
                       style={{ color: emotionData.color }}>
                       {emotionData.label}
                     </span>
-                    <span className={styles.date}>{diary.date}</span>
+                    <span className={styles.date} data-testid="card-date">
+                      {formattedDate}
+                    </span>
                   </div>
-                  <div className={styles.cardTitle}>{diary.title}</div>
+                  <div className={styles.cardTitle} data-testid="card-title">
+                    {diary.title}
+                  </div>
                 </div>
               </div>
             );
