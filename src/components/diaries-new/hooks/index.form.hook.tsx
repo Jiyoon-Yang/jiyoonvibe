@@ -109,7 +109,7 @@ export const useDiaryForm = (): UseDiaryFormReturn => {
       const updatedDiaries = [...existingDiaries, newDiary];
       localStorage.setItem("diaries", JSON.stringify(updatedDiaries));
 
-      // 등록완료 모달 열기 (일기쓰기 폼 모달 위에 2중 모달로 열림)
+      // 등록완료 모달 열기
       openModal(
         <Modal
           variant="info"
@@ -119,13 +119,11 @@ export const useDiaryForm = (): UseDiaryFormReturn => {
           primaryAction={{
             label: "확인",
             onClick: () => {
-              // 모달 스택에서 2개의 모달을 모두 제거
-              // 1. 등록완료 모달 (현재 모달)
+              // 등록완료모달(자식) 닫기
               closeModal();
-              // 2. 일기쓰기 폼 모달 (부모 모달)
+              // 일기쓰기폼모달(부모) 닫기
               closeModal();
-              
-              // 모든 모달이 닫힌 후 상세페이지로 이동
+              // 상세페이지로 이동
               router.push(URL_PATHS.DIARIES.DETAIL(newId));
             },
           }}
