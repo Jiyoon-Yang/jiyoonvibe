@@ -198,10 +198,7 @@ test.describe("DiariesNew Form 기능", () => {
 
     // When: Sad 감정으로 등록
     await page.click('label:has(input[name="emotion"][value="Sad"])');
-    await page.fill(
-      'input[placeholder="제목을 입력해 주세요."]',
-      "슬픈 일기"
-    );
+    await page.fill('input[placeholder="제목을 입력해 주세요."]', "슬픈 일기");
     await page.fill(
       'textarea[placeholder="내용을 입력해 주세요."]',
       "슬픈 내용"
@@ -243,9 +240,7 @@ test.describe("DiariesNew Form 기능", () => {
     const date = new Date(createdAt);
 
     // ISO 8601 형식 검증
-    expect(createdAt).toMatch(
-      /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/
-    );
+    expect(createdAt).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/);
     expect(date.toISOString()).toBe(createdAt);
     expect(date.getTime()).toBeGreaterThan(0);
   });
@@ -256,10 +251,7 @@ test.describe("DiariesNew Form 기능", () => {
 
     // When: 첫 번째 일기 등록
     await page.click('label:has(input[name="emotion"][value="Happy"])');
-    await page.fill(
-      'input[placeholder="제목을 입력해 주세요."]',
-      "첫 번째"
-    );
+    await page.fill('input[placeholder="제목을 입력해 주세요."]', "첫 번째");
     await page.fill(
       'textarea[placeholder="내용을 입력해 주세요."]',
       "첫 번째 내용"
@@ -280,10 +272,7 @@ test.describe("DiariesNew Form 기능", () => {
 
     // When: 두 번째 일기 등록
     await page.click('label:has(input[name="emotion"][value="Sad"])');
-    await page.fill(
-      'input[placeholder="제목을 입력해 주세요."]',
-      "두 번째"
-    );
+    await page.fill('input[placeholder="제목을 입력해 주세요."]', "두 번째");
     await page.fill(
       'textarea[placeholder="내용을 입력해 주세요."]',
       "두 번째 내용"
@@ -316,10 +305,7 @@ test.describe("DiariesNew Form 기능", () => {
     await expect(submitButton).toBeDisabled();
 
     // Case 2: 감정 + 제목
-    await page.fill(
-      'input[placeholder="제목을 입력해 주세요."]',
-      "제목만"
-    );
+    await page.fill('input[placeholder="제목을 입력해 주세요."]', "제목만");
     await expect(submitButton).toBeDisabled();
 
     // Case 3: 내용 추가 -> 활성화
@@ -334,9 +320,7 @@ test.describe("DiariesNew Form 기능", () => {
     await expect(submitButton).toBeDisabled();
   });
 
-  test("등록 후 생성된 ID로 정확한 상세페이지로 이동한다", async ({
-    page,
-  }) => {
+  test("등록 후 생성된 ID로 정확한 상세페이지로 이동한다", async ({ page }) => {
     // Given: 기존 데이터 설정 (id: 5, 10이 있는 상태)
     await page.evaluate(() => {
       const existingDiaries = [
@@ -360,14 +344,8 @@ test.describe("DiariesNew Form 기능", () => {
 
     // When: 새 일기 등록
     await page.click('label:has(input[name="emotion"][value="Angry"])');
-    await page.fill(
-      'input[placeholder="제목을 입력해 주세요."]',
-      "일기 11"
-    );
-    await page.fill(
-      'textarea[placeholder="내용을 입력해 주세요."]',
-      "내용 11"
-    );
+    await page.fill('input[placeholder="제목을 입력해 주세요."]', "일기 11");
+    await page.fill('textarea[placeholder="내용을 입력해 주세요."]', "내용 11");
     await page.click('[data-testid="submit-diary-button"]');
 
     // 모달 확인

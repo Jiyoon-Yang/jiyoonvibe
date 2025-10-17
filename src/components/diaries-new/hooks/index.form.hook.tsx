@@ -119,7 +119,8 @@ export const useDiaryForm = (): UseDiaryFormReturn => {
           primaryAction={{
             label: "확인",
             onClick: () => {
-              closeModal();
+              closeModal(); // 등록완료 모달 닫기
+              closeModal(); // 일기쓰기 폼 모달 닫기
               // 상세페이지로 이동
               router.push(URL_PATHS.DIARIES.DETAIL(newId));
             },
