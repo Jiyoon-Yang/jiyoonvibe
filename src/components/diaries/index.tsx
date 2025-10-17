@@ -10,6 +10,7 @@ import { emotions } from "@/commons/constants/enum";
 import styles from "./styles.module.css";
 import { useDiaryModal } from "./hooks/index.link.modal.hook";
 import { useDiaryBinding } from "./hooks/index.binding.hook";
+import { useDiaryRouting } from "./hooks/index.link.routing.hook";
 
 export default function Diaries() {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
@@ -17,6 +18,7 @@ export default function Diaries() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { openDiaryModal } = useDiaryModal();
   const { diaries, formatDate, getEmotionImage } = useDiaryBinding();
+  const { handleCardClick } = useDiaryRouting();
 
   const filterOptions = [
     { value: "all", label: "전체" },
@@ -39,7 +41,8 @@ export default function Diaries() {
     openDiaryModal();
   };
 
-  const handleDeleteCard = (id: number) => {
+  const handleDeleteCard = (e: React.MouseEvent, id: number) => {
+    e.stopPropagation();
     console.log("카드 삭제:", id);
   };
 
@@ -109,7 +112,8 @@ export default function Diaries() {
               <div
                 key={diary.id}
                 className={styles.diaryCard}
-                data-testid="diary-card">
+                data-testid="diary-card"
+                onClick={() => handleCardClick(diary.id)}>
                 <div className={styles.cardImageWrapper}>
                   <Image
                     src={emotionImage}
@@ -119,7 +123,7 @@ export default function Diaries() {
                   />
                   <button
                     className={styles.deleteButton}
-                    onClick={() => handleDeleteCard(diary.id)}
+                    onClick={(e) => handleDeleteCard(e, diary.id)}
                     aria-label="삭제">
                     <Image
                       src="/icons/close_outline_light_m.svg"
