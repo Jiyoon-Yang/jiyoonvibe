@@ -5,40 +5,21 @@ import Image from "next/image";
 import styles from "./styles.module.css";
 import { Button } from "@/commons/components/button";
 import { Input } from "@/commons/components/input";
-import { EmotionType, getEmotionData } from "@/commons/constants/enum";
+import { getEmotionData } from "@/commons/constants/enum";
+import { useDiaryDetailBinding } from "./hooks/index.binding.hook";
 
-// Mock 데이터
-const mockDiaryData = {
-  title: "이것은 타이틀 입니다.",
-  emotion: EmotionType.Happy,
-  date: "2024. 07. 12",
-  content:
-    "내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다내용이 들어갑니다",
-  retrospects: [
-    {
-      id: 1,
-      text: "3년이 지나고 다시 보니 이때가 그립다.",
-      date: "2024. 09. 24",
-    },
-    {
-      id: 2,
-      text: "3년이 지나고 다시 보니 이때가 그립다.",
-      date: "2024. 09. 24",
-    },
-  ],
-};
+interface DiariesDetailProps {
+  id: string;
+}
 
-export default function DiariesDetail() {
+export default function DiariesDetail({ id }: DiariesDetailProps) {
   const [retrospectInput, setRetrospectInput] = useState("");
-
-  const emotionData = getEmotionData(mockDiaryData.emotion);
-  // 감정 아이콘 경로: enum의 iconS를 /images 경로로 변환
-  const emotionIconPath = emotionData.iconS
-    .replace("/icons/", "/images/")
-    .replace(".svg", ".png");
+  const { diary, formatDate, getEmotionIconPath } = useDiaryDetailBinding(id);
 
   const handleCopyContent = () => {
-    navigator.clipboard.writeText(mockDiaryData.content);
+    if (diary) {
+      navigator.clipboard.writeText(diary.content);
+    }
   };
 
   const handleEdit = () => {
@@ -56,19 +37,30 @@ export default function DiariesDetail() {
     }
   };
 
+  // 일기가 없는 경우 빈 컨테이너 반환
+  if (!diary) {
+    return <div data-testid="diary-detail" className={styles.container}></div>;
+  }
+
+  const emotionData = getEmotionData(diary.emotion);
+  const emotionIconPath = getEmotionIconPath(diary.emotion);
+
   return (
-    <div className={styles.container}>
+    <div data-testid="diary-detail" className={styles.container}>
       {/* gap: 1168 * 64 */}
       <div className={styles.gap_top}></div>
 
       {/* detail-title: 1168 * 84 */}
       <div className={styles.detail_title}>
         <div className={styles.titleSection}>
-          <h1 className={styles.title}>{mockDiaryData.title}</h1>
+          <h1 data-testid="detail-title" className={styles.title}>
+            {diary.title}
+          </h1>
         </div>
         <div className={styles.emotionAndDateSection}>
           <div className={styles.emotionContainer}>
             <Image
+              data-testid="emotion-icon"
               src={emotionIconPath}
               alt={emotionData.label}
               width={32}
@@ -76,13 +68,17 @@ export default function DiariesDetail() {
               className={styles.emotionIcon}
             />
             <span
+              data-testid="emotion-text"
               className={styles.emotionText}
-              style={{ color: emotionData.color }}>
+              style={{ color: emotionData.color }}
+            >
               {emotionData.label}
             </span>
           </div>
           <div className={styles.dateContainer}>
-            <span className={styles.dateText}>{mockDiaryData.date}</span>
+            <span data-testid="detail-date" className={styles.dateText}>
+              {formatDate(diary.createdAt)}
+            </span>
             <span className={styles.dateLabel}>작성</span>
           </div>
         </div>
@@ -95,7 +91,9 @@ export default function DiariesDetail() {
       <div className={styles.detail_content}>
         <div className={styles.contentSection}>
           <div className={styles.contentLabel}>내용</div>
-          <p className={styles.contentText}>{mockDiaryData.content}</p>
+          <p data-testid="detail-content" className={styles.contentText}>
+            {diary.content}
+          </p>
         </div>
         <div className={styles.copySection}>
           <button className={styles.copyButton} onClick={handleCopyContent}>
@@ -120,7 +118,8 @@ export default function DiariesDetail() {
           theme="light"
           size="medium"
           className={styles.footerButton}
-          onClick={handleEdit}>
+          onClick={handleEdit}
+        >
           수정
         </Button>
         <Button
@@ -128,7 +127,8 @@ export default function DiariesDetail() {
           theme="light"
           size="medium"
           className={styles.footerButton}
-          onClick={handleDelete}>
+          onClick={handleDelete}
+        >
           삭제
         </Button>
       </div>
@@ -154,7 +154,8 @@ export default function DiariesDetail() {
             theme="light"
             size="medium"
             className={styles.retrospectInputButton}
-            onClick={handleAddRetrospect}>
+            onClick={handleAddRetrospect}
+          >
             입력
           </Button>
         </div>
@@ -165,15 +166,7 @@ export default function DiariesDetail() {
 
       {/* retrospect-list: 1168 * 72 */}
       <div className={styles.retrospect_list}>
-        {mockDiaryData.retrospects.map((retrospect, index) => (
-          <React.Fragment key={retrospect.id}>
-            {index > 0 && <div className={styles.retrospectDivider}></div>}
-            <div className={styles.retrospectItem}>
-              <span className={styles.retrospectText}>{retrospect.text}</span>
-              <span className={styles.retrospectDate}>[{retrospect.date}]</span>
-            </div>
-          </React.Fragment>
-        ))}
+        {/* TODO: 회고 기능 추가 예정 */}
       </div>
 
       {/* gap: 1168 * 64 */}
