@@ -6,7 +6,7 @@ import { Button } from "@/commons/components/button";
 import { Input } from "@/commons/components/input";
 import { EmotionType, emotionList } from "@/commons/constants/enum";
 import Image from "next/image";
-import { useModal } from "@/commons/providers/modal/modal.provider";
+import { useLinkModalClose } from "./hooks/index.link.modal.close.hook";
 
 export default function DiariesNew() {
   const [selectedEmotion, setSelectedEmotion] = useState<EmotionType | null>(
@@ -14,10 +14,10 @@ export default function DiariesNew() {
   );
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const { closeModal } = useModal();
+  const { handleClose } = useLinkModalClose();
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} data-testid="diaries-new-modal">
       {/* header: full * 24 */}
       <div className={styles.header}>
         <h1 className={styles.header__title}>일기 쓰기</h1>
@@ -112,7 +112,8 @@ export default function DiariesNew() {
           variant="secondary"
           theme="light"
           size="medium"
-          onClick={closeModal}
+          onClick={handleClose}
+          data-testid="close-diary-button"
           className={styles.footer__button_close}>
           닫기
         </Button>
@@ -121,6 +122,7 @@ export default function DiariesNew() {
           theme="light"
           size="medium"
           disabled={!selectedEmotion || !title || !content}
+          data-testid="submit-diary-button"
           className={styles.footer__button_submit}>
           등록하기
         </Button>

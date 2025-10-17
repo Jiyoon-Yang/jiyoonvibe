@@ -57,7 +57,9 @@ test.describe("Diaries 모달 링크 기능", () => {
     await expect(modalTitle).not.toBeVisible();
   });
 
-  test("모달 닫기 버튼 클릭시 모달이 닫혀야 한다", async ({ page }) => {
+  test("모달 닫기 버튼 클릭시 등록취소 확인 모달이 표시되어야 한다", async ({
+    page,
+  }) => {
     // 일기쓰기 버튼 클릭하여 모달 열기
     const writeButton = page.getByRole("button", { name: "일기쓰기" });
     await writeButton.click();
@@ -69,6 +71,15 @@ test.describe("Diaries 모달 링크 기능", () => {
     // 닫기 버튼 클릭
     const closeButton = page.getByRole("button", { name: "닫기" });
     await closeButton.click();
+
+    // 등록취소 확인 모달이 표시되는지 확인
+    const confirmModalTitle = page.locator('[data-testid="modal-title"]');
+    await expect(confirmModalTitle).toBeVisible();
+    await expect(confirmModalTitle).toHaveText("일기 등록 취소");
+
+    // "등록 취소" 버튼 클릭하여 모든 모달 닫기
+    const cancelButton = page.locator('[data-testid="modal-confirm-button"]');
+    await cancelButton.click();
 
     // 모달이 사라졌는지 확인
     await expect(modalTitle).not.toBeVisible();
@@ -82,9 +93,11 @@ test.describe("Diaries 모달 링크 기능", () => {
     let modalTitle = page.getByRole("heading", { name: "일기 쓰기" });
     await expect(modalTitle).toBeVisible();
 
-    // 첫 번째: 모달 닫기
+    // 첫 번째: 닫기 버튼 클릭 후 등록취소 확인 모달에서 "등록 취소" 클릭
     let closeButton = page.getByRole("button", { name: "닫기" });
     await closeButton.click();
+    // 등록취소 확인 모달이 표시됨
+    await page.locator('[data-testid="modal-confirm-button"]').click();
     await expect(modalTitle).not.toBeVisible();
 
     // 두 번째: 모달 다시 열기

@@ -135,10 +135,12 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       .join(" ");
 
     return (
-      <div ref={ref} className={modalClassName}>
+      <div ref={ref} className={modalClassName} data-testid="modal">
         {/* 콘텐츠 영역 */}
         <div className={styles.modal__content}>
-          <h2 className={styles.modal__title}>{title}</h2>
+          <h2 className={styles.modal__title} data-testid="modal-title">
+            {title}
+          </h2>
           <p className={styles.modal__description}>{description}</p>
         </div>
 
@@ -151,6 +153,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
               size="medium"
               theme={theme}
               onClick={primaryAction?.onClick}
+              data-testid="modal-primary-button"
               fullWidth>
               {primaryAction?.label || "확인"}
             </Button>
@@ -162,6 +165,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 size="medium"
                 theme={theme}
                 onClick={cancelAction?.onClick}
+                data-testid="modal-cancel-button"
                 className={styles.modal__buttonFixed}>
                 {cancelAction?.label || "취소"}
               </Button>
@@ -170,6 +174,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 size="medium"
                 theme={theme}
                 onClick={confirmAction?.onClick}
+                data-testid="modal-confirm-button"
                 className={styles.modal__buttonFixed}>
                 {confirmAction?.label || "확인"}
               </Button>

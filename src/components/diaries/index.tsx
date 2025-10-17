@@ -176,6 +176,7 @@ export default function Diaries() {
           size="medium"
           theme="light"
           onClick={handleNewDiary}
+          data-testid="new-diary-button"
           iconLeft={
             <Image
               src="/icons/plus_outline_light_m.svg"
