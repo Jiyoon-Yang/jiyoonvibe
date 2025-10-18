@@ -200,13 +200,11 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           {previousIcon || (
             <img
               src={
-                isPreviousDisabled
+                currentPage === 1
                   ? "/icons/leftdisabled_outline_light_m.svg"
                   : "/icons/leftenable_outline_light_m.svg"
               }
               alt="이전 페이지"
-              width={24}
-              height={24}
             />
           )}
         </button>
@@ -247,13 +245,11 @@ export const Pagination = React.forwardRef<HTMLDivElement, PaginationProps>(
           {nextIcon || (
             <img
               src={
-                isNextDisabled
+                currentPage === 5
                   ? "/icons/rightdisabled_outline_light_m.svg"
                   : "/icons/rightenable_outline_light_m.svg"
               }
               alt="다음 페이지"
-              width={24}
-              height={24}
             />
           )}
         </button>
