@@ -71,11 +71,9 @@ export default function Pictures() {
           <div data-testid="error">이미지를 불러오지 못했습니다.</div>
         )}
         <div
-          ref={
-            sentinelRef as unknown as
-              | React.RefObject<HTMLDivElement>
-              | undefined as any
-          }
+          ref={(node) => {
+            if (node) sentinelRef(node);
+          }}
         />
       </div>
     </div>
