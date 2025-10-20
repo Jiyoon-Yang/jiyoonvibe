@@ -128,8 +128,8 @@ export default function Diaries() {
                     <Image
                       src="/icons/close_outline_light_m.svg"
                       alt=""
-                      width={24}
-                      height={24}
+                      width={40}
+                      height={40}
                     />
                   </button>
                 </div>

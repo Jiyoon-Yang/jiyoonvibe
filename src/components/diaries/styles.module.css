@@ -90,8 +90,8 @@
 
 .deleteButton {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 6px;
+  right: 6px;
   border: none;
   cursor: pointer;
   display: flex;
