@@ -131,5 +131,3 @@ export const AuthGuard = ({ children }: AuthGuardProps) => {
   // 권한 검증 성공 시 children 렌더링
   return <>{children}</>;
 };
-
-export default AuthGuard;
