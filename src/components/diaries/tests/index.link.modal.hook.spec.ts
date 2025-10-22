@@ -1,5 +1,84 @@
 import { test, expect } from "@playwright/test";
 
+/**
+ * Diaries Link Modal Hook E2E Tests
+ *
+ * 테스트 대상:
+ * - 일기쓰기 모달 열기 기능
+ * - 권한 분기 (로그인/비로그인 유저)
+ * - 로그인 요청 모달 표시
+ * - 모달 닫기 기능
+ * - 모달 스택 관리
+ *
+ * 테스트 조건:
+ * - Playwright 사용 (jest, @testing-library/react 제외)
+ * - 실제 데이터 사용 (Mock 미사용)
+ * - window.__TEST_BYPASS__ 전역변수로 로그인 상태 제어
+ * - data-testid 기반 페이지 로드 식별
+ * - timeout: 500ms 미만
+ */
+
+test.describe("Diaries 모달 링크 기능 - 권한 분기 (비로그인 유저)", () => {
+  test.beforeEach(async ({ page }) => {
+    // 비로그인 테스트를 위한 플래그 설정
+    await page.goto("/diaries");
+    await page.waitForSelector('[data-testid="diaries-list"]');
+
+    // 비로그인 상태로 테스트하기 위해 플래그 설정
+    await page.evaluate(() => {
+      window.__TEST_BYPASS__ = false;
+    });
+  });
+
+  test("비로그인 유저가 일기쓰기 버튼 클릭 시 로그인 요청 모달이 노출되어야 한다", async ({
+    page,
+  }) => {
+    // 일기쓰기 버튼 클릭
+    const writeButton = page.locator('[data-testid="write-diary-button"]');
+    await writeButton.click();
+
+    // 로그인 요청 모달이 노출되는지 확인
+    const loginModal = page.getByText("로그인이 필요합니다");
+    await expect(loginModal).toBeVisible({ timeout: 500 });
+
+    // 모달 설명 확인
+    const modalDescription = page.getByText(
+      "이 기능은 로그인 후 이용하실 수 있습니다."
+    );
+    await expect(modalDescription).toBeVisible({ timeout: 500 });
+
+    // 로그인하러가기 버튼 확인
+    const loginButton = page.getByRole("button", { name: "로그인하러가기" });
+    await expect(loginButton).toBeVisible({ timeout: 500 });
+  });
+});
+
+test.describe("Diaries 모달 링크 기능 - 권한 분기 (로그인 유저)", () => {
+  test.beforeEach(async ({ page }) => {
+    // 로그인 유저로 테스트
+    await page.goto("/diaries");
+    await page.waitForSelector('[data-testid="diaries-list"]');
+
+    // 로그인 상태로 테스트 (기본값, __TEST_BYPASS__가 true거나 undefined)
+  });
+
+  test("로그인 유저가 일기쓰기 버튼 클릭 시 일기쓰기 모달이 노출되어야 한다", async ({
+    page,
+  }) => {
+    // 일기쓰기 버튼 클릭
+    const writeButton = page.locator('[data-testid="write-diary-button"]');
+    await writeButton.click();
+
+    // 일기쓰기 모달이 노출되는지 확인
+    const diaryModal = page.locator('[data-testid="diaries-new-modal"]');
+    await expect(diaryModal).toBeVisible({ timeout: 500 });
+
+    // 모달 제목 확인
+    const modalTitle = page.getByRole("heading", { name: "일기 쓰기" });
+    await expect(modalTitle).toBeVisible({ timeout: 500 });
+  });
+});
+
 test.describe("Diaries 모달 링크 기능", () => {
   test.beforeEach(async ({ page }) => {
     // /diaries 페이지로 이동
