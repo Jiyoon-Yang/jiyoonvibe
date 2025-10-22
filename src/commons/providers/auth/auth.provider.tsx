@@ -15,7 +15,8 @@ import { URL_PATHS } from "@/commons/constants/url";
  * 사용자 정보 타입
  */
 interface User {
-  id: string;
+  _id?: string;
+  id?: string;
   email?: string;
   name?: string;
 }

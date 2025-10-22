@@ -230,6 +230,9 @@ export const useLoginForm = (): UseLoginFormReturn => {
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("user", JSON.stringify(userInfo));
 
+      // 4. 로컬스토리지 변경 이벤트 발생
+      window.dispatchEvent(new Event("localStorageChange"));
+
       /**
        * 성공 모달 표시
        * 확인 클릭 시: 모든 모달 닫기 → 일기목록 페이지로 이동

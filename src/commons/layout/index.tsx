@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./styles.module.css";
 import { useLinkRouting } from "./hooks/index.link.routing.hook";
 import { useAreaVisibility } from "./hooks/index.area.hook";
+import { useAuthStatus } from "./hooks/index.auth.hook";
 import { Button } from "@/commons/components/button";
 
 interface LayoutProps {
@@ -23,6 +24,8 @@ export default function Layout({ children }: LayoutProps) {
   const { showHeader, showLogo, showBanner, showNavigation, showFooter } =
     useAreaVisibility();
 
+  const { isLoggedIn, user, handleLogin, handleLogout } = useAuthStatus();
+
   return (
     <div className={styles.container}>
       {showHeader && (
@@ -36,14 +39,32 @@ export default function Layout({ children }: LayoutProps) {
             </div>
           )}
           <div className={styles.authStatus} data-testid="auth-status">
-            <span className={styles.userName}>민지</span>
-            <Button
-              variant="primary"
-              size="medium"
-              theme="light"
-              className={styles.logoutButton}>
-              로그아웃
-            </Button>
+            {isLoggedIn ? (
+              <>
+                <span className={styles.userName} data-testid="user-name">
+                  {user?.name}
+                </span>
+                <Button
+                  variant="primary"
+                  size="medium"
+                  theme="light"
+                  className={styles.logoutButton}
+                  onClick={handleLogout}
+                  data-testid="logout-button">
+                  로그아웃
+                </Button>
+              </>
+            ) : (
+              <Button
+                variant="primary"
+                size="medium"
+                theme="light"
+                className={styles.loginButton}
+                onClick={handleLogin}
+                data-testid="login-button">
+                로그인
+              </Button>
+            )}
           </div>
         </header>
       )}
