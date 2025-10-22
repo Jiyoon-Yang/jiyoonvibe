@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./styles.module.css";
 import { useLinkRouting } from "./hooks/index.link.routing.hook";
 import { useAreaVisibility } from "./hooks/index.area.hook";
+import { Button } from "@/commons/components/button";
 
 interface LayoutProps {
   children: ReactNode;
@@ -34,6 +35,16 @@ export default function Layout({ children }: LayoutProps) {
               <span className={styles.logoText}>민지의 다이어리</span>
             </div>
           )}
+          <div className={styles.authStatus} data-testid="auth-status">
+            <span className={styles.userName}>민지</span>
+            <Button
+              variant="primary"
+              size="medium"
+              theme="light"
+              className={styles.logoutButton}>
+              로그아웃
+            </Button>
+          </div>
         </header>
       )}
 

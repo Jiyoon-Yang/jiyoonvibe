@@ -1,3 +1,4 @@
+/* container: 100% * 100vh */
 .container {
   display: flex;
   flex-direction: column;
@@ -6,15 +7,17 @@
   min-height: 100vh;
 }
 
-/* Header */
+/* header: 1168 * 60 */
 .header {
   width: 1168px;
   height: 60px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
+/* Logo */
 .logo {
   width: 120px;
   height: 40px;
@@ -33,16 +36,37 @@
   color: var(--gray-black);
 }
 
-/* Gap */
+/* Auth Status */
+.authStatus {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.userName {
+  font-family: var(--font-korean);
+  font-size: var(--typo-body01-size);
+  line-height: var(--typo-body01-line);
+  font-weight: var(--typo-body01-weight);
+  color: var(--gray-black);
+}
+
+.logoutButton {
+  width: 100px;
+}
+
+/* gap: 1168 * 24 */
 .gap {
   width: 1168px;
   height: 24px;
+  flex-shrink: 0;
 }
 
-/* Banner */
+/* banner: 1168 * 240 */
 .banner {
   width: 1168px;
   height: 240px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -56,10 +80,11 @@
   border-radius: 24px;
 }
 
-/* Navigation */
+/* navigation: 1168 * 48 */
 .navigation {
   width: 1168px;
   height: 48px;
+  flex-shrink: 0;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -98,7 +123,7 @@
   border-bottom: 2px solid var(--gray-black);
 }
 
-/* Main */
+/* main: 1168 * auto */
 .main {
   width: 1168px;
   flex: 1;
@@ -106,10 +131,11 @@
   flex-direction: column;
 }
 
-/* Footer */
+/* footer: 100% * 160 */
 .footer {
   width: 100%;
   height: 160px;
+  flex-shrink: 0;
   background-color: var(--gray-5);
   display: flex;
   align-items: center;
