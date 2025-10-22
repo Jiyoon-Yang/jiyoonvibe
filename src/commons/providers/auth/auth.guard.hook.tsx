@@ -15,7 +15,18 @@ declare global {
 }
 
 /**
- * 액션 권한 검증 Hook
+ * useAuthGuard 훅의 반환 타입
+ */
+export interface UseAuthGuardReturn {
+  /**
+   * 회원 전용 액션 권한 검증 함수
+   * 로그인되어 있으면 true, 비로그인이면 모달 표시 후 false 반환
+   */
+  checkMemberAction: () => boolean;
+}
+
+/**
+ * 액션 권한 검증을 관리하는 커스텀 훅
  *
  * 회원 전용 기능 실행 시 로그인 여부를 검증하고,
  * 비로그인 사용자에게 로그인 모달을 표시합니다.
@@ -31,8 +42,6 @@ declare global {
  * - window.__TEST_BYPASS__ = false 로 설정하면 테스트 환경에서도 비로그인으로 테스트 가능
  * - 실제 환경에서는 항상 로그인 검사 수행
  *
- * @returns {Object} 권한 검증 함수
- *
  * @example
  * ```tsx
  * const { checkMemberAction } = useAuthGuard();
@@ -47,17 +56,25 @@ declare global {
  *   await submitDiary();
  * };
  * ```
+ *
+ * @returns 액션 권한 검증 함수
  */
-export const useAuthGuard = () => {
+export const useAuthGuard = (): UseAuthGuardReturn => {
   const router = useRouter();
   const { isLoggedIn } = useAuth();
   const { openModal, closeModal } = useModal();
 
-  // 모달 표시 여부 (한 번만 보여주기 위한 플래그)
+  /**
+   * 모달 중복 표시 방지 플래그
+   * 한 번 표시된 후에는 같은 상황에서 다시 나타나지 않도록 관리
+   */
   const modalShownRef = useRef(false);
 
   /**
    * 회원 전용 액션 권한 검증
+   *
+   * 로그인 상태를 확인하고, 비로그인 시 로그인 모달을 표시합니다.
+   * 모달은 한 번만 표시되며, 닫힌 후에도 다시 나타나지 않습니다.
    *
    * @returns {boolean} 권한 검증 결과 (true: 권한 있음, false: 권한 없음)
    */
@@ -81,10 +98,15 @@ export const useAuthGuard = () => {
       return true; // 권한 있음
     }
 
-    // 비로그인 상태 - 모달 표시 (한 번만, 닫힌 후에도 다시 나타나지 않음)
+    // 비로그인 상태 - 로그인 모달 표시
     if (!modalShownRef.current) {
       modalShownRef.current = true;
 
+      /**
+       * 로그인 요청 모달 표시
+       * - 취소 클릭 시: 모든 모달 닫기
+       * - 로그인하러가기 클릭 시: 모든 모달 닫기 → 로그인 페이지로 이동
+       */
       openModal(
         <Modal
           variant="info"
@@ -94,16 +116,13 @@ export const useAuthGuard = () => {
           cancelAction={{
             label: "취소",
             onClick: () => {
-              // 모든 모달 닫기
               closeModal();
             },
           }}
           confirmAction={{
             label: "로그인하러가기",
             onClick: () => {
-              // 모든 모달 닫기
               closeModal();
-              // 로그인 페이지로 이동
               router.push(URL_PATHS.AUTH.LOGIN);
             },
           }}
