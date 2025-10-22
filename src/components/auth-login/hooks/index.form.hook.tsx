@@ -283,8 +283,6 @@ export const useLoginForm = (): UseLoginFormReturn => {
    * @param data - 검증된 로그인 폼 데이터
    */
   const onSubmit = (data: LoginFormData) => {
-    // 모달 플래그 리셋 (새로운 제출 시도)
-    hasShownModalRef.current = false;
     mutation.mutate(data);
   };
 
