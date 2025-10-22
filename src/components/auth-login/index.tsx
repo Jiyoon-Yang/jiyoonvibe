@@ -4,9 +4,13 @@ import React from "react";
 import Link from "next/link";
 import { Input } from "@/commons/components/input";
 import { Button } from "@/commons/components/button";
+import { useLoginForm } from "./hooks/index.form.hook";
 import styles from "./styles.module.css";
 
 export const AuthLogin = () => {
+  const { register, handleSubmit, errors, isButtonEnabled, isLoading } =
+    useLoginForm();
+
   return (
     <div className={styles.container} data-testid="login-page">
       <div className={styles.card}>
@@ -22,16 +26,19 @@ export const AuthLogin = () => {
         <div className={styles.gap_1}></div>
 
         {/* form: 480 * auto */}
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           {/* input-email: full * auto */}
           <div className={styles.input_field}>
             <Input
+              {...register("email")}
               variant="primary"
               size="large"
               theme="light"
               label="이메일"
               type="email"
               placeholder="example@email.com"
+              error={!!errors.email}
+              errorMessage={errors.email?.message}
               required
               fullWidth
             />
@@ -43,12 +50,15 @@ export const AuthLogin = () => {
           {/* input-password: full * auto */}
           <div className={styles.input_field}>
             <Input
+              {...register("password")}
               variant="primary"
               size="large"
               theme="light"
               label="비밀번호"
               type="password"
               placeholder="비밀번호를 입력해주세요"
+              error={!!errors.password}
+              errorMessage={errors.password?.message}
               required
               fullWidth
             />
@@ -64,7 +74,9 @@ export const AuthLogin = () => {
               size="large"
               theme="light"
               fullWidth
-              type="submit">
+              type="submit"
+              disabled={!isButtonEnabled}
+              loading={isLoading}>
               로그인
             </Button>
           </div>
