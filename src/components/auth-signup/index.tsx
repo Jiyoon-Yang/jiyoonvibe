@@ -4,11 +4,15 @@ import React from "react";
 import Link from "next/link";
 import { Input } from "@/commons/components/input";
 import { Button } from "@/commons/components/button";
+import { useSignupForm } from "./hooks/index.form.hook";
 import styles from "./styles.module.css";
 
 export const AuthSignUp = () => {
+  const { register, handleSubmit, errors, isButtonEnabled, isLoading } =
+    useSignupForm();
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="signup-page">
       <div className={styles.card}>
         {/* header: 480 * auto */}
         <div className={styles.header}>
@@ -22,7 +26,7 @@ export const AuthSignUp = () => {
         <div className={styles.gap_1}></div>
 
         {/* form: 480 * auto */}
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           {/* input-email: full * auto */}
           <div className={styles.input_field}>
             <Input
@@ -34,6 +38,9 @@ export const AuthSignUp = () => {
               placeholder="example@email.com"
               required
               fullWidth
+              {...register("email")}
+              error={!!errors.email}
+              errorMessage={errors.email?.message}
             />
           </div>
 
@@ -51,6 +58,9 @@ export const AuthSignUp = () => {
               placeholder="8자 이상 입력해주세요"
               required
               fullWidth
+              {...register("password")}
+              error={!!errors.password}
+              errorMessage={errors.password?.message}
             />
           </div>
 
@@ -68,6 +78,9 @@ export const AuthSignUp = () => {
               placeholder="비밀번호를 다시 입력해주세요"
               required
               fullWidth
+              {...register("passwordConfirm")}
+              error={!!errors.passwordConfirm}
+              errorMessage={errors.passwordConfirm?.message}
             />
           </div>
 
@@ -85,6 +98,9 @@ export const AuthSignUp = () => {
               placeholder="이름을 입력해주세요"
               required
               fullWidth
+              {...register("name")}
+              error={!!errors.name}
+              errorMessage={errors.name?.message}
             />
           </div>
 
@@ -98,7 +114,9 @@ export const AuthSignUp = () => {
               size="large"
               theme="light"
               fullWidth
-              type="submit">
+              type="submit"
+              disabled={!isButtonEnabled}
+              loading={isLoading}>
               회원가입
             </Button>
           </div>
