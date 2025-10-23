@@ -22,7 +22,7 @@
 기존히스토리-참고만) 다음 조건을 모두 만족하는 완전한 variant 시스템을 구현할 것.
             - variant: 'primary' | 'secondary' | 'tertiary'
             - size: 'small' | 'medium' | 'large'
-            - theme: 'light' | 'dark'
+            - theme: 'light' | 'dark' 
 ==============================================
 핵심요구사항) Tertiary 버튼의 디자인을 아래 노드ID 참고해서 수정할 것.
             노드ID: 62:2555
