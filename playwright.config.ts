@@ -74,6 +74,7 @@ export default defineConfig({
     reuseExistingServer: !process.env.CI,
     env: {
       NEXT_PUBLIC_TEST_ENV: "test",
+      AGENT_INDEX: agentIndex.toString(),
     },
   },
 });
