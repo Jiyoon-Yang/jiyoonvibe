@@ -70,8 +70,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
             <span
               data-testid="emotion-text"
               className={styles.emotionText}
-              style={{ color: emotionData.color }}
-            >
+              style={{ color: emotionData.color }}>
               {emotionData.label}
             </span>
           </div>
@@ -118,8 +117,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
           theme="light"
           size="medium"
           className={styles.footerButton}
-          onClick={handleEdit}
-        >
+          onClick={handleEdit}>
           수정
         </Button>
         <Button
@@ -127,8 +125,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
           theme="light"
           size="medium"
           className={styles.footerButton}
-          onClick={handleDelete}
-        >
+          onClick={handleDelete}>
           삭제
         </Button>
       </div>
@@ -154,8 +151,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
             theme="light"
             size="medium"
             className={styles.retrospectInputButton}
-            onClick={handleAddRetrospect}
-          >
+            onClick={handleAddRetrospect}>
             입력
           </Button>
         </div>
@@ -166,7 +162,19 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
 
       {/* retrospect-list: 1168 * 72 */}
       <div className={styles.retrospect_list}>
-        {/* TODO: 회고 기능 추가 예정 */}
+        <div className={styles.retrospectItem}>
+          <span className={styles.retrospectText}>
+            오늘 하루도 수고했어요. 내일은 더 좋은 하루가 될 거예요.
+          </span>
+          <span className={styles.retrospectDate}>2024.01.15</span>
+        </div>
+        <div className={styles.retrospectDivider}></div>
+        <div className={styles.retrospectItem}>
+          <span className={styles.retrospectText}>
+            이번 주는 정말 힘들었지만, 끝까지 포기하지 않아서 뿌듯해요.
+          </span>
+          <span className={styles.retrospectDate}>2024.01.14</span>
+        </div>
       </div>
 
       {/* gap: 1168 * 64 */}
