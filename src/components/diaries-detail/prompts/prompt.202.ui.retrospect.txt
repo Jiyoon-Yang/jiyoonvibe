@@ -11,8 +11,8 @@
 ==============================================
 
 조건-피그마) 활용할MCP: CursorTalkToFigmaMCP(채널명: 75z1mnm2)
-조건-피그마) 구현될 컴포넌트 노드ID(retrospect-input 영역): 3:1098
-조건-피그마) 구현될 컴포넌트 노드ID(retrospect-list 영역): 3:1105
+조건-피그마) 구현될 컴포넌트 노드ID(retrospect-input 영역): 3:1150
+조건-피그마) 구현될 컴포넌트 노드ID(retrospect-list 영역): 3:1157
 
 조건-파일경로) 구현될 TSX 파일경로: src/components/diaries-detail/index.tsx
 조건-파일경로) 구현될 CSS 파일경로: src/components/diaries-detail/styles.module.css
@@ -58,4 +58,5 @@
 
 ==============================================
 
-핵심요구사항) .styles_gap_bottom 이 존재하는데, 기존 피그마 참고해서 제거할 것. 그 외에 것은 수정 금지
+핵심요구사항) retrospect-list 영역 구현이 안되어 있는데 아래 노드ID 참고해서 구현할 것.(retrospect-list 영역 제외하고는 수정 절대 금지, 기능구현 금지.)
+구현될 컴포넌트 노드ID(retrospect-list 영역): 3:1157
