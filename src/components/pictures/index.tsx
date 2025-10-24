@@ -1,30 +1,22 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import { Selectbox } from "@/commons/components/selectbox";
 import styles from "./styles.module.css";
 import { usePicturesBinding } from "./hooks/index.binding.hook";
+import { useFilter, FilterType } from "./hooks/index.filter.hook";
 
 export default function Pictures() {
-  const [selectedFilter, setSelectedFilter] = useState<string>("default");
-
-  const filterOptions = [
-    { value: "default", label: "기본" },
-    { value: "recent", label: "최신순" },
-    { value: "popular", label: "인기순" },
-  ];
-
+  const { selectedFilter, filterOptions, imageSize, handleFilterChange } =
+    useFilter();
   const { images, isLoading, isError, sentinelRef } = usePicturesBinding();
+
   const items = useMemo(
     () =>
       images.map((src, i) => ({ id: i + 1, src, alt: `강아지 사진 ${i + 1}` })),
     [images]
   );
-
-  const handleFilterChange = (value: string) => {
-    setSelectedFilter(value);
-  };
 
   return (
     <div className={styles.container}>
@@ -39,8 +31,9 @@ export default function Pictures() {
           theme="light"
           options={filterOptions}
           value={selectedFilter}
-          onChange={handleFilterChange}
+          onChange={(value) => handleFilterChange(value as FilterType)}
           className={styles.filter__selectbox}
+          data-testid="filter-selectbox"
         />
       </div>
 
@@ -50,12 +43,19 @@ export default function Pictures() {
       {/* main: 1168 * auto */}
       <div className={styles.main} data-testid="pictures-list">
         {items.map((image, idx) => (
-          <div key={`${image.id}-${idx}`} className={styles.imageItem}>
+          <div
+            key={`${image.id}-${idx}`}
+            className={styles.imageItem}
+            data-testid="image-container"
+            style={{
+              width: `${imageSize.width}px`,
+              height: `${imageSize.height}px`,
+            }}>
             <Image
               src={image.src}
               alt={image.alt}
-              width={640}
-              height={640}
+              width={imageSize.width}
+              height={imageSize.height}
               className={styles.image}
             />
           </div>

@@ -208,6 +208,7 @@ export const Searchbar = React.forwardRef<HTMLInputElement, SearchbarProps>(
             onKeyDown={handleKeyDown}
             disabled={disabled}
             aria-label="검색어 입력"
+            data-testid="search-input"
             {...rest}
           />
 

@@ -28,6 +28,7 @@ export interface SelectboxProps {
   iconLeft?: React.ReactNode;
   onChange?: (value: string) => void;
   className?: string;
+  "data-testid"?: string;
 }
 
 export const Selectbox: React.FC<SelectboxProps> = ({
@@ -49,6 +50,7 @@ export const Selectbox: React.FC<SelectboxProps> = ({
   iconLeft,
   onChange,
   className,
+  "data-testid": dataTestId,
 }) => {
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
     value || defaultValue
@@ -165,7 +167,8 @@ export const Selectbox: React.FC<SelectboxProps> = ({
           onClick={handleToggle}
           disabled={disabled}
           aria-haspopup="listbox"
-          aria-expanded={isOpen}>
+          aria-expanded={isOpen}
+          data-testid={dataTestId}>
           {iconLeft && <span className={styles.iconLeft}>{iconLeft}</span>}
           <span className={styles.value}>
             {selectedOption ? selectedOption.label : placeholder}

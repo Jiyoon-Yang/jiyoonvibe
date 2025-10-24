@@ -1,20 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import styles from "./styles.module.css";
 import { Button } from "@/commons/components/button";
 import { Input } from "@/commons/components/input";
 import { getEmotionData } from "@/commons/constants/enum";
 import { useDiaryDetailBinding } from "./hooks/index.binding.hook";
+import { useRetrospectForm } from "./hooks/index.retrospect.form.hook";
+import { Controller } from "react-hook-form";
 
 interface DiariesDetailProps {
   id: string;
 }
 
 export default function DiariesDetail({ id }: DiariesDetailProps) {
-  const [retrospectInput, setRetrospectInput] = useState("");
   const { diary, formatDate, getEmotionIconPath } = useDiaryDetailBinding(id);
+  const { control, handleSubmit, formState, onSubmit, retrospects } =
+    useRetrospectForm(Number(id));
 
   const handleCopyContent = () => {
     if (diary) {
@@ -30,12 +33,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
     console.log("삭제 버튼 클릭");
   };
 
-  const handleAddRetrospect = () => {
-    if (retrospectInput.trim()) {
-      console.log("회고 추가:", retrospectInput);
-      setRetrospectInput("");
-    }
-  };
+  const handleAddRetrospect = handleSubmit(onSubmit);
 
   // 일기가 없는 경우 빈 컨테이너 반환
   if (!diary) {
@@ -137,21 +135,29 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
       <div className={styles.retrospect_input}>
         <div className={styles.retrospectLabel}>회고</div>
         <div className={styles.retrospectInputSection}>
-          <Input
-            variant="primary"
-            theme="light"
-            size="medium"
-            placeholder="회고를 남겨보세요."
-            value={retrospectInput}
-            onChange={(e) => setRetrospectInput(e.target.value)}
-            className={styles.retrospectInputField}
+          <Controller
+            name="content"
+            control={control}
+            render={({ field }) => (
+              <Input
+                {...field}
+                variant="primary"
+                theme="light"
+                size="medium"
+                placeholder="회고를 남겨보세요."
+                className={styles.retrospectInputField}
+                data-testid="retrospect-input-field"
+              />
+            )}
           />
           <Button
             variant="primary"
             theme="light"
             size="medium"
             className={styles.retrospectInputButton}
-            onClick={handleAddRetrospect}>
+            onClick={handleAddRetrospect}
+            disabled={!formState.isValid}
+            data-testid="retrospect-input-button">
             입력
           </Button>
         </div>
@@ -162,19 +168,29 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
 
       {/* retrospect-list: 1168 * 72 */}
       <div className={styles.retrospect_list}>
-        <div className={styles.retrospectItem}>
-          <span className={styles.retrospectText}>
-            오늘 하루도 수고했어요. 내일은 더 좋은 하루가 될 거예요.
-          </span>
-          <span className={styles.retrospectDate}>2024.01.15</span>
-        </div>
-        <div className={styles.retrospectDivider}></div>
-        <div className={styles.retrospectItem}>
-          <span className={styles.retrospectText}>
-            이번 주는 정말 힘들었지만, 끝까지 포기하지 않아서 뿌듯해요.
-          </span>
-          <span className={styles.retrospectDate}>2024.01.14</span>
-        </div>
+        {retrospects.length > 0 ? (
+          retrospects.map((retrospect, index) => (
+            <div key={retrospect.id}>
+              <div className={styles.retrospectItem}>
+                <span className={styles.retrospectText}>
+                  {retrospect.content}
+                </span>
+                <span className={styles.retrospectDate}>
+                  {formatDate(retrospect.createdAt)}
+                </span>
+              </div>
+              {index < retrospects.length - 1 && (
+                <div className={styles.retrospectDivider}></div>
+              )}
+            </div>
+          ))
+        ) : (
+          <div className={styles.retrospectItem}>
+            <span className={styles.retrospectText}>
+              아직 등록된 회고가 없습니다.
+            </span>
+          </div>
+        )}
       </div>
 
       {/* gap: 1168 * 64 */}

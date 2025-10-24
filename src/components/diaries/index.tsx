@@ -11,14 +11,16 @@ import styles from "./styles.module.css";
 import { useDiaryModal } from "./hooks/index.link.modal.hook";
 import { useDiaryBinding } from "./hooks/index.binding.hook";
 import { useDiaryRouting } from "./hooks/index.link.routing.hook";
+import { useDiarySearch } from "./hooks/index.search.hook";
 
 export default function Diaries() {
   const [selectedFilter, setSelectedFilter] = useState<string>("all");
-  const [searchValue, setSearchValue] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { openDiaryModal } = useDiaryModal();
   const { diaries, formatDate, getEmotionImage } = useDiaryBinding();
   const { handleCardClick } = useDiaryRouting();
+  const { searchQuery, handleSearch, getDisplayDiaries } =
+    useDiarySearch(diaries);
 
   const filterOptions = [
     { value: "all", label: "전체" },
@@ -33,8 +35,8 @@ export default function Diaries() {
     setSelectedFilter(value);
   };
 
-  const handleSearch = (value: string) => {
-    console.log("검색:", value);
+  const handleSearchSubmit = (value: string) => {
+    handleSearch(value);
   };
 
   const handleNewDiary = () => {
@@ -73,10 +75,11 @@ export default function Diaries() {
             size="medium"
             theme="light"
             placeholder="검색어를 입력해 주세요."
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            onSearch={handleSearch}
+            value={searchQuery}
+            onChange={(e) => handleSearch(e.target.value)}
+            onSearch={handleSearchSubmit}
             className={styles.search__searchbar}
+            data-testid="search-input"
           />
         </div>
         <Button
@@ -104,7 +107,7 @@ export default function Diaries() {
       {/* main: 1168 * 936 */}
       <div className={styles.main}>
         <div className={styles.cardGrid}>
-          {diaries.map((diary) => {
+          {getDisplayDiaries().map((diary) => {
             const emotionData = emotions[diary.emotion];
             const emotionImage = getEmotionImage(diary.emotion);
             const formattedDate = formatDate(diary.createdAt);
