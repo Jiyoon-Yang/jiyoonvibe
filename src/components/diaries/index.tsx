@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Selectbox } from "@/commons/components/selectbox";
 import { Searchbar } from "@/commons/components/searchbar";
@@ -12,32 +12,47 @@ import { useDiaryModal } from "./hooks/index.link.modal.hook";
 import { useDiaryBinding } from "./hooks/index.binding.hook";
 import { useDiaryRouting } from "./hooks/index.link.routing.hook";
 import { useDiarySearch } from "./hooks/index.search.hook";
+import { useDiaryFilter, FilterType } from "./hooks/index.filter.hook";
+import { useDiaryPagination } from "./hooks/index.pagination.hook";
 
 export default function Diaries() {
-  const [selectedFilter, setSelectedFilter] = useState<string>("all");
   const [currentPage, setCurrentPage] = useState<number>(1);
   const { openDiaryModal } = useDiaryModal();
   const { diaries, formatDate, getEmotionImage } = useDiaryBinding();
   const { handleCardClick } = useDiaryRouting();
-  const { searchQuery, handleSearch, getDisplayDiaries } =
-    useDiarySearch(diaries);
-
-  const filterOptions = [
-    { value: "all", label: "전체" },
-    { value: "happy", label: "행복" },
-    { value: "sad", label: "슬픔" },
-    { value: "angry", label: "화남" },
-    { value: "surprise", label: "놀람" },
-    { value: "etc", label: "기타" },
-  ];
-
-  const handleFilterChange = (value: string) => {
-    setSelectedFilter(value);
-  };
+  const { searchQuery, handleSearch } = useDiarySearch(diaries);
+  const {
+    selectedFilter,
+    filterOptions,
+    handleFilterChange,
+    getFilteredDiaries,
+  } = useDiaryFilter(diaries);
 
   const handleSearchSubmit = (value: string) => {
     handleSearch(value);
   };
+
+  // 검색과 필터를 통합하여 표시할 일기 목록 생성
+  const getFinalDisplayDiaries = () => {
+    const filteredDiaries = getFilteredDiaries();
+    return searchQuery.trim()
+      ? filteredDiaries.filter((diary) =>
+          diary.title.toLowerCase().includes(searchQuery.toLowerCase().trim())
+        )
+      : filteredDiaries;
+  };
+
+  // 페이지네이션 적용
+  const finalDisplayDiaries = getFinalDisplayDiaries();
+  const { totalPages, paginatedDiaries } = useDiaryPagination(
+    finalDisplayDiaries,
+    currentPage
+  );
+
+  // 검색 또는 필터 변경 시 페이지를 1로 초기화
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery, selectedFilter]);
 
   const handleNewDiary = () => {
     openDiaryModal();
@@ -48,7 +63,7 @@ export default function Diaries() {
     console.log("카드 삭제:", id);
   };
 
-  const handlePageChange = (page: number) => {
+  const handlePageChangeWrapper = (page: number) => {
     setCurrentPage(page);
     console.log("페이지 변경:", page);
   };
@@ -65,10 +80,16 @@ export default function Diaries() {
             variant="primary"
             size="medium"
             theme="light"
-            options={filterOptions}
+            options={filterOptions.map((option) => ({
+              value: option.value,
+              label: option.label,
+            }))}
             value={selectedFilter}
-            onChange={handleFilterChange}
+            onChange={(value: string) =>
+              handleFilterChange(value as FilterType)
+            }
             className={styles.search__selectbox}
+            data-testid="filter-selectbox"
           />
           <Searchbar
             variant="primary"
@@ -107,7 +128,7 @@ export default function Diaries() {
       {/* main: 1168 * 936 */}
       <div className={styles.main}>
         <div className={styles.cardGrid}>
-          {getDisplayDiaries().map((diary) => {
+          {paginatedDiaries.map((diary) => {
             const emotionData = emotions[diary.emotion];
             const emotionImage = getEmotionImage(diary.emotion);
             const formattedDate = formatDate(diary.createdAt);
@@ -168,9 +189,9 @@ export default function Diaries() {
           size="medium"
           theme="light"
           currentPage={currentPage}
-          totalPages={5}
+          totalPages={totalPages}
           pageRangeDisplayed={5}
-          onPageChange={handlePageChange}
+          onPageChange={handlePageChangeWrapper}
           previousIcon={
             <Image
               src="/icons/leftenable_outline_light_m.svg"
