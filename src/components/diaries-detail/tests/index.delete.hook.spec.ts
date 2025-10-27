@@ -1,5 +1,4 @@
 import { test, expect } from "@playwright/test";
-import { EmotionType } from "@/commons/constants/enum";
 
 /**
  * Diaries Detail Delete Hook E2E Tests
