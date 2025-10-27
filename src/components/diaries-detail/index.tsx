@@ -10,6 +10,7 @@ import { useDiaryDetailBinding } from "./hooks/index.binding.hook";
 import { useRetrospectBinding } from "./hooks/index.retrospect.binding.hook";
 import { useRetrospectForm } from "./hooks/index.retrospect.form.hook";
 import { useUpdateForm } from "./hooks/index.update.hook";
+import { useDiaryDetailDelete } from "./hooks/index.delete.hook";
 import { Controller } from "react-hook-form";
 import { emotionList } from "@/commons/constants/enum";
 
@@ -34,6 +35,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
     cancelEdit,
     submitUpdate,
   } = useUpdateForm(Number(id));
+  const { openDeleteModal } = useDiaryDetailDelete(Number(id));
 
   const handleCopyContent = () => {
     if (diary) {
@@ -48,7 +50,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
   };
 
   const handleDelete = () => {
-    console.log("삭제 버튼 클릭");
+    openDeleteModal();
   };
 
   const handleAddRetrospect = handleSubmit(onSubmit);

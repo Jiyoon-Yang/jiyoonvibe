@@ -4,7 +4,7 @@ import React from "react";
 import { Button, type ButtonVariant } from "../button";
 import styles from "./styles.module.css";
 
-export type ModalVariant = "info" | "danger";
+export type ModalVariant = "info" | "danger" | "warning";
 export type ModalActions = "single" | "dual";
 export type ModalTheme = "light" | "dark";
 
@@ -73,6 +73,11 @@ export interface ModalProps {
    * 모달 열림 여부
    */
   isOpen?: boolean;
+
+  /**
+   * 테스트 ID
+   */
+  "data-testid"?: string;
 }
 
 /**
@@ -112,6 +117,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       cancelAction,
       confirmAction,
       isOpen = true,
+      "data-testid": dataTestId,
     },
     ref
   ) => {
@@ -135,13 +141,20 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       .join(" ");
 
     return (
-      <div ref={ref} className={modalClassName} data-testid="modal">
+      <div
+        ref={ref}
+        className={modalClassName}
+        data-testid={dataTestId || "modal"}>
         {/* 콘텐츠 영역 */}
         <div className={styles.modal__content}>
           <h2 className={styles.modal__title} data-testid="modal-title">
             {title}
           </h2>
-          <p className={styles.modal__description}>{description}</p>
+          <p
+            className={styles.modal__description}
+            data-testid="modal-description">
+            {description}
+          </p>
         </div>
 
         {/* 버튼 영역 */}
@@ -165,7 +178,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 size="medium"
                 theme={theme}
                 onClick={cancelAction?.onClick}
-                data-testid="modal-cancel-button"
+                data-testid={
+                  dataTestId === "delete-modal"
+                    ? "delete-cancel-button"
+                    : "modal-cancel-button"
+                }
                 className={styles.modal__buttonFixed}>
                 {cancelAction?.label || "취소"}
               </Button>
@@ -174,7 +191,11 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
                 size="medium"
                 theme={theme}
                 onClick={confirmAction?.onClick}
-                data-testid="modal-confirm-button"
+                data-testid={
+                  dataTestId === "delete-modal"
+                    ? "delete-confirm-button"
+                    : "modal-confirm-button"
+                }
                 className={styles.modal__buttonFixed}>
                 {confirmAction?.label || "확인"}
               </Button>

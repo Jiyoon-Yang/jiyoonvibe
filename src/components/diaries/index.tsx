@@ -14,6 +14,8 @@ import { useDiaryRouting } from "./hooks/index.link.routing.hook";
 import { useDiarySearch } from "./hooks/index.search.hook";
 import { useDiaryFilter, FilterType } from "./hooks/index.filter.hook";
 import { useDiaryPagination } from "./hooks/index.pagination.hook";
+import { useDiaryDelete } from "./hooks/index.delete.hook";
+import { useAuth } from "@/commons/providers/auth/auth.provider";
 
 export default function Diaries() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -27,6 +29,8 @@ export default function Diaries() {
     handleFilterChange,
     getFilteredDiaries,
   } = useDiaryFilter(diaries);
+  const { handleDeleteClick } = useDiaryDelete();
+  const { isLoggedIn } = useAuth();
 
   const handleSearchSubmit = (value: string) => {
     handleSearch(value);
@@ -56,11 +60,6 @@ export default function Diaries() {
 
   const handleNewDiary = () => {
     openDiaryModal();
-  };
-
-  const handleDeleteCard = (e: React.MouseEvent, id: number) => {
-    e.stopPropagation();
-    console.log("카드 삭제:", id);
   };
 
   const handlePageChangeWrapper = (page: number) => {
@@ -145,17 +144,20 @@ export default function Diaries() {
                     fill
                     className={styles.cardImage}
                   />
-                  <button
-                    className={styles.deleteButton}
-                    onClick={(e) => handleDeleteCard(e, diary.id)}
-                    aria-label="삭제">
-                    <Image
-                      src="/icons/close_outline_light_m.svg"
-                      alt=""
-                      width={40}
-                      height={40}
-                    />
-                  </button>
+                  {isLoggedIn && (
+                    <button
+                      className={styles.deleteButton}
+                      onClick={(e) => handleDeleteClick(e, diary.id)}
+                      aria-label="삭제"
+                      data-testid="delete-button">
+                      <Image
+                        src="/icons/close_outline_light_m.svg"
+                        alt=""
+                        width={40}
+                        height={40}
+                      />
+                    </button>
+                  )}
                 </div>
                 <div className={styles.cardContent}>
                   <div className={styles.cardHeader}>

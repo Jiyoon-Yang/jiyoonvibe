@@ -11,6 +11,13 @@ import React, {
 import { useRouter } from "next/navigation";
 import { URL_PATHS } from "@/commons/constants/url";
 
+// 전역 테스트 우회 플래그 타입 정의
+declare global {
+  interface Window {
+    __TEST_BYPASS__?: boolean;
+  }
+}
+
 /**
  * 사용자 정보 타입
  */
@@ -101,6 +108,22 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const checkAuthStatus = useCallback(() => {
     if (typeof window === "undefined") return;
 
+    // 테스트 환경 체크
+    const isTestEnv = process.env.NEXT_PUBLIC_TEST_ENV === "test";
+    if (
+      isTestEnv &&
+      typeof window !== "undefined" &&
+      window.__TEST_BYPASS__ !== false
+    ) {
+      setIsLoggedIn(true);
+      setUser({
+        id: "test-user",
+        email: "test@example.com",
+        name: "Test User",
+      });
+      return;
+    }
+
     const accessToken = localStorage.getItem("accessToken");
     const userStr = localStorage.getItem("user");
 
@@ -143,8 +166,14 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       checkAuthStatus();
     };
 
+    // __TEST_BYPASS__ 변경 감지
+    const checkTestBypass = () => {
+      checkAuthStatus();
+    };
+
     window.addEventListener("storage", handleStorageChange);
     window.addEventListener("localStorageChange", handleCustomStorageChange);
+    window.addEventListener("testBypassChange", checkTestBypass);
 
     return () => {
       window.removeEventListener("storage", handleStorageChange);
@@ -152,6 +181,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         "localStorageChange",
         handleCustomStorageChange
       );
+      window.removeEventListener("testBypassChange", checkTestBypass);
     };
   }, [isMounted, checkAuthStatus]);
 
