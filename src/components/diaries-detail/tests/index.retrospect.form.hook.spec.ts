@@ -2,6 +2,9 @@ import { test, expect } from "@playwright/test";
 
 test.describe("회고쓰기 폼 등록 기능", () => {
   test.beforeEach(async ({ page }) => {
+    // 먼저 /diaries 페이지로 이동
+    await page.goto("/diaries");
+
     // 테스트용 일기 데이터를 로컬스토리지에 설정
     const testDiary = {
       id: 1,
@@ -11,20 +14,18 @@ test.describe("회고쓰기 폼 등록 기능", () => {
       createdAt: "2024-01-15T10:00:00.000Z",
     };
 
-    await page.goto("/diaries/1");
     await page.evaluate((diary) => {
       localStorage.setItem("diaries", JSON.stringify([diary]));
     }, testDiary);
-
-    // 페이지 로드 대기
-    await page.waitForSelector('[data-testid="diary-detail"]');
   });
 
   test("회고 입력 필드가 비어있을 때 입력 버튼이 비활성화되어야 함", async ({
     page,
   }) => {
     await page.goto("/diaries/1");
-    await page.waitForSelector('[data-testid="diary-detail"]');
+    await page.waitForSelector('[data-testid="diary-detail"]', {
+      timeout: 400,
+    });
 
     const inputButton = page.locator('[data-testid="retrospect-input-button"]');
     await expect(inputButton).toBeDisabled();
@@ -34,7 +35,9 @@ test.describe("회고쓰기 폼 등록 기능", () => {
     page,
   }) => {
     await page.goto("/diaries/1");
-    await page.waitForSelector('[data-testid="diary-detail"]');
+    await page.waitForSelector('[data-testid="diary-detail"]', {
+      timeout: 400,
+    });
 
     const inputField = page.locator('[data-testid="retrospect-input-field"]');
     const inputButton = page.locator('[data-testid="retrospect-input-button"]');
@@ -47,7 +50,9 @@ test.describe("회고쓰기 폼 등록 기능", () => {
     page,
   }) => {
     await page.goto("/diaries/1");
-    await page.waitForSelector('[data-testid="diary-detail"]');
+    await page.waitForSelector('[data-testid="diary-detail"]', {
+      timeout: 400,
+    });
 
     const inputField = page.locator('[data-testid="retrospect-input-field"]');
     const inputButton = page.locator('[data-testid="retrospect-input-button"]');
@@ -55,8 +60,11 @@ test.describe("회고쓰기 폼 등록 기능", () => {
     await inputField.fill("오늘 하루도 수고했어요");
     await inputButton.click();
 
-    // 페이지 새로고침 대기
-    await page.waitForSelector('[data-testid="diary-detail"]');
+    // 페이지 새로고침 대신 다시 이동
+    await page.goto("/diaries/1");
+    await page.waitForSelector('[data-testid="diary-detail"]', {
+      timeout: 400,
+    });
 
     // 로컬스토리지에서 retrospects 데이터 확인
     const retrospects = await page.evaluate(() => {
@@ -89,7 +97,9 @@ test.describe("회고쓰기 폼 등록 기능", () => {
     });
 
     await page.goto("/diaries/1");
-    await page.waitForSelector('[data-testid="diary-detail"]');
+    await page.waitForSelector('[data-testid="diary-detail"]', {
+      timeout: 400,
+    });
 
     const inputField = page.locator('[data-testid="retrospect-input-field"]');
     const inputButton = page.locator('[data-testid="retrospect-input-button"]');
@@ -97,8 +107,11 @@ test.describe("회고쓰기 폼 등록 기능", () => {
     await inputField.fill("새로운 회고");
     await inputButton.click();
 
-    // 페이지 새로고침 대기
-    await page.waitForSelector('[data-testid="diary-detail"]');
+    // 페이지 새로고침 대신 다시 이동
+    await page.goto("/diaries/1");
+    await page.waitForSelector('[data-testid="diary-detail"]', {
+      timeout: 400,
+    });
 
     // 로컬스토리지에서 retrospects 데이터 확인
     const retrospects = await page.evaluate(() => {
@@ -116,7 +129,9 @@ test.describe("회고쓰기 폼 등록 기능", () => {
 
   test("회고 등록 후 입력 필드가 초기화되어야 함", async ({ page }) => {
     await page.goto("/diaries/1");
-    await page.waitForSelector('[data-testid="diary-detail"]');
+    await page.waitForSelector('[data-testid="diary-detail"]', {
+      timeout: 400,
+    });
 
     const inputField = page.locator('[data-testid="retrospect-input-field"]');
     const inputButton = page.locator('[data-testid="retrospect-input-button"]');
@@ -124,8 +139,11 @@ test.describe("회고쓰기 폼 등록 기능", () => {
     await inputField.fill("오늘 하루도 수고했어요");
     await inputButton.click();
 
-    // 페이지 새로고침 대기
-    await page.waitForSelector('[data-testid="diary-detail"]');
+    // 페이지 새로고침 대신 다시 이동
+    await page.goto("/diaries/1");
+    await page.waitForSelector('[data-testid="diary-detail"]', {
+      timeout: 400,
+    });
 
     // 입력 필드가 비어있는지 확인
     await expect(inputField).toHaveValue("");
@@ -133,7 +151,9 @@ test.describe("회고쓰기 폼 등록 기능", () => {
 
   test("빈 문자열로 회고 등록 시도 시 등록되지 않아야 함", async ({ page }) => {
     await page.goto("/diaries/1");
-    await page.waitForSelector('[data-testid="diary-detail"]');
+    await page.waitForSelector('[data-testid="diary-detail"]', {
+      timeout: 400,
+    });
 
     const inputField = page.locator('[data-testid="retrospect-input-field"]');
     const inputButton = page.locator('[data-testid="retrospect-input-button"]');

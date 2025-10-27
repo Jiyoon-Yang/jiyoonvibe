@@ -57,7 +57,7 @@ export interface UseDiaryDetailBindingReturn {
  * @returns 일기 데이터 및 유틸리티 함수들
  */
 export const useDiaryDetailBinding = (
-  id: string,
+  id: string
 ): UseDiaryDetailBindingReturn => {
   const [diary, setDiary] = useState<Diary | null>(null);
 
@@ -88,10 +88,17 @@ export const useDiaryDetailBinding = (
       }
     };
 
+    // 커스텀 이벤트 감지 (같은 탭에서의 변경)
+    const handleDiaryUpdate = () => {
+      loadDiary();
+    };
+
     window.addEventListener("storage", handleStorageChange);
+    window.addEventListener("diaryUpdated", handleDiaryUpdate);
 
     return () => {
       window.removeEventListener("storage", handleStorageChange);
+      window.removeEventListener("diaryUpdated", handleDiaryUpdate);
     };
   }, [id]);
 

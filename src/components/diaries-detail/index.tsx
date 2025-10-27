@@ -7,8 +7,11 @@ import { Button } from "@/commons/components/button";
 import { Input } from "@/commons/components/input";
 import { getEmotionData } from "@/commons/constants/enum";
 import { useDiaryDetailBinding } from "./hooks/index.binding.hook";
+import { useRetrospectBinding } from "./hooks/index.retrospect.binding.hook";
 import { useRetrospectForm } from "./hooks/index.retrospect.form.hook";
+import { useUpdateForm } from "./hooks/index.update.hook";
 import { Controller } from "react-hook-form";
+import { emotionList } from "@/commons/constants/enum";
 
 interface DiariesDetailProps {
   id: string;
@@ -16,8 +19,21 @@ interface DiariesDetailProps {
 
 export default function DiariesDetail({ id }: DiariesDetailProps) {
   const { diary, formatDate, getEmotionIconPath } = useDiaryDetailBinding(id);
-  const { control, handleSubmit, formState, onSubmit, retrospects } =
-    useRetrospectForm(Number(id));
+  const { retrospects, formatDate: formatRetrospectDate } =
+    useRetrospectBinding(Number(id));
+  const { control, handleSubmit, formState, onSubmit } = useRetrospectForm(
+    Number(id)
+  );
+  const {
+    isEditing,
+    isSubmitting,
+    control: updateControl,
+    handleSubmit: handleUpdateFormSubmit,
+    formState: updateFormState,
+    startEdit,
+    cancelEdit,
+    submitUpdate,
+  } = useUpdateForm(Number(id));
 
   const handleCopyContent = () => {
     if (diary) {
@@ -26,7 +42,9 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
   };
 
   const handleEdit = () => {
-    console.log("수정 버튼 클릭");
+    if (diary) {
+      startEdit(diary);
+    }
   };
 
   const handleDelete = () => {
@@ -34,6 +52,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
   };
 
   const handleAddRetrospect = handleSubmit(onSubmit);
+  const handleUpdateSubmit = handleUpdateFormSubmit(submitUpdate);
 
   // 일기가 없는 경우 빈 컨테이너 반환
   if (!diary) {
@@ -43,6 +62,172 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
   const emotionData = getEmotionData(diary.emotion);
   const emotionIconPath = getEmotionIconPath(diary.emotion);
 
+  // 수정 모드일 때의 UI
+  if (isEditing) {
+    return (
+      <div data-testid="diary-detail" className={styles.container}>
+        {/* gap: 1168 * 64 */}
+        <div className={styles.gap_top}></div>
+
+        {/* 기분 선택 영역 */}
+        <div className={styles.emotion_selection}>
+          <div className={styles.emotion_selection_title}>
+            오늘 기분은 어땟나요?
+          </div>
+          <div className={styles.emotion_radio_group}>
+            {emotionList.map((emotion) => (
+              <Controller
+                key={emotion.type}
+                name="emotion"
+                control={updateControl}
+                render={({ field }) => (
+                  <label className={styles.emotion_radio_item}>
+                    <input
+                      type="radio"
+                      {...field}
+                      value={emotion.type}
+                      checked={field.value === emotion.type}
+                      className={styles.emotion_radio_input}
+                    />
+                    <span className={styles.emotion_radio_label}>
+                      {emotion.label}
+                    </span>
+                  </label>
+                )}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* 제목 입력 */}
+        <div className={styles.title_input_section}>
+          <div className={styles.input_label}>제목</div>
+          <Controller
+            name="title"
+            control={updateControl}
+            render={({ field }) => (
+              <Input
+                {...field}
+                variant="primary"
+                theme="light"
+                size="medium"
+                placeholder="제목을 입력하세요"
+                className={styles.title_input}
+              />
+            )}
+          />
+        </div>
+
+        {/* 내용 입력 */}
+        <div className={styles.content_input_section}>
+          <div className={styles.input_label}>내용</div>
+          <Controller
+            name="content"
+            control={updateControl}
+            render={({ field }) => (
+              <textarea
+                {...field}
+                placeholder="내용을 입력하세요"
+                className={styles.content_textarea}
+                rows={6}
+              />
+            )}
+          />
+        </div>
+
+        {/* 버튼 영역 */}
+        <div className={styles.update_button_section}>
+          <Button
+            variant="secondary"
+            theme="light"
+            size="medium"
+            className={styles.cancel_button}
+            onClick={cancelEdit}>
+            취소
+          </Button>
+          <Button
+            variant="primary"
+            theme="light"
+            size="medium"
+            className={styles.submit_button}
+            onClick={handleUpdateSubmit}
+            disabled={!updateFormState.isValid || isSubmitting}>
+            수정 하기
+          </Button>
+        </div>
+
+        {/* 회고 영역 (수정 중일 때 비활성화) */}
+        <div className={styles.retrospect_input}>
+          <div className={styles.retrospectLabel}>회고</div>
+          <div className={styles.retrospectInputSection}>
+            <Input
+              variant="primary"
+              theme="light"
+              size="medium"
+              placeholder="수정중일땐 회고를 작성할 수 없어요."
+              className={styles.retrospectInputField}
+              data-testid="retrospect-input-field"
+              disabled
+            />
+            <Button
+              variant="primary"
+              theme="light"
+              size="medium"
+              className={styles.retrospectInputButton}
+              data-testid="retrospect-input-button"
+              disabled>
+              입력
+            </Button>
+          </div>
+        </div>
+
+        {/* gap: 1168 * 16 */}
+        <div className={styles.gap_4}></div>
+
+        {/* retrospect-list: 1168 * 72 */}
+        <div className={styles.retrospect_list} data-testid="retrospect-list">
+          {retrospects.length > 0 ? (
+            retrospects.map((retrospect, index) => (
+              <div key={retrospect.id}>
+                <div
+                  className={styles.retrospectItem}
+                  data-testid="retrospect-item">
+                  <span
+                    className={styles.retrospectText}
+                    data-testid="retrospect-text">
+                    {retrospect.content}
+                  </span>
+                  <span
+                    className={styles.retrospectDate}
+                    data-testid="retrospect-date">
+                    {formatRetrospectDate(retrospect.createdAt)}
+                  </span>
+                </div>
+                {index < retrospects.length - 1 && (
+                  <div className={styles.retrospectDivider}></div>
+                )}
+              </div>
+            ))
+          ) : (
+            <div
+              className={styles.retrospectItem}
+              data-testid="retrospect-item">
+              <span
+                className={styles.retrospectText}
+                data-testid="retrospect-text">
+                아직 등록된 회고가 없습니다.
+              </span>
+            </div>
+          )}
+        </div>
+
+        {/* gap: 1168 * 64 */}
+        <div className={styles.gap_bottom}></div>
+      </div>
+    );
+  }
+
+  // 일반 모드일 때의 UI
   return (
     <div data-testid="diary-detail" className={styles.container}>
       {/* gap: 1168 * 64 */}
@@ -167,16 +352,22 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
       <div className={styles.gap_4}></div>
 
       {/* retrospect-list: 1168 * 72 */}
-      <div className={styles.retrospect_list}>
+      <div className={styles.retrospect_list} data-testid="retrospect-list">
         {retrospects.length > 0 ? (
           retrospects.map((retrospect, index) => (
             <div key={retrospect.id}>
-              <div className={styles.retrospectItem}>
-                <span className={styles.retrospectText}>
+              <div
+                className={styles.retrospectItem}
+                data-testid="retrospect-item">
+                <span
+                  className={styles.retrospectText}
+                  data-testid="retrospect-text">
                   {retrospect.content}
                 </span>
-                <span className={styles.retrospectDate}>
-                  {formatDate(retrospect.createdAt)}
+                <span
+                  className={styles.retrospectDate}
+                  data-testid="retrospect-date">
+                  {formatRetrospectDate(retrospect.createdAt)}
                 </span>
               </div>
               {index < retrospects.length - 1 && (
@@ -185,8 +376,10 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
             </div>
           ))
         ) : (
-          <div className={styles.retrospectItem}>
-            <span className={styles.retrospectText}>
+          <div className={styles.retrospectItem} data-testid="retrospect-item">
+            <span
+              className={styles.retrospectText}
+              data-testid="retrospect-text">
               아직 등록된 회고가 없습니다.
             </span>
           </div>
