@@ -1,166 +1,534 @@
+/* ============================================
+   Container Base Styles
+   ============================================ */
+
 .container {
+  /* Layout */
   display: flex;
   flex-direction: column;
-  width: 100%;
   align-items: center;
+
+  /* Box Model */
+  width: 100%;
 }
 
-/* gap: 1168 * 32 */
+/* ============================================
+   Gap Components
+   ============================================ */
+
 .gap_top {
+  /* Box Model */
   width: 1168px;
   height: 32px;
   flex-shrink: 0;
 }
 
-/* search: 1168 * 48 */
+/* ============================================
+   Search Section
+   ============================================ */
+
 .search {
-  width: 1168px;
-  height: 48px;
-  flex-shrink: 0;
+  /* Layout */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+
+  /* Box Model */
+  width: 100%;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   Search Desktop Layout
+   ============================================ */
+
+.search__desktop {
+  /* Layout */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+
+  /* Box Model */
+  width: 100%;
 }
 
 .search__left {
+  /* Layout */
   display: flex;
   align-items: center;
   gap: 16px;
+  flex: 1;
+  min-width: 0;
 }
 
 .search__selectbox {
+  /* Box Model */
   width: 120px;
+  flex-shrink: 0;
 }
 
 .search__searchbar {
-  width: 320px;
+  /* Box Model */
+  flex: 1;
+  min-width: 200px;
+  max-width: 320px;
 }
 
 .search__button {
+  /* Box Model */
   width: 110px;
+  flex-shrink: 0;
+
+  /* Visual */
   background-color: var(--gray-black);
   color: var(--gray-white);
 }
 
-/* gap: 1168 * 42 */
+/* ============================================
+   Search Mobile Layout
+   ============================================ */
+
+.search__mobile {
+  /* Layout */
+  display: none;
+}
+
 .gap_middle_1 {
+  /* Box Model */
   width: 1168px;
   height: 42px;
   flex-shrink: 0;
 }
 
-/* main: 1168 * 936 */
+/* ============================================
+   Main Content Section
+   ============================================ */
+
 .main {
-  width: 1168px;
-  min-height: 936px;
-  flex-shrink: 0;
+  /* Layout */
   display: flex;
   align-items: flex-start;
   justify-content: center;
+
+  /* Box Model */
+  width: 100%;
+  min-height: 936px;
+  flex-shrink: 0;
 }
 
 .cardGrid {
+  /* Layout */
   display: grid;
   grid-template-columns: repeat(4, 274px);
   gap: 24px;
   row-gap: 24px;
-  width: 1168px;
+  justify-content: center;
+
+  /* Box Model */
+  width: 100%;
+  max-width: 1168px;
 }
 
 .diaryCard {
+  /* Layout */
+  overflow: hidden;
+
+  /* Box Model */
   width: 274px;
   height: 296px;
-  background-color: var(--gray-white);
   border-radius: 16px;
-  overflow: hidden;
+
+  /* Visual */
+  background-color: #ffffff;
+
+  /* Interaction */
   cursor: pointer;
 }
 
 .cardImageWrapper {
+  /* Layout */
   position: relative;
+
+  /* Box Model */
   width: 274px;
   height: 208px;
 }
 
 .cardImage {
+  /* Layout */
   object-fit: cover;
+
+  /* Box Model */
   border-radius: 16px 16px 16px 16px;
 }
 
 .deleteButton {
+  /* Layout */
   position: absolute;
-  top: 6px;
-  right: 6px;
-  border: none;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* Box Model */
+  top: 6px;
+  right: 6px;
+  border: none;
+
+  /* Interaction */
+  cursor: pointer;
 }
 
 .cardContent {
-  padding: 8px;
+  /* Layout */
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  /* Box Model */
+  padding: 8px;
 }
 
 .cardHeader {
+  /* Layout */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .emotionLabel {
-  font-family: var(--font-korean);
-  font-size: var(--typo-subtitle01-size);
-  line-height: var(--typo-subtitle01-line);
-  font-weight: var(--typo-subtitle01-weight);
+  /* Typography */
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
   letter-spacing: -0.14px;
 }
 
 .date {
-  font-family: var(--font-korean);
-  font-size: var(--typo-body02-s-size);
-  line-height: var(--typo-body02-s-line);
-  font-weight: var(--typo-body02-s-weight);
+  /* Typography */
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
   letter-spacing: -0.14px;
-  color: var(--gray-50);
+
+  /* Visual */
+  color: #919191;
 }
 
 .cardTitle {
-  font-family: var(--font-korean);
-  font-size: var(--typo-title01-size);
-  line-height: var(--typo-title01-line);
-  font-weight: var(--typo-title01-weight);
-  letter-spacing: -0.18px;
-  color: var(--gray-black);
+  /* Layout */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  /* Typography */
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: -0.18px;
+
+  /* Visual */
+  color: #000000;
 }
 
-/* gap: 1168 * 40 */
 .gap_middle_2 {
+  /* Box Model */
   width: 1168px;
   height: 40px;
   flex-shrink: 0;
 }
 
-/* pagination: 1168 * 32 */
+/* ============================================
+   Pagination Section
+   ============================================ */
+
 .pagination {
-  width: 1168px;
-  height: 32px;
-  flex-shrink: 0;
+  /* Layout */
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* Box Model */
+  width: 1168px;
+  height: 32px;
+  flex-shrink: 0;
 }
 
-/* gap: 1168 * 40 */
 .gap_bottom {
+  /* Box Model */
   width: 1168px;
   height: 40px;
   flex-shrink: 0;
+}
+
+/* ============================================
+   Mobile Layout Styles
+   ============================================ */
+
+.cardGridMobile {
+  /* Layout */
+  display: none;
+}
+
+.diaryCardMobile {
+  /* Layout */
+  overflow: hidden;
+
+  /* Box Model */
+  width: 152px;
+  height: 192px;
+  border-radius: 16px;
+
+  /* Visual */
+  background-color: #ffffff;
+
+  /* Interaction */
+  cursor: pointer;
+}
+
+.cardImageWrapperMobile {
+  /* Layout */
+  position: relative;
+
+  /* Box Model */
+  width: 152px;
+  height: 116px;
+}
+
+.cardImageMobile {
+  /* Layout */
+  object-fit: cover;
+
+  /* Box Model */
+  border-radius: 16px 16px 16px 16px;
+}
+
+.deleteButtonMobile {
+  /* Layout */
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Box Model */
+  top: 6px;
+  right: 6px;
+  border: none;
+
+  /* Interaction */
+  cursor: pointer;
+}
+
+.cardContentMobile {
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  /* Box Model */
+  padding: 8px;
+}
+
+.cardHeaderMobile {
+  /* Layout */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.emotionLabelMobile {
+  /* Typography */
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 600;
+  letter-spacing: -0.14px;
+}
+
+.dateMobile {
+  /* Typography */
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  letter-spacing: -0.14px;
+
+  /* Visual */
+  color: #919191;
+}
+
+.cardTitleMobile {
+  /* Layout */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  /* Typography */
+  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
+    system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 700;
+  letter-spacing: -0.18px;
+
+  /* Visual */
+  color: #000000;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+/* Card Grid Responsive */
+@media (max-width: 1160px) {
+  .cardGrid {
+    grid-template-columns: repeat(3, 274px);
+    justify-content: center;
+  }
+}
+
+@media (max-width: 862px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 274px);
+    justify-content: center;
+  }
+}
+
+@media (max-width: 563px) {
+  .cardGrid {
+    grid-template-columns: 274px;
+    justify-content: center;
+  }
+}
+
+/* Container Padding Responsive */
+@media (max-width: 1168px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (min-width: 1169px) {
+  .container {
+    padding: 0;
+  }
+}
+
+/* Search Section Mobile Layout */
+@media (max-width: 767px) {
+  .search {
+    /* Layout */
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+
+    /* Box Model */
+    height: auto;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  /* Desktop Layout Hidden */
+  .search__desktop {
+    display: none;
+  }
+
+  /* Mobile Layout Visible */
+  .search__mobile {
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    /* Box Model */
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .search__searchbar_mobile {
+    /* Box Model */
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .search__bottom {
+    /* Layout */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    /* Box Model */
+    width: 100%;
+  }
+
+  .search__selectbox_mobile {
+    /* Box Model */
+    width: 102px;
+    flex-shrink: 0;
+  }
+
+  .search__button_mobile {
+    /* Box Model */
+    width: 103px;
+    flex-shrink: 0;
+
+    /* Visual */
+    background-color: var(--gray-black);
+    color: var(--gray-white);
+  }
+
+  /* Main Section Mobile Layout */
+  .main {
+    /* Box Model */
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* Desktop Card Grid Hidden */
+  .cardGrid {
+    display: none;
+  }
+
+  /* Mobile Card Grid Visible */
+  .cardGridMobile {
+    /* Layout */
+    display: grid;
+    grid-template-columns: repeat(2, 152px);
+    gap: 16px;
+    row-gap: 16px;
+    justify-content: center;
+
+    /* Box Model */
+    width: 100%;
+    max-width: 320px;
+  }
+
+  /* Gap and Pagination Responsive */
+  .gap_middle_1 {
+    width: 100%;
+  }
+
+  .gap_middle_2 {
+    width: 100%;
+  }
+
+  .pagination {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .gap_bottom {
+    width: 100%;
+  }
 }

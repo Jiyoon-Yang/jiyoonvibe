@@ -5,11 +5,13 @@
   align-items: center;
   width: 100%;
   min-height: 100vh;
+  max-width: 1168px;
+  margin: 0 auto;
 }
 
-/* header: 1168 * 60 */
+/* header: 100% * 60 */
 .header {
-  width: 1168px;
+  width: 100%;
   height: 60px;
   flex-shrink: 0;
   display: flex;
@@ -29,10 +31,10 @@
 
 .logoText {
   font-family: var(--font-korean);
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: -0.18px;
+  font-size: var(--typo-title01-size);
+  font-weight: var(--typo-title01-weight);
+  line-height: var(--typo-title01-line);
+  letter-spacing: 0;
   color: var(--gray-black);
 }
 
@@ -55,16 +57,16 @@
   width: 100px;
 }
 
-/* gap: 1168 * 24 */
+/* gap: 100% * 24 */
 .gap {
-  width: 1168px;
+  width: 100%;
   height: 24px;
   flex-shrink: 0;
 }
 
-/* banner: 1168 * 240 */
+/* banner: 100% * 240 */
 .banner {
-  width: 1168px;
+  width: 100%;
   height: 240px;
   flex-shrink: 0;
   display: flex;
@@ -74,15 +76,15 @@
 }
 
 .bannerImage {
-  width: 1168px;
+  width: 100%;
   height: 240px;
   object-fit: cover;
   border-radius: 24px;
 }
 
-/* navigation: 1168 * 48 */
+/* navigation: 100% * 48 */
 .navigation {
-  width: 1168px;
+  width: 100%;
   height: 48px;
   flex-shrink: 0;
   display: flex;
@@ -109,7 +111,7 @@
   font-family: var(--font-korean);
   font-size: var(--typo-headline01-size);
   line-height: var(--typo-headline01-line);
-  letter-spacing: -0.24px;
+  letter-spacing: 0;
   font-weight: 500;
   color: var(--gray-40);
 }
@@ -123,9 +125,9 @@
   border-bottom: 2px solid var(--gray-black);
 }
 
-/* main: 1168 * auto */
+/* main: 100% * auto */
 .main {
-  width: 1168px;
+  width: 100%;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -143,7 +145,8 @@
 }
 
 .footerContent {
-  width: 1168px;
+  width: 100%;
+  max-width: 1168px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -151,27 +154,40 @@
 
 .footerTitle {
   font-family: var(--font-korean);
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 16px;
-  letter-spacing: -0.2px;
+  font-size: var(--typo-headline03-size);
+  font-weight: var(--typo-headline03-weight);
+  line-height: var(--typo-headline03-line);
+  letter-spacing: 0;
   color: var(--gray-black);
 }
 
 .footerInfo {
   font-family: var(--font-korean);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: -0.14px;
+  font-size: var(--typo-body02-s-size);
+  font-weight: var(--typo-body02-s-weight);
+  line-height: var(--typo-body02-s-line);
+  letter-spacing: 0;
   color: var(--gray-70);
 }
 
 .footerCopyright {
   font-family: var(--font-korean);
-  font-size: 14px;
+  font-size: var(--typo-body02-s-size);
   font-weight: 300;
-  line-height: 16px;
-  letter-spacing: -0.14px;
+  line-height: var(--typo-body02-s-line);
+  letter-spacing: 0;
   color: var(--gray-50);
+}
+
+/* 반응형 디자인 - max-width보다 작아질 때 조건부 패딩 적용 */
+@media (max-width: 1168px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media (min-width: 1169px) {
+  .container {
+    padding: 0;
+  }
 }

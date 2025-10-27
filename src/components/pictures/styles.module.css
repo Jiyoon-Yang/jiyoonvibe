@@ -54,6 +54,41 @@
   transition: width 0.3s ease, height 0.3s ease;
 }
 
+/* 데스크톱 크기 - 기본값 */
+.imageItem[data-filter="default"] {
+  width: 640px;
+  height: 640px;
+}
+
+.imageItem[data-filter="horizontal"] {
+  width: 640px;
+  height: 480px;
+}
+
+.imageItem[data-filter="vertical"] {
+  width: 480px;
+  height: 640px;
+}
+
+/* 반응형 디자인 - 767px 이하에서 모바일 크기 적용 */
+@media (max-width: 767px) {
+  .main .imageItem {
+    width: 280px;
+  }
+
+  .main .imageItem[data-filter="default"] {
+    height: 280px;
+  }
+
+  .main .imageItem[data-filter="horizontal"] {
+    height: 210px;
+  }
+
+  .main .imageItem[data-filter="vertical"] {
+    height: 372px;
+  }
+}
+
 /* Image */
 .image {
   width: 100%;
@@ -76,10 +111,23 @@
   width: 640px;
   height: 640px;
   border-radius: 24px;
-  background: linear-gradient(120deg, #e5e7eb 30%, #ffffff 40%, #e5e7eb 60%);
+  background: linear-gradient(
+    120deg,
+    var(--gray-80) 30%,
+    var(--gray-white) 40%,
+    var(--gray-80) 60%
+  );
   background-size: 200% 100%;
   filter: blur(0.4px);
   animation: shimmer 1s linear infinite;
+}
+
+/* 반응형 스켈레톤 - 767px 이하에서 모바일 크기 적용 */
+@media (max-width: 767px) {
+  .skeletonItem {
+    width: 280px;
+    height: 280px;
+  }
 }
 
 @keyframes shimmer {

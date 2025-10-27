@@ -28,7 +28,7 @@ export default function DiariesNew() {
       {/* gap: full * 40 */}
       <div className={styles.gap_1}></div>
 
-      {/* emotion-box: full * 64 */}
+      {/* emotion-box: full * 64 (desktop), full * 204 (mobile) */}
       <div className={styles.emotion_box}>
         <h2 className={styles.emotion_box__title}>오늘 기분은 어땠나요?</h2>
         <div className={styles.emotion_box__radios}>
@@ -80,7 +80,7 @@ export default function DiariesNew() {
       {/* gap: full * 40 */}
       <div className={styles.gap_2}></div>
 
-      {/* input-title: full * 76 */}
+      {/* input-title: full * 76 (desktop), full * 64 (mobile) */}
       <div className={styles.input_title}>
         <Input
           variant="primary"
@@ -100,7 +100,7 @@ export default function DiariesNew() {
       {/* gap: full * 24 */}
       <div className={styles.gap_3}></div>
 
-      {/* input-content: full * 156 */}
+      {/* input-content: full * 156 (desktop), full * 152 (mobile) */}
       <div className={styles.input_content}>
         <label className={styles.input_content__label}>내용</label>
         <textarea
@@ -117,7 +117,7 @@ export default function DiariesNew() {
       {/* gap: full * 40 */}
       <div className={styles.gap_4}></div>
 
-      {/* footer: full * 48 */}
+      {/* footer: full * 48 (desktop), full * 40 (mobile) */}
       <div className={styles.footer}>
         <Button
           variant="secondary"

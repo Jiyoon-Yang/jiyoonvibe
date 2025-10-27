@@ -20,10 +20,10 @@ export default function Pictures() {
 
   return (
     <div className={styles.container}>
-      {/* gap: 1168 * 32 */}
+      {/* gap: 100% * 32 */}
       <div className={styles.gap_top}></div>
 
-      {/* filter: 1168 * 48 */}
+      {/* filter: 100% * 48 */}
       <div className={styles.filter}>
         <Selectbox
           variant="primary"
@@ -37,20 +37,17 @@ export default function Pictures() {
         />
       </div>
 
-      {/* gap: 1168 * 42 */}
+      {/* gap: 100% * 42 */}
       <div className={styles.gap_middle}></div>
 
-      {/* main: 1168 * auto */}
+      {/* main: 100% * auto */}
       <div className={styles.main} data-testid="pictures-list">
         {items.map((image, idx) => (
           <div
             key={`${image.id}-${idx}`}
             className={styles.imageItem}
             data-testid="image-container"
-            style={{
-              width: `${imageSize.width}px`,
-              height: `${imageSize.height}px`,
-            }}>
+            data-filter={selectedFilter}>
             <Image
               src={image.src}
               alt={image.alt}
