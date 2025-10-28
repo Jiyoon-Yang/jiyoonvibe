@@ -31,8 +31,7 @@
 
 /* Input Field */
 .searchbar__input {
-  font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont,
-    system-ui, sans-serif;
+  font-family: var(--font-korean);
   font-weight: 500;
   border: none;
   outline: none;
