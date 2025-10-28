@@ -68,96 +68,49 @@ export default function Diaries() {
   };
 
   return (
-    <div className={styles.container} data-testid="diaries-list">
-      {/* gap: 1168 * 32 */}
-      <div className={styles.gap_top}></div>
+    <>
+      <div className={styles.container} data-testid="diaries-list">
+        {/* gap: 1168 * 32 */}
+        <div className={styles.gap_top}></div>
 
-      {/* search: 1168 * 48 */}
-      <div className={styles.search}>
-        {/* 데스크톱 레이아웃 */}
-        <div className={styles.search__desktop}>
-          <div className={styles.search__left}>
-            <Selectbox
-              variant="primary"
-              size="medium"
-              theme="light"
-              options={filterOptions.map((option) => ({
-                value: option.value,
-                label: option.label,
-              }))}
-              value={selectedFilter}
-              onChange={(value: string) =>
-                handleFilterChange(value as FilterType)
-              }
-              className={styles.search__selectbox}
-              data-testid="filter-selectbox"
-            />
-            <Searchbar
-              variant="primary"
-              size="medium"
-              theme="light"
-              placeholder="검색어를 입력해 주세요."
-              value={searchQuery}
-              onChange={(e) => handleSearch(e.target.value)}
-              onSearch={handleSearchSubmit}
-              className={styles.search__searchbar}
-              data-testid="search-input"
-            />
-          </div>
-          <Button
-            variant="primary"
-            size="medium"
-            theme="light"
-            onClick={handleNewDiary}
-            data-testid="write-diary-button"
-            iconLeft={
-              <Image
-                src="/icons/plus_outline_light_m.svg"
-                alt=""
-                width={24}
-                height={24}
+        {/* search: 1168 * 48 */}
+        <div className={styles.search}>
+          {/* 데스크톱 레이아웃 */}
+          <div className={styles.search__desktop}>
+            <div className={styles.search__left}>
+              <Selectbox
+                variant="primary"
+                size="medium"
+                theme="light"
+                options={filterOptions.map((option) => ({
+                  value: option.value,
+                  label: option.label,
+                }))}
+                value={selectedFilter}
+                onChange={(value: string) =>
+                  handleFilterChange(value as FilterType)
+                }
+                className={styles.search__selectbox}
+                data-testid="filter-selectbox"
               />
-            }
-            className={styles.search__button}>
-            일기쓰기
-          </Button>
-        </div>
-
-        {/* 모바일 레이아웃 */}
-        <div className={styles.search__mobile}>
-          <Searchbar
-            variant="primary"
-            size="medium"
-            theme="light"
-            placeholder="검색어를 입력해 주세요."
-            value={searchQuery}
-            onChange={(e) => handleSearch(e.target.value)}
-            onSearch={handleSearchSubmit}
-            className={styles.search__searchbar_mobile}
-            data-testid="search-input-mobile"
-          />
-          <div className={styles.search__bottom}>
-            <Selectbox
-              variant="primary"
-              size="medium"
-              theme="light"
-              options={filterOptions.map((option) => ({
-                value: option.value,
-                label: option.label,
-              }))}
-              value={selectedFilter}
-              onChange={(value: string) =>
-                handleFilterChange(value as FilterType)
-              }
-              className={styles.search__selectbox_mobile}
-              data-testid="filter-selectbox-mobile"
-            />
+              <Searchbar
+                variant="primary"
+                size="medium"
+                theme="light"
+                placeholder="검색어를 입력해 주세요."
+                value={searchQuery}
+                onChange={(e) => handleSearch(e.target.value)}
+                onSearch={handleSearchSubmit}
+                className={styles.search__searchbar}
+                data-testid="search-input"
+              />
+            </div>
             <Button
               variant="primary"
               size="medium"
               theme="light"
               onClick={handleNewDiary}
-              data-testid="write-diary-button-mobile"
+              data-testid="write-diary-button"
               iconLeft={
                 <Image
                   src="/icons/plus_outline_light_m.svg"
@@ -166,167 +119,216 @@ export default function Diaries() {
                   height={24}
                 />
               }
-              className={styles.search__button_mobile}>
+              className={styles.search__button}>
               일기쓰기
             </Button>
           </div>
-        </div>
-      </div>
 
-      {/* gap: 1168 * 42 */}
-      <div className={styles.gap_middle_1}></div>
-
-      {/* main: 1168 * 936 */}
-      <div className={styles.main}>
-        {/* 데스크톱 레이아웃 */}
-        <div className={styles.cardGrid}>
-          {paginatedDiaries.map((diary) => {
-            const emotionData = emotions[diary.emotion];
-            const emotionImage = getEmotionImage(diary.emotion);
-            const formattedDate = formatDate(diary.createdAt);
-            return (
-              <div
-                key={diary.id}
-                className={styles.diaryCard}
-                data-testid="diary-card"
-                onClick={() => handleCardClick(diary.id)}>
-                <div className={styles.cardImageWrapper}>
-                  <Image
-                    src={emotionImage}
-                    alt={diary.title}
-                    fill
-                    className={styles.cardImage}
-                  />
-                  {isLoggedIn && (
-                    <button
-                      className={styles.deleteButton}
-                      onClick={(e) => handleDeleteClick(e, diary.id)}
-                      aria-label="삭제"
-                      data-testid="delete-button">
-                      <Image
-                        src="/icons/close_outline_light_m.svg"
-                        alt=""
-                        width={40}
-                        height={40}
-                      />
-                    </button>
-                  )}
-                </div>
-                <div className={styles.cardContent}>
-                  <div className={styles.cardHeader}>
-                    <span
-                      className={styles.emotionLabel}
-                      data-testid="emotion-label"
-                      style={{ color: emotionData.color }}>
-                      {emotionData.label}
-                    </span>
-                    <span className={styles.date} data-testid="card-date">
-                      {formattedDate}
-                    </span>
-                  </div>
-                  <div className={styles.cardTitle} data-testid="card-title">
-                    {diary.title}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* 모바일 레이아웃 */}
-        <div className={styles.cardGridMobile}>
-          {paginatedDiaries.map((diary) => {
-            const emotionData = emotions[diary.emotion];
-            const emotionImage = getEmotionImage(diary.emotion);
-            const formattedDate = formatDate(diary.createdAt);
-            return (
-              <div
-                key={diary.id}
-                className={styles.diaryCardMobile}
-                data-testid="diary-card-mobile"
-                onClick={() => handleCardClick(diary.id)}>
-                <div className={styles.cardImageWrapperMobile}>
-                  <Image
-                    src={emotionImage}
-                    alt={diary.title}
-                    fill
-                    className={styles.cardImageMobile}
-                  />
-                  {isLoggedIn && (
-                    <button
-                      className={styles.deleteButtonMobile}
-                      onClick={(e) => handleDeleteClick(e, diary.id)}
-                      aria-label="삭제"
-                      data-testid="delete-button-mobile">
-                      <Image
-                        src="/icons/close_outline_light_m.svg"
-                        alt=""
-                        width={20}
-                        height={20}
-                      />
-                    </button>
-                  )}
-                </div>
-                <div className={styles.cardContentMobile}>
-                  <div className={styles.cardHeaderMobile}>
-                    <span
-                      className={styles.emotionLabelMobile}
-                      data-testid="emotion-label-mobile"
-                      style={{ color: emotionData.color }}>
-                      {emotionData.label}
-                    </span>
-                    <span
-                      className={styles.dateMobile}
-                      data-testid="card-date-mobile">
-                      {formattedDate}
-                    </span>
-                  </div>
-                  <div
-                    className={styles.cardTitleMobile}
-                    data-testid="card-title-mobile">
-                    {diary.title}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* gap: 1168 * 40 */}
-      <div className={styles.gap_middle_2}></div>
-
-      {/* pagination: 1168 * 32 */}
-      <div className={styles.pagination}>
-        <Pagination
-          variant="primary"
-          size="medium"
-          theme="light"
-          currentPage={currentPage}
-          totalPages={totalPages}
-          pageRangeDisplayed={5}
-          onPageChange={handlePageChangeWrapper}
-          previousIcon={
-            <Image
-              src="/icons/leftenable_outline_light_m.svg"
-              alt=""
-              width={24}
-              height={24}
+          {/* 모바일 레이아웃 */}
+          <div className={styles.search__mobile}>
+            <Searchbar
+              variant="primary"
+              size="medium"
+              theme="light"
+              placeholder="검색어를 입력해 주세요."
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+              onSearch={handleSearchSubmit}
+              className={styles.search__searchbar_mobile}
+              data-testid="search-input-mobile"
             />
-          }
-          nextIcon={
-            <Image
-              src="/icons/rightenable_outline_light_m.svg"
-              alt=""
-              width={24}
-              height={24}
-            />
-          }
-        />
-      </div>
+            <div className={styles.search__bottom}>
+              <Selectbox
+                variant="primary"
+                size="medium"
+                theme="light"
+                options={filterOptions.map((option) => ({
+                  value: option.value,
+                  label: option.label,
+                }))}
+                value={selectedFilter}
+                onChange={(value: string) =>
+                  handleFilterChange(value as FilterType)
+                }
+                className={styles.search__selectbox_mobile}
+                data-testid="filter-selectbox-mobile"
+              />
+              <Button
+                variant="primary"
+                size="medium"
+                theme="light"
+                onClick={handleNewDiary}
+                data-testid="write-diary-button-mobile"
+                iconLeft={
+                  <Image
+                    src="/icons/plus_outline_light_m.svg"
+                    alt=""
+                    width={24}
+                    height={24}
+                  />
+                }
+                className={styles.search__button_mobile}>
+                일기쓰기
+              </Button>
+            </div>
+          </div>
+        </div>
 
-      {/* gap: 1168 * 40 */}
-      <div className={styles.gap_bottom}></div>
-    </div>
+        {/* gap: 1168 * 42 */}
+        <div className={styles.gap_middle_1}></div>
+
+        {/* main: 1168 * 936 */}
+        <div className={styles.main}>
+          {/* 데스크톱 레이아웃 */}
+          <div className={styles.cardGrid}>
+            {paginatedDiaries.map((diary) => {
+              const emotionData = emotions[diary.emotion];
+              const emotionImage = getEmotionImage(diary.emotion);
+              const formattedDate = formatDate(diary.createdAt);
+              return (
+                <div
+                  key={diary.id}
+                  className={styles.diaryCard}
+                  data-testid="diary-card"
+                  onClick={() => handleCardClick(diary.id)}>
+                  <div className={styles.cardImageWrapper}>
+                    <Image
+                      src={emotionImage}
+                      alt={diary.title}
+                      fill
+                      className={styles.cardImage}
+                    />
+                    {isLoggedIn && (
+                      <button
+                        className={styles.deleteButton}
+                        onClick={(e) => handleDeleteClick(e, diary.id)}
+                        aria-label="삭제"
+                        data-testid="delete-button">
+                        <Image
+                          src="/icons/close_outline_light_m.svg"
+                          alt=""
+                          width={24}
+                          height={24}
+                        />
+                      </button>
+                    )}
+                  </div>
+                  <div className={styles.cardContent}>
+                    <div className={styles.cardHeader}>
+                      <span
+                        className={styles.emotionLabel}
+                        data-testid="emotion-label"
+                        style={{ color: emotionData.color }}>
+                        {emotionData.label}
+                      </span>
+                      <span className={styles.date} data-testid="card-date">
+                        {formattedDate}
+                      </span>
+                    </div>
+                    <div className={styles.cardTitle} data-testid="card-title">
+                      {diary.title}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* 모바일 레이아웃 */}
+          <div className={styles.cardGridMobile}>
+            {paginatedDiaries.map((diary) => {
+              const emotionData = emotions[diary.emotion];
+              const emotionImage = getEmotionImage(diary.emotion);
+              const formattedDate = formatDate(diary.createdAt);
+              return (
+                <div
+                  key={diary.id}
+                  className={styles.diaryCardMobile}
+                  data-testid="diary-card-mobile"
+                  onClick={() => handleCardClick(diary.id)}>
+                  <div className={styles.cardImageWrapperMobile}>
+                    <Image
+                      src={emotionImage}
+                      alt={diary.title}
+                      fill
+                      className={styles.cardImageMobile}
+                    />
+                    {isLoggedIn && (
+                      <button
+                        className={styles.deleteButtonMobile}
+                        onClick={(e) => handleDeleteClick(e, diary.id)}
+                        aria-label="삭제"
+                        data-testid="delete-button-mobile">
+                        <Image
+                          src="/icons/close_outline_light_m.svg"
+                          alt=""
+                          width={20}
+                          height={20}
+                        />
+                      </button>
+                    )}
+                  </div>
+                  <div className={styles.cardContentMobile}>
+                    <div className={styles.cardHeaderMobile}>
+                      <span
+                        className={styles.emotionLabelMobile}
+                        data-testid="emotion-label-mobile"
+                        style={{ color: emotionData.color }}>
+                        {emotionData.label}
+                      </span>
+                      <span
+                        className={styles.dateMobile}
+                        data-testid="card-date-mobile">
+                        {formattedDate}
+                      </span>
+                    </div>
+                    <div
+                      className={styles.cardTitleMobile}
+                      data-testid="card-title-mobile">
+                      {diary.title}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* gap: 1168 * 40 */}
+        <div className={styles.gap_middle_2}></div>
+
+        {/* pagination: 1168 * 32 */}
+        <div className={styles.pagination}>
+          <Pagination
+            variant="primary"
+            size="medium"
+            theme="light"
+            currentPage={currentPage}
+            totalPages={totalPages}
+            pageRangeDisplayed={5}
+            onPageChange={handlePageChangeWrapper}
+            previousIcon={
+              <Image
+                src="/icons/leftenable_outline_light_m.svg"
+                alt=""
+                width={24}
+                height={24}
+              />
+            }
+            nextIcon={
+              <Image
+                src="/icons/rightenable_outline_light_m.svg"
+                alt=""
+                width={24}
+                height={24}
+              />
+            }
+          />
+        </div>
+
+        {/* gap: 1168 * 40 */}
+        <div className={styles.gap_bottom}></div>
+      </div>
+    </>
   );
 }

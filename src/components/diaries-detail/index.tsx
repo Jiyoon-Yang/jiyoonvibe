@@ -70,7 +70,6 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
       <div data-testid="diary-detail" className={styles.container}>
         {/* gap: 1168 * 64 */}
         <div className={styles.gap_top}></div>
-
         {/* 기분 선택 영역 */}
         <div className={styles.emotion_selection}>
           <div className={styles.emotion_selection_title}>
@@ -100,7 +99,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
             ))}
           </div>
         </div>
-
+        <div className={styles.gap_1}></div>
         {/* 제목 입력 */}
         <div className={styles.title_input_section}>
           <div className={styles.input_label}>제목</div>
@@ -119,7 +118,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
             )}
           />
         </div>
-
+        <div className={styles.gap_1}></div>
         {/* 내용 입력 */}
         <div className={styles.content_input_section}>
           <div className={styles.input_label}>내용</div>
@@ -136,7 +135,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
             )}
           />
         </div>
-
+        <div className={styles.gap_1}></div>
         {/* 버튼 영역 */}
         <div className={styles.update_button_section}>
           <Button
@@ -157,7 +156,6 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
             수정 하기
           </Button>
         </div>
-
         {/* 회고 영역 (수정 중일 때 비활성화) */}
         <div className={styles.retrospect_input}>
           <div className={styles.retrospectLabel}>회고</div>
@@ -182,10 +180,8 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
             </Button>
           </div>
         </div>
-
         {/* gap: 1168 * 16 */}
         <div className={styles.gap_4}></div>
-
         {/* retrospect-list: 1168 * 72 */}
         <div className={styles.retrospect_list} data-testid="retrospect-list">
           {retrospects.length > 0 ? (
@@ -222,7 +218,6 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
             </div>
           )}
         </div>
-
         {/* gap: 1168 * 64 */}
         <div className={styles.gap_bottom}></div>
       </div>
@@ -369,7 +364,7 @@ export default function DiariesDetail({ id }: DiariesDetailProps) {
                 <span
                   className={styles.retrospectDate}
                   data-testid="retrospect-date">
-                  {formatRetrospectDate(retrospect.createdAt)}
+                  [{formatRetrospectDate(retrospect.createdAt)}]
                 </span>
               </div>
               {index < retrospects.length - 1 && (

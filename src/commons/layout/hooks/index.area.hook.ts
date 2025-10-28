@@ -13,6 +13,7 @@ import { getPageMetadata } from "@/commons/constants/url";
  * @returns {Object} 각 영역의 노출 여부
  * - showHeader: header 영역 전체 노출 여부
  * - showLogo: header 내 logo 노출 여부
+ * - showHeaderGap: header 하단 gap 영역 노출 여부
  * - showBanner: banner 영역 노출 여부
  * - showNavigation: navigation 영역 노출 여부
  * - showFooter: footer 영역 노출 여부
@@ -43,6 +44,7 @@ export const useAreaVisibility = () => {
   // 기본값 (메타데이터가 없는 경우 모든 영역 노출)
   const defaultLayout = {
     header: { visible: true, logo: true, darkModeToggle: false },
+    headerGap: true,
     banner: true,
     navigation: true,
     footer: true,
@@ -53,6 +55,7 @@ export const useAreaVisibility = () => {
   return {
     showHeader: layout.header.visible,
     showLogo: layout.header.logo,
+    showHeaderGap: layout.headerGap,
     showBanner: layout.banner,
     showNavigation: layout.navigation,
     showFooter: layout.footer,

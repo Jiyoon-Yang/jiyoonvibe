@@ -38,7 +38,6 @@
     "eslint-config-next": "14.2.16",
     "postcss": "^8",
     "storybook": "^9.1.13",
-    "tailwindcss": "^3.4.1",
     "typescript": "^5",
     "vite": "^5.0.0"
   }

@@ -13,6 +13,7 @@ export interface PageLayout {
     logo: boolean;
     darkModeToggle: boolean;
   };
+  headerGap: boolean;
   banner: boolean;
   navigation: boolean;
   footer: boolean;
@@ -56,6 +57,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
         logo: false,
         darkModeToggle: false,
       },
+      headerGap: false,
       banner: false,
       navigation: false,
       footer: false,
@@ -71,6 +73,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
         logo: false,
         darkModeToggle: false,
       },
+      headerGap: false,
       banner: false,
       navigation: false,
       footer: false,
@@ -86,6 +89,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
         logo: true,
         darkModeToggle: false,
       },
+      headerGap: true,
       banner: true,
       navigation: true,
       footer: true,
@@ -101,6 +105,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
         logo: true,
         darkModeToggle: false,
       },
+      headerGap: false,
       banner: false,
       navigation: false,
       footer: true,
@@ -116,6 +121,7 @@ export const PAGE_METADATA: Record<string, PageMetadata> = {
         logo: true,
         darkModeToggle: false,
       },
+      headerGap: true,
       banner: true,
       navigation: true,
       footer: true,

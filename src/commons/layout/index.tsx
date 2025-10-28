@@ -21,8 +21,14 @@ export default function Layout({ children }: LayoutProps) {
     handlePicturesClick,
   } = useLinkRouting();
 
-  const { showHeader, showLogo, showBanner, showNavigation, showFooter } =
-    useAreaVisibility();
+  const {
+    showHeader,
+    showLogo,
+    showHeaderGap,
+    showBanner,
+    showNavigation,
+    showFooter,
+  } = useAreaVisibility();
 
   const { isLoggedIn, user, handleLogin, handleLogout } = useAuthStatus();
 
@@ -70,7 +76,7 @@ export default function Layout({ children }: LayoutProps) {
           </header>
         )}
 
-        {showHeader && <div className={styles.gap}></div>}
+        {showHeaderGap && <div className={styles.gap}></div>}
 
         {showBanner && (
           <div className={styles.banner} data-testid="layout-banner">
