@@ -146,7 +146,7 @@
 
 .footerContent {
   width: 100%;
-  max-width: 1168px;
+  /* max-width: 1168px; */
   display: flex;
   flex-direction: column;
   gap: 16px;

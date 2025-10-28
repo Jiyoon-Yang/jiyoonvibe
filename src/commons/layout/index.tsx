@@ -27,92 +27,93 @@ export default function Layout({ children }: LayoutProps) {
   const { isLoggedIn, user, handleLogin, handleLogout } = useAuthStatus();
 
   return (
-    <div className={styles.container}>
-      {showHeader && (
-        <header className={styles.header}>
-          {showLogo && (
-            <div
-              className={styles.logo}
-              onClick={handleLogoClick}
-              data-testid="layout-logo">
-              <span className={styles.logoText}>민지의 다이어리</span>
-            </div>
-          )}
-          <div className={styles.authStatus} data-testid="auth-status">
-            {isLoggedIn ? (
-              <>
-                <span className={styles.userName} data-testid="user-name">
-                  {user?.name}
-                </span>
+    <>
+      <div className={styles.container}>
+        {showHeader && (
+          <header className={styles.header}>
+            {showLogo && (
+              <div
+                className={styles.logo}
+                onClick={handleLogoClick}
+                data-testid="layout-logo">
+                <span className={styles.logoText}>민지의 다이어리</span>
+              </div>
+            )}
+            <div className={styles.authStatus} data-testid="auth-status">
+              {isLoggedIn ? (
+                <>
+                  <span className={styles.userName} data-testid="user-name">
+                    {user?.name}
+                  </span>
+                  <Button
+                    variant="primary"
+                    size="medium"
+                    theme="light"
+                    className={styles.logoutButton}
+                    onClick={handleLogout}
+                    data-testid="logout-button">
+                    로그아웃
+                  </Button>
+                </>
+              ) : (
                 <Button
                   variant="primary"
                   size="medium"
                   theme="light"
-                  className={styles.logoutButton}
-                  onClick={handleLogout}
-                  data-testid="logout-button">
-                  로그아웃
+                  className={styles.loginButton}
+                  onClick={handleLogin}
+                  data-testid="login-button">
+                  로그인
                 </Button>
-              </>
-            ) : (
-              <Button
-                variant="primary"
-                size="medium"
-                theme="light"
-                className={styles.loginButton}
-                onClick={handleLogin}
-                data-testid="login-button">
-                로그인
-              </Button>
-            )}
-          </div>
-        </header>
-      )}
-
-      {showHeader && <div className={styles.gap}></div>}
-
-      {showBanner && (
-        <div className={styles.banner} data-testid="layout-banner">
-          <Image
-            src="/images/banner.png"
-            alt="banner"
-            width={1168}
-            height={240}
-            className={styles.bannerImage}
-            priority
-          />
-        </div>
-      )}
-
-      {showBanner && <div className={styles.gap}></div>}
-
-      {showNavigation && (
-        <nav className={styles.navigation} data-testid="layout-navigation">
-          <div className={styles.navTabs}>
-            <div
-              className={`${styles.tab} ${
-                isDiariesActive ? styles.tabActive : ""
-              }`}
-              onClick={handleDiariesClick}
-              data-testid="nav-tab-diaries"
-              data-active={isDiariesActive}>
-              <span className={styles.tabText}>일기보관함</span>
+              )}
             </div>
-            <div
-              className={`${styles.tab} ${
-                isPicturesActive ? styles.tabActive : ""
-              }`}
-              onClick={handlePicturesClick}
-              data-testid="nav-tab-pictures"
-              data-active={isPicturesActive}>
-              <span className={styles.tabText}>사진보관함</span>
-            </div>
+          </header>
+        )}
+
+        {showHeader && <div className={styles.gap}></div>}
+
+        {showBanner && (
+          <div className={styles.banner} data-testid="layout-banner">
+            <Image
+              src="/images/banner.png"
+              alt="banner"
+              width={1168}
+              height={240}
+              className={styles.bannerImage}
+              priority
+            />
           </div>
-        </nav>
-      )}
+        )}
 
-      <main className={styles.main}>{children}</main>
+        {showBanner && <div className={styles.gap}></div>}
 
+        {showNavigation && (
+          <nav className={styles.navigation} data-testid="layout-navigation">
+            <div className={styles.navTabs}>
+              <div
+                className={`${styles.tab} ${
+                  isDiariesActive ? styles.tabActive : ""
+                }`}
+                onClick={handleDiariesClick}
+                data-testid="nav-tab-diaries"
+                data-active={isDiariesActive}>
+                <span className={styles.tabText}>일기보관함</span>
+              </div>
+              <div
+                className={`${styles.tab} ${
+                  isPicturesActive ? styles.tabActive : ""
+                }`}
+                onClick={handlePicturesClick}
+                data-testid="nav-tab-pictures"
+                data-active={isPicturesActive}>
+                <span className={styles.tabText}>사진보관함</span>
+              </div>
+            </div>
+          </nav>
+        )}
+
+        <main className={styles.main}>{children}</main>
+      </div>
       {showFooter && (
         <footer className={styles.footer}>
           <div className={styles.footerContent}>
@@ -124,6 +125,6 @@ export default function Layout({ children }: LayoutProps) {
           </div>
         </footer>
       )}
-    </div>
+    </>
   );
 }
