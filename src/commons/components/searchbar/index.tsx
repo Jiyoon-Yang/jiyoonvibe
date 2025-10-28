@@ -105,11 +105,11 @@ export const Searchbar = React.forwardRef<HTMLInputElement, SearchbarProps>(
     },
     ref
   ) => {
-    const [internalValue, setInternalValue] = React.useState(value || "");
+    const [internalValue, setInternalValue] = React.useState(value ?? "");
 
     // value prop이 변경되면 내부 상태 업데이트
     React.useEffect(() => {
-      setInternalValue(value || "");
+      setInternalValue(value ?? "");
     }, [value]);
 
     // 검색 실행
